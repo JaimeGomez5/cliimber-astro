@@ -26,7 +26,8 @@ export default function LandingSlider() {
         <img
           src={pk.img}
           alt={pk.alt}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+          className="object-contain bg-white md:object-cover md:object-[center_top]"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
         />
         <button
           onClick={() => setSlide((slide - 1 + LANDINGS.length) % LANDINGS.length)}
