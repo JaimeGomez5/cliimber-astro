@@ -6,6 +6,7 @@ import HomeHero from '../components/HomeHero';
 import { VoiceNote } from '../components/VoiceNote';
 import { EpisodeCard } from '../components/EpisodeCard';
 import { FaqItem } from '../components/FaqItem';
+import ContactForm from '../components/ContactForm';
 
 const ldJson = {
   "@context": "https://schema.org",
@@ -460,27 +461,9 @@ const ldJson = {
         <h2 class="h-section mt-4 mb-4">¿Tu web no te trae ni un cliente al mes? Escríbeme.</h2>
         <p class="text-[17px]" style="color: var(--texto-medio);">Te respondo hoy. Sin propuesta de 20 páginas, solo una conversación sobre tu negocio.</p>
       </div>
-      <form id="contact-form" class="bg-white rounded-2xl p-6 md:p-8 border reveal space-y-4" style="border-color: var(--borde);">
-        <div class="grid sm:grid-cols-2 gap-4">
-          <input required id="contact-name" name="name" autocomplete="name" placeholder="Nombre" class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);" />
-          <input required id="contact-business" name="business" placeholder="Ej: Clínica veterinaria, tienda pet..." class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);" />
-        </div>
-        <div class="grid sm:grid-cols-2 gap-4">
-          <input required type="email" id="contact-email" name="email" autocomplete="email" placeholder="Email" class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);" />
-          <input type="tel" inputmode="tel" id="contact-phone" name="phone" autocomplete="tel" placeholder="Teléfono / WhatsApp" class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);" />
-        </div>
-        <select required id="contact-situation" name="situation" class="px-4 py-3 rounded-lg border w-full bg-white" style="border-color: var(--borde);">
-          <option value="" disabled selected>¿Cuál es tu situación?</option>
-          <option>Tengo web pero no me trae clientes</option>
-          <option>Solo tengo Instagram y quiero web propia</option>
-          <option>Tengo un proyecto nuevo y necesito construirlo</option>
-          <option>Necesito una herramienta a medida (calculadora, quiz...)</option>
-          <option>Quiero SEO/SEM pero sin empezar de cero</option>
-        </select>
-        <textarea rows="4" id="contact-message" name="message" placeholder="Cuéntame más (opcional)" class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);"></textarea>
-        <button type="submit" class="btn btn-primary w-full">Enviar → te respondo hoy</button>
-        <p class="text-xs text-center" style="color: var(--texto-apagado);">Sin formularios que no contestan. Te respondo yo directamente.</p>
-      </form>
+      <div class="reveal">
+        <ContactForm client:load />
+      </div>
       <div class="flex flex-wrap gap-4 justify-center mt-6 text-sm reveal">
         <a href="https://wa.me/34XXXXXXXXXX" target="_blank" rel="noreferrer" class="btn btn-ghost">💬 WhatsApp directo</a>
         <a href="mailto:jaimegomez@cliimber" class="btn btn-ghost">✉️ jaimegomez@cliimber</a>
@@ -490,11 +473,4 @@ const ldJson = {
 
   <Footer />
 
-  <script>
-    const form = document.getElementById('contact-form');
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Gracias, te respondo hoy.');
-    });
-  </script>
 </BaseLayout>
