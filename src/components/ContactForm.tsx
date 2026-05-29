@@ -15,7 +15,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 md:p-8 border space-y-4" style={{ borderColor: 'var(--borde)' }}>
       <div className="grid sm:grid-cols-2 gap-4">
         <input required name="name" autoComplete="name" placeholder="Nombre" className="px-4 py-3 rounded-lg border w-full" style={{ borderColor: 'var(--borde)' }} />
-        <input required name="business" placeholder="Ej: Clínica veterinaria, tienda pet..." className="px-4 py-3 rounded-lg border w-full" style={{ borderColor: 'var(--borde)' }} />
+        <input required name="business" placeholder="Nombre de empresa" className="px-4 py-3 rounded-lg border w-full" style={{ borderColor: 'var(--borde)' }} />
       </div>
       <div className="grid sm:grid-cols-2 gap-4">
         <input required type="email" name="email" autoComplete="email" placeholder="Email" className="px-4 py-3 rounded-lg border w-full" style={{ borderColor: 'var(--borde)' }} />
