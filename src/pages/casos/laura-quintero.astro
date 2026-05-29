@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import DerivationSlider from '../../components/DerivationSlider';
+---
+<BaseLayout
+  title="Ep. 01: La calculadora de nutrición que trabaja sola | Cliimber"
+  description="Caso real: calculadora de materia seca y sistema de derivación para Laura Quintero, nutricionista canina. Cómo una herramienta cambia un negocio."
+  canonical="https://cliimber.com/casos/laura-quintero/"
+  ogTitle="Ep. 01: La calculadora de nutrición que trabaja sola"
+  ogDescription="Caso real de Cliimber con Laura Quintero, nutricionista canina."
+  ogImage="/assets/og-laura.jpg"
+  ogType="article"
+>
+  <Nav />
+
+  <!-- HERO -->
+  <section style="background: var(--azul-oscuro); color: var(--texto-claro); min-height: 100vh;" class="pt-28 pb-16 grid place-items-center relative">
+    <div class="container-x">
+      <a href="/#proyectos" class="text-sm opacity-70 hover:opacity-100 mb-6 inline-block">← Volver a la serie</a>
+      <div class="flex items-center gap-2 text-sm mb-4">
+        <span class="font-extrabold">Cliimber</span><span style="color: var(--verde-claro);">✦ Creciendo con ellos</span>
+      </div>
+      <p class="text-xs uppercase tracking-widest mb-6 opacity-70">Episodio 01 · Sector pet · Nutrición canina · <span style="color: var(--granate);" class="font-bold">REAL</span></p>
+      <h1 class="font-extrabold leading-[1.05] mb-8 max-w-4xl" style="font-size: clamp(2rem, 6vw, 4.5rem);">
+        La calculadora que trabaja mientras Laura duerme.
+      </h1>
+      <p class="text-lg max-w-3xl opacity-85 mb-8">
+        Sus clientes llegaban a consulta habiendo calculado mal la materia seca de las etiquetas. El error no era de ellos: las etiquetas son confusas a propósito. Lo que construimos no fue una web. Fue una herramienta que elimina ese error antes de que ocurra.
+      </p>
+      <div class="flex items-center gap-4 p-4 rounded-2xl max-w-md" style="background: var(--borde-oscuro);">
+        <div class="w-14 h-14 rounded-full grid place-items-center text-2xl" style="background: var(--verde);">🐾</div>
+        <div>
+          <p class="font-bold">Laura Quintero</p>
+          <p class="text-xs opacity-70">Nutricionista canina · @LauraQuinteroVeterinaria</p>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-2xl animate-bounce">↓</div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section style="background: var(--azul-claro);" class="py-24">
+    <div class="container-x">
+      <h2 class="h-section mb-12 max-w-3xl reveal">Antes de construir nada, había que entender qué fallaba.</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="p-7 rounded-2xl bg-white border reveal" style="border-color: var(--borde);">
+          <div class="text-sm font-bold mb-3" style="color: var(--verde);">01</div>
+          <h3 class="font-bold text-lg mb-3" style="color: var(--texto-oscuro);">Las etiquetas mienten por omisión</h3>
+          <p class="text-sm" style="color: var(--texto-medio);">El porcentaje de grasa en la etiqueta incluye el agua del alimento. La grasa real puede ser hasta 3 veces mayor. Casi ningún tutor lo sabe.</p>
+        </div>
+        <div class="p-7 rounded-2xl bg-white border reveal" style="border-color: var(--borde);">
+          <div class="text-sm font-bold mb-3" style="color: var(--verde);">02</div>
+          <h3 class="font-bold text-lg mb-3" style="color: var(--texto-oscuro);">Consultas que empezaban con datos erróneos</h3>
+          <p class="text-sm" style="color: var(--texto-medio);">Laura recibía clientes que habían calculado mal la materia seca y llegaban con la premisa equivocada.</p>
+        </div>
+        <div class="p-7 rounded-2xl bg-white border reveal" style="border-color: var(--borde);">
+          <div class="text-sm font-bold mb-3" style="color: var(--verde);">03</div>
+          <h3 class="font-bold text-lg mb-3" style="color: var(--texto-oscuro);">Las clínicas derivaban por correo o no derivaban</h3>
+          <p class="text-sm" style="color: var(--texto-medio);">Hospitales con casos de nutrición que no podían resolver. Derivar a Laura era más difícil que no derivar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA -->
+  <section style="background: var(--azul-oscuro); color: var(--texto-claro);" class="py-24">
+    <div class="container-x grid md:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <h2 class="h-section mb-6">La calculadora de materia seca.</h2>
+        <p class="opacity-85 mb-4 text-lg">Dos campos. Un resultado en grande. Y una recomendación personalizada según el nivel de grasa real. Si el resultado es preocupante, la herramienta lo dice claramente y propone reservar consulta directamente.</p>
+        <p class="opacity-85 mb-6">Funciona 24 horas. Mientras Laura duerme, mientras está en consulta, mientras está de vacaciones.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full" style="background: var(--verde-claro);"></span>Calcula grasa real automáticamente</li>
+          <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full" style="background: var(--verde-claro);"></span>Badge visual de nivel</li>
+          <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full" style="background: var(--verde-claro);"></span>Recomendación personalizada</li>
+          <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full" style="background: var(--verde-claro);"></span>CTA a reserva si nivel alto</li>
+          <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full" style="background: var(--verde-claro);"></span>Botón compartir resultado</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="relative mx-auto glow-green" style="width: 280px;">
+          <div class="rounded-[2.5rem] p-3 shadow-2xl" style="background: #0a0a0a;">
+            <div class="rounded-[2rem] overflow-hidden relative" style="background: #000; aspect-ratio: 9/19.5;">
+              <img src="/assets/calculadora-laura.png" alt="Calculadora de materia seca" style="width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: inherit;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DERIVACIÓN -->
+  <section style="background: var(--azul-claro);" class="py-24">
+    <div class="container-x flex flex-col-reverse md:grid md:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <DerivationSlider client:visible />
+      </div>
+      <div class="reveal">
+        <h3 class="h-section mb-6">Laura vio algo que la mayoría no ve: el problema estaba antes.</h3>
+        <p class="mb-4 text-[16px]" style="color: var(--texto-medio);">Las clínicas y hospitales recibían casos de nutrición que no podían resolver internamente. Derivar era un caos: emails con datos incompletos, sin historial del paciente. Era más fácil no derivar que derivar bien.</p>
+        <p class="mb-6 text-[16px]" style="color: var(--texto-medio);">Construimos un sistema de derivación estructurado. Con el formulario adecuado, derivarle a Laura es más fácil que escribir un email.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-3" style="color: var(--texto-oscuro);"><span class="w-2 h-2 rounded-full" style="background: var(--verde);"></span>Datos del centro remisor</li>
+          <li class="flex items-center gap-3" style="color: var(--texto-oscuro);"><span class="w-2 h-2 rounded-full" style="background: var(--verde);"></span>Ficha completa del paciente</li>
+          <li class="flex items-center gap-3" style="color: var(--texto-oscuro);"><span class="w-2 h-2 rounded-full" style="background: var(--verde);"></span>Motivo, pruebas y tratamientos</li>
+          <li class="flex items-center gap-3" style="color: var(--texto-oscuro);"><span class="w-2 h-2 rounded-full" style="background: var(--verde);"></span>Adjunto de analíticas y ecografías</li>
+          <li class="flex items-center gap-3" style="color: var(--texto-oscuro);"><span class="w-2 h-2 rounded-full" style="background: var(--verde);"></span>Respuesta garantizada en 48h</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADO -->
+  <section style="background: var(--azul-oscuro); color: var(--texto-claro);" class="py-24">
+    <div class="container-x">
+      <h2 class="h-section mb-10 max-w-3xl reveal">Una web que empezó con el negocio y creció cuando el negocio creció.</h2>
+      <div class="grid sm:grid-cols-3 gap-6 mb-10">
+        <div class="p-6 rounded-2xl reveal" style="background: var(--borde-oscuro);">
+          <div class="text-4xl font-extrabold mb-2" style="color: var(--verde-claro);">24/7</div>
+          <p class="text-sm opacity-85">Activa</p>
+        </div>
+        <div class="p-6 rounded-2xl reveal" style="background: var(--borde-oscuro);">
+          <div class="text-4xl font-extrabold mb-2" style="color: var(--verde-claro);">2</div>
+          <p class="text-sm opacity-85">Canales captación</p>
+        </div>
+        <div class="p-6 rounded-2xl reveal" style="background: var(--borde-oscuro);">
+          <div class="text-4xl font-extrabold mb-2" style="color: var(--verde-claro);">∞</div>
+          <p class="text-sm opacity-85">Consultas posibles sin intervención</p>
+        </div>
+      </div>
+      <blockquote class="p-8 rounded-2xl border-l-4 italic reveal" style="background: var(--borde-oscuro); border-color: var(--verde-claro);">
+        "Aquí va la frase de Laura cuando la tengas."
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: var(--verde); color: var(--texto-claro);" class="py-20">
+    <div class="container-x text-center max-w-3xl">
+      <span class="tag tag-dark mb-4">Cliimber Originals · Creciendo con ellos</span>
+      <h2 class="h-section mt-4 mb-4">¿Tienes un negocio en el sector pet con un problema parecido?</h2>
+      <p class="opacity-90 mb-8">No hace falta que tengas el brief perfecto. Solo cuéntame qué no está funcionando.</p>
+      <a href="/#contacto" class="btn bg-white" style="color: var(--verde);">Hablamos →</a>
+      <p class="text-xs opacity-80 mt-4">Sin compromiso. Sin propuesta de 20 páginas.</p>
+    </div>
+  </section>
+
+  <div class="py-10 text-center" style="background: var(--azul-oscuro);">
+    <a href="/casos/virtual-vista" style="color: var(--verde-claro);" class="font-semibold">Ver también el episodio 02: Virtual Vista →</a>
+  </div>
+
+  <Footer />
+</BaseLayout>

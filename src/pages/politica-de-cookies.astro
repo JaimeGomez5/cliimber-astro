@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout
+  title="Política de cookies | Cliimber"
+  description="Qué cookies usa Cliimber, para qué sirven y cómo puedes aceptarlas o rechazarlas."
+  canonical="https://cliimber.com/politica-de-cookies/"
+  ogTitle="Política de cookies | Cliimber"
+  ogDescription="Información clara sobre las cookies de Cliimber."
+>
+  <div style="background: var(--background);">
+    <Nav />
+    <main class="container-x py-16 md:py-24 max-w-3xl" style="padding-top: 8rem;">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4" style="color: var(--texto-oscuro);">
+        Política de cookies
+      </h1>
+      <p class="text-sm mb-10" style="color: var(--texto-apagado);">
+        Última actualización: mayo de 2026
+      </p>
+
+      <div class="space-y-10 text-base leading-relaxed" style="color: var(--texto-medio);">
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Qué es una cookie?</h2>
+          <p>
+            Un archivo pequeño que se guarda en tu dispositivo cuando visitas una web. Sirve
+            para que la web funcione correctamente y para recoger información sobre cómo se usa.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Qué cookies usamos?</h2>
+          <div class="space-y-4">
+            <p>
+              <strong style="color: var(--texto-oscuro);">Cookies técnicas (siempre activas):</strong>
+              necesarias para que la web funcione. No requieren tu consentimiento y no recogen
+              datos personales.
+            </p>
+            <p>
+              <strong style="color: var(--texto-oscuro);">Cookies analíticas (requieren consentimiento):</strong>
+              Google Analytics. Nos permiten entender cómo se usa la web, páginas visitadas,
+              tiempo de navegación, origen del tráfico. Los datos son anónimos y agregados.
+            </p>
+            <p>
+              <strong style="color: var(--texto-oscuro);">Cookies de marketing (requieren consentimiento):</strong>
+              Meta Pixel. Nos permiten medir la efectividad de campañas publicitarias en Facebook
+              e Instagram y mostrarte anuncios relevantes. Los datos se tratan según la política
+              de privacidad de Meta.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Cómo gestionar tus preferencias?</h2>
+          <p>
+            Puedes aceptar todas las cookies, elegir solo las necesarias, o cambiar tu
+            preferencia en cualquier momento borrando las cookies de tu navegador. También
+            puedes configurar tu navegador para bloquearlas, aunque esto puede afectar al
+            funcionamiento de la web.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Con qué frecuencia actualizamos esta política?</h2>
+          <p>
+            Cuando añadimos nuevos servicios o cambia la legislación. La fecha de última
+            actualización aparece al pie de esta página.
+          </p>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

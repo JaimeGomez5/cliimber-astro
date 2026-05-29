@@ -1,0 +1,36 @@
+---
+---
+<header
+  class="fixed top-0 inset-x-0 z-50 backdrop-blur-md border-b"
+  style="background: color-mix(in oklab, var(--azul-oscuro) 92%, transparent); border-color: var(--borde-oscuro);"
+>
+  <div class="container-x flex items-center justify-between h-16">
+    <a href="/" aria-label="Cliimber">
+      <img src="/assets/cliimber-logo-dark.svg" alt="Cliimber" style="height: 32px; width: auto;" />
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm" style="color: var(--texto-claro);">
+      <a href="/#proyectos" class="hover:opacity-80">Proyectos</a>
+      <a href="/#sobre-mi" class="hover:opacity-80">Sobre mí</a>
+      <a href="/#faq" class="hover:opacity-80">FAQ</a>
+      <a href="/#contacto" class="btn btn-primary !py-2 !px-4 text-sm">Hablamos →</a>
+    </nav>
+    <button id="menu-btn" class="md:hidden p-2 rounded" aria-label="Menú" style="color: var(--texto-claro);">
+      <span class="block w-6 h-0.5 bg-current mb-1.5"></span>
+      <span class="block w-6 h-0.5 bg-current mb-1.5"></span>
+      <span class="block w-6 h-0.5 bg-current"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t" style="border-color: var(--borde-oscuro);">
+    <div class="container-x py-4 flex flex-col gap-3 text-sm" style="color: var(--texto-claro);">
+      <a href="/#proyectos">Proyectos</a>
+      <a href="/#sobre-mi">Sobre mí</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#contacto" class="btn btn-primary !py-2 !px-4 self-start">Hablamos →</a>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

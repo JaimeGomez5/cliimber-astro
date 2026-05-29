@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout
+  title="Política de privacidad | Cliimber"
+  description="Cómo trata Cliimber tus datos personales: qué recogemos, para qué, durante cuánto tiempo y qué derechos tienes."
+  canonical="https://cliimber.com/politica-de-privacidad/"
+  ogTitle="Política de privacidad | Cliimber"
+  ogDescription="Información clara sobre el tratamiento de datos en Cliimber."
+>
+  <div style="background: var(--background);">
+    <Nav />
+    <main class="container-x py-16 md:py-24 max-w-3xl" style="padding-top: 8rem;">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4" style="color: var(--texto-oscuro);">
+        Política de privacidad
+      </h1>
+      <p class="text-sm mb-10" style="color: var(--texto-apagado);">
+        Última actualización: mayo de 2026
+      </p>
+
+      <div class="space-y-10 text-base leading-relaxed" style="color: var(--texto-medio);">
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Quién es el responsable?</h2>
+          <p>
+            Jaime Gómez, titular de Cliimber. Email de contacto:{" "}
+            <a href="mailto:jaimegomez@cliimber" style="color: var(--verde);" class="font-semibold">
+              jaimegomez@cliimber
+            </a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Qué datos recogemos y para qué?</h2>
+          <p>
+            A través del formulario de contacto recogemos nombre, email y teléfono, con el único
+            fin de responder a tu consulta y, si nos das tu consentimiento, enviarte
+            comunicaciones sobre nuestros servicios. No recogemos más datos de los necesarios.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Con qué base legal?</h2>
+          <p>
+            El tratamiento se basa en tu consentimiento explícito al enviar el formulario y en
+            el interés legítimo de Cliimber para responder consultas comerciales.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Cuánto tiempo guardamos tus datos?</h2>
+          <p>
+            Hasta que solicites su eliminación o transcurran 2 años sin actividad desde el
+            último contacto.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Los cedemos a terceros?</h2>
+          <p>
+            No vendemos ni cedemos tus datos. Utilizamos servicios de terceros que pueden tratar
+            datos en tu nombre: Google Analytics (analítica web), Meta Pixel (publicidad),
+            Calendly (gestión de citas). Todos operan bajo sus propias políticas de privacidad y
+            cumplen el RGPD.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Cuáles son tus derechos?</h2>
+          <p>
+            Puedes acceder, rectificar, suprimir, portabilizar u oponerte al tratamiento de tus
+            datos en cualquier momento escribiendo a{" "}
+            <a href="mailto:jaimegomez@cliimber" style="color: var(--verde);" class="font-semibold">
+              jaimegomez@cliimber
+            </a>.
+            También puedes reclamar ante la Agencia Española de Protección de Datos (
+            <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" style="color: var(--verde);" class="font-semibold">
+              aepd.es
+            </a>
+            ).
+          </p>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

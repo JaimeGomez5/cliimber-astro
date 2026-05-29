@@ -1,0 +1,500 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import HomeHero from '../components/HomeHero';
+import { VoiceNote } from '../components/VoiceNote';
+import { EpisodeCard } from '../components/EpisodeCard';
+import { FaqItem } from '../components/FaqItem';
+
+const ldJson = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      name: "Cliimber",
+      url: "https://cliimber.com",
+      areaServed: "ES",
+      founder: { "@type": "Person", name: "Jaime Gómez" },
+      address: { "@type": "PostalAddress", addressLocality: "Madrid", addressCountry: "ES" },
+      description: "Desarrollo web a medida, herramientas interactivas, SEO/SEM. Especialización en sector pet.",
+    },
+    {
+      "@type": "Person",
+      name: "Jaime Gómez",
+      jobTitle: "Desarrollador web",
+      url: "https://cliimber.com",
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: [
+        { "@type": "Question", name: "¿Cuánto cuesta una web con Cliimber?", acceptedAnswer: { "@type": "Answer", text: "Desde 1.200€. Precio cerrado antes de empezar." } },
+        { "@type": "Question", name: "¿Cuánto se tarda?", acceptedAnswer: { "@type": "Answer", text: "Entre 2 y 4 semanas desde que el brief está claro." } },
+        { "@type": "Question", name: "¿De quién es el código?", acceptedAnswer: { "@type": "Answer", text: "Tuyo desde el día uno. Sin ataduras ni cuotas obligatorias." } },
+        { "@type": "Question", name: "¿Trabajáis con sector pet?", acceptedAnswer: { "@type": "Answer", text: "Sí, es la especialización principal: clínicas, nutricionistas, marcas de pienso." } },
+      ],
+    },
+  ],
+};
+---
+<BaseLayout
+  title="Cliimber, Web a medida que trae clientes | Pymes España 2026"
+  description="¿Tu web no vende? Construyo webs a medida sin cuotas mensuales ni intermediarios. El código es tuyo. Especializado en sector pet. Madrid, toda España."
+  canonical="https://cliimber.com/"
+  ogTitle="Cliimber, Web a medida que trae clientes"
+  ogDescription="Webs y herramientas a medida sin cuotas, sin intermediarios. El código es tuyo desde el día uno."
+  ogImage="/assets/og-home.jpg"
+  ldJson={ldJson}
+>
+  <Nav />
+
+  <!-- AEO invisible -->
+  <p class="sr-only">
+    Cliimber es el servicio de desarrollo web a medida de Jaime Gómez, con base en Madrid y trabajando con pymes de toda España. Construye webs, calculadoras y herramientas interactivas en código puro sin WordPress, especializado en sector pet. El código es del cliente desde el primer día.
+  </p>
+
+  <!-- HERO -->
+  <HomeHero client:load />
+
+  <!-- REVEAL -->
+  <section style="background: var(--azul-claro);" class="py-24">
+    <div class="container-x text-center reveal">
+      <p class="text-2xl md:text-4xl font-bold leading-tight max-w-4xl mx-auto" style="color: var(--texto-medio);">
+        La mayoría te entrega la web y desaparece.
+      </p>
+      <p class="text-2xl md:text-4xl font-bold leading-tight max-w-4xl mx-auto mt-2" style="color: var(--verde);">
+        Yo sigo cuando empieza lo importante: hacer que funcione.
+      </p>
+    </div>
+  </section>
+
+  <!-- DOLOR -->
+  <section style="background: var(--azul-oscuro);" class="py-24">
+    <div class="container-x">
+      <div class="max-w-3xl mb-12 reveal">
+        <span class="tag tag-dark mb-4">El problema</span>
+        <h2 class="h-section mt-4 mb-4" style="color: #f5f8f9;">Tu web existe. Pero no trabaja.</h2>
+        <p class="text-[17px]" style="color: #7a8e96;">
+          El 80% de las pymes tienen una web que no les trae ni un cliente al mes. No es mala suerte, es que fue construida para verse bien, no para funcionar.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <article class="p-7 rounded-2xl border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+          <div class="text-sm font-bold mb-3" style="color: var(--verde-claro);">01</div>
+          <p class="text-lg font-bold mb-4 leading-snug" style="color: #f5f8f9;">"Pago todos los meses pero no sé muy bien qué están haciendo."</p>
+          <div class="w-10 h-0.5 mb-4" style="background: var(--verde);"></div>
+          <p class="text-sm leading-relaxed mb-5" style="color: #7a8e96;">Una web sin estrategia es un folleto guardado en el cajón. Y el informe mensual que recibes está lleno de métricas que no se traducen en clientes.</p>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">→ Webs que convierten</span>
+        </article>
+        <article class="p-7 rounded-2xl border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+          <div class="text-sm font-bold mb-3" style="color: var(--verde-claro);">02</div>
+          <p class="text-lg font-bold mb-4 leading-snug" style="color: #f5f8f9;">"Tengo visitas pero no tengo clientes."</p>
+          <div class="w-10 h-0.5 mb-4" style="background: var(--verde);"></div>
+          <p class="text-sm leading-relaxed mb-5" style="color: #7a8e96;">Tráfico sin conversión es dinero tirado. Si la gente entra y se va sin hacer nada, el problema no es el marketing, es la estructura de la web.</p>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">→ Herramientas que convierten</span>
+        </article>
+        <article class="p-7 rounded-2xl border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+          <div class="text-sm font-bold mb-3" style="color: var(--verde-claro);">03</div>
+          <p class="text-lg font-bold mb-4 leading-snug" style="color: #f5f8f9;">"Dependo de Instagram para vender, y vivo con miedo a que cambie el algoritmo."</p>
+          <div class="w-10 h-0.5 mb-4" style="background: var(--verde);"></div>
+          <p class="text-sm leading-relaxed mb-5" style="color: #7a8e96;">Vender solo por redes es vivir en una casa prestada. Un día cambia el algoritmo, te cierran la cuenta, y tu facturación cae con ello.</p>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">→ Tu canal propio</span>
+        </article>
+      </div>
+      <div class="mt-12 max-w-md mx-auto reveal">
+        <VoiceNote src="/assets/nota1.m4a" client:visible />
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENTE -->
+  <section style="background: var(--azul-claro);" class="py-24 border-t">
+    <div class="container-x">
+      <div class="max-w-3xl mb-12 reveal">
+        <h2 class="h-section mb-4">Te vendieron una plantilla. Te dijeron que era a medida.</h2>
+        <p class="text-[17px]" style="color: var(--texto-medio);">
+          Tu negocio tiene su propia forma. Meterlo en una caja prediseñada es garantizar que nunca encaje del todo.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden border reveal grid grid-cols-1 sm:grid-cols-2" style="border-color: var(--borde);">
+        <div>
+          <div class="p-5 font-bold text-sm uppercase tracking-wider" style="background: #e9eef0; color: var(--texto-medio);">Lo que te vendieron</div>
+          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>Plantilla con tu logo, igual que la del competidor de enfrente</div>
+          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>Lento, frágil, y lleno de piezas que se rompen solas</div>
+          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>Te entregan y desaparecen. El próximo email es la factura de renovación</div>
+          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>SEO prometido que nunca llega, añadido al final, sin base técnica real</div>
+          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>Para cambiar un teléfono: 4 días y un ticket de soporte</div>
+          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>El código es de ellos. Si te vas, empiezas de cero</div>
+        </div>
+        <div class="border-t sm:border-t-0 sm:border-l" style="border-color: var(--borde);">
+          <div class="p-5 font-bold text-sm uppercase tracking-wider" style="background: var(--verde); color: var(--texto-claro);">Lo que construyo yo</div>
+          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>Construido desde cero para ti, ningún otro negocio tiene lo mismo</div>
+          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>Rápido desde el primer día, sin piezas prestadas que fallen</div>
+          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>Me quedo cuando empieza lo importante, que funcione y que crezca</div>
+          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>SEO integrado desde la estructura, no como parche posterior</div>
+          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>Cualquier cambio: me escribes por WhatsApp y está hecho</div>
+          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>El código es tuyo desde el día uno. Sin ataduras, sin letra pequeña.</div>
+        </div>
+      </div>
+      <div class="mt-10 p-8 rounded-2xl reveal" style="background: var(--azul-oscuro); color: var(--texto-claro);">
+        <p class="text-lg leading-relaxed">
+          Una web rápida no es un lujo. Es lo que determina si Google te muestra o te ignora, si el cliente se queda o se va. Cada segundo de carga es dinero que se pierde. Por eso construyo desde el código, no desde una plantilla que alguien diseñó para otro.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTODO ESCALA -->
+  <section style="background: var(--azul-oscuro); color: var(--texto-claro);" class="py-24">
+    <div class="container-x">
+      <div class="max-w-3xl mb-12 reveal">
+        <span class="tag tag-dark">El método</span>
+        <h2 class="h-section mt-4 mb-4">Método <span style="color: #a8e063;">ESCALA</span></h2>
+        <p class="text-[17px] opacity-85">Antes de escribir una línea de código, ya sé exactamente qué necesita tu negocio.</p>
+        <p class="italic mt-4 pl-4 border-l-4" style="border-color: var(--verde-claro);">
+          La mayoría construye la web y luego piensa en cómo traer clientes. Yo lo hago al revés.
+        </p>
+      </div>
+      <ol class="space-y-6 max-w-3xl">
+        <li class="flex gap-5 reveal">
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">1</div>
+            <div class="w-0.5 flex-1 mt-2" style="background: var(--borde-oscuro);"></div>
+          </div>
+          <div class="pb-6">
+            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 1</span>
+            <h3 class="text-2xl font-extrabold mb-2 mt-1">Diagnóstico</h3>
+            <p class="opacity-85 mb-3">Investigación de mercado y cliente ideal. Entiendo tu negocio antes de proponer nada.</p>
+            <span class="inline-block text-xs px-3 py-1 rounded-full font-semibold" style="background: rgba(42,151,112,0.15); color: var(--verde-claro);">Output: Brief estratégico</span>
+          </div>
+        </li>
+        <li class="flex gap-5 reveal">
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">2</div>
+            <div class="w-0.5 flex-1 mt-2" style="background: var(--borde-oscuro);"></div>
+          </div>
+          <div class="pb-6">
+            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 2</span>
+            <h3 class="text-2xl font-extrabold mb-2 mt-1">Arquitectura</h3>
+            <p class="opacity-85 mb-3">Análisis de herramientas de conversión. Defino qué tiene que hacer cada página y cada elemento.</p>
+            <span class="inline-block text-xs px-3 py-1 rounded-full font-semibold" style="background: rgba(42,151,112,0.15); color: var(--verde-claro);">Output: Arquitectura web</span>
+          </div>
+        </li>
+        <li class="flex gap-5 reveal">
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">3</div>
+            <div class="w-0.5 flex-1 mt-2" style="background: var(--borde-oscuro);"></div>
+          </div>
+          <div class="pb-6">
+            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 3</span>
+            <h3 class="text-2xl font-extrabold mb-2 mt-1">Construcción</h3>
+            <p class="opacity-85 mb-3">Desarrollo a código puro + SEO base. Sin WordPress. Sin plantillas. Velocidad real.</p>
+            <span class="inline-block text-xs px-3 py-1 rounded-full font-semibold" style="background: rgba(42,151,112,0.15); color: var(--verde-claro);">Output: Web entregada</span>
+          </div>
+        </li>
+        <li class="flex gap-5 reveal">
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">4</div>
+            <div class="w-0.5 flex-1 mt-2" style="background: var(--borde-oscuro);"></div>
+          </div>
+          <div class="pb-6">
+            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 4</span>
+            <h3 class="text-2xl font-extrabold mb-2 mt-1">Tráfico</h3>
+            <p class="opacity-85 mb-3">SEO, AEO y SEM con ventaja real. La web ya está pensada para captar, solo hay que activarla.</p>
+            <span class="inline-block text-xs px-3 py-1 rounded-full font-semibold" style="background: rgba(42,151,112,0.15); color: var(--verde-claro);">Output: Clientes entrando</span>
+          </div>
+        </li>
+        <li class="flex gap-5 reveal">
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">5</div>
+          </div>
+          <div class="pb-6">
+            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 5</span>
+            <h3 class="text-2xl font-extrabold mb-2 mt-1">Evolución</h3>
+            <p class="opacity-85 mb-3">Growth partner para el largo plazo. La web crece cuando crece el negocio.</p>
+            <span class="inline-block text-xs px-3 py-1 rounded-full font-semibold" style="background: rgba(42,151,112,0.15); color: var(--verde-claro);">Output: Crecimiento continuo</span>
+          </div>
+        </li>
+      </ol>
+      <div class="mt-12 max-w-md mx-auto reveal">
+        <VoiceNote client:visible />
+      </div>
+    </div>
+  </section>
+
+  <!-- PAQUETES -->
+  <section id="paquetes" style="background: var(--azul-claro);" class="py-24">
+    <div class="container-x">
+      <div class="max-w-3xl mb-12 reveal">
+        <span class="tag">Los paquetes</span>
+        <h2 class="h-section mt-4 mb-4">¿Hasta dónde quieres llegar?</h2>
+        <p class="text-[17px]" style="color: var(--texto-medio);">Puedes empezar por un proyecto. La mayoría que empieza con Web acaba en Contigo.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5 items-stretch">
+        <!-- ESCALA Web -->
+        <div class="p-8 rounded-2xl border-2 relative reveal flex flex-col" style="background: #e8f5f1; color: var(--texto-oscuro); border-color: #0a5f4a;">
+          <h3 class="text-2xl font-extrabold mb-2">ESCALA Web</h3>
+          <p class="text-3xl font-extrabold mb-1" style="color: var(--verde);">1.200€</p>
+          <p class="text-[15px] mb-6" style="color: var(--texto-medio);">Para negocios que quieren dejar de depender del boca a boca y de Instagram.</p>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Diagnóstico de tu negocio y cliente ideal</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Arquitectura de conversión antes de tocar código</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Web a código puro, sin WordPress, sin plantillas</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>SEO técnico integrado desde la estructura</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Despliegue incluido. El código es tuyo desde el día 1</span></li>
+          </ul>
+          <a href="/#contacto" class="btn btn-primary w-full mt-auto">Hablemos y te cuento →</a>
+        </div>
+        <!-- ESCALA Posicionamiento (featured) -->
+        <div class="p-8 rounded-2xl border relative reveal flex flex-col" style="background: var(--verde); color: var(--texto-claro); border-color: var(--verde); box-shadow: 0 20px 40px -20px rgba(10,95,74,0.45);">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap" style="background: #a8e063; color: #0d2838;">Más popular</span>
+          <h3 class="text-2xl font-extrabold mb-2">ESCALA Posicionamiento</h3>
+          <p class="text-3xl font-extrabold mb-1" style="color: var(--verde-lima);">1.800€</p>
+          <p class="text-[15px] mb-6" style="color: rgba(255,255,255,0.85);">Para negocios que quieren web y que Google y las IAs les recomienden.</p>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde-claro)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Todo lo de ESCALA Web</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde-claro)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Herramienta interactiva a medida (calculadora, quiz o configurador)</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde-claro)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>SEO + AEO: posicionamiento en Google y en ChatGPT, Perplexity y Claude</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde-claro)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Informe mensual con acceso directo a tus datos, sin intermediarios</span></li>
+          </ul>
+          <a href="/#contacto" class="btn btn-lima w-full mt-auto">Hablemos y te cuento →</a>
+        </div>
+        <!-- ESCALA Contigo -->
+        <div class="p-8 rounded-2xl border-2 relative reveal flex flex-col" style="background: #e8f5f1; color: var(--texto-oscuro); border-color: #0a5f4a;">
+          <h3 class="text-2xl font-extrabold mb-2">ESCALA Contigo</h3>
+          <p class="text-3xl font-extrabold mb-1" style="color: var(--verde);">Hablamos</p>
+          <p class="text-[15px] mb-6" style="color: var(--texto-medio);">Para negocios que quieren un partner digital a largo plazo, no un proveedor.</p>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Todo lo de ESCALA Posicionamiento</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Mantenimiento y evolución continua de la web</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Estrategia mensual adaptada a tu negocio</span></li>
+            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sin permanencia. Si paras, paras.</span></li>
+          </ul>
+          <a href="/#contacto" class="btn btn-primary w-full mt-auto">Cuéntame tu caso →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGINALS / PROYECTOS -->
+  <section id="proyectos" style="background: var(--azul-oscuro); color: var(--texto-claro);" class="py-24">
+    <div class="container-x">
+      <div class="mb-12 reveal">
+        <div class="mb-4">
+          <span class="text-xl font-extrabold tracking-tight">
+            Cl<span style="color: var(--verde-claro);">ii</span>mber
+          </span>
+        </div>
+        <h2 class="font-extrabold leading-[0.95] mb-4 whitespace-nowrap" style="font-size: clamp(2rem, 5.5vw, 4rem);">
+          Creciendo <span style="color: var(--verde-claro);">con ellos</span>
+        </h2>
+        <div class="flex flex-wrap gap-2 mb-4 text-xs">
+          <span class="px-2 py-1 rounded font-bold" style="background: var(--granate);">REAL</span>
+          <span class="px-2 py-1 rounded" style="background: var(--borde-oscuro);">Temporada 1</span>
+          <span class="px-2 py-1 rounded" style="background: var(--borde-oscuro);">2 episodios</span>
+          <span class="px-2 py-1 rounded" style="background: var(--borde-oscuro);">Negocios reales</span>
+        </div>
+        <p class="text-lg max-w-2xl opacity-85">Cada episodio es un proyecto real. Un cliente real. Un problema resuelto. Esto es lo que construyo y cómo lo hago.</p>
+        <p class="text-sm mt-2 opacity-60">Nuevos episodios cada vez que un cliente crece.</p>
+      </div>
+
+      <div class="grid gap-6">
+        <div class="reveal">
+          <EpisodeCard
+            num="01"
+            sector="Sector pet · Nutrición canina · Herramienta interactiva"
+            title="La calculadora que trabaja mientras Laura duerme"
+            client="Laura Quintero · Nutricionista canina"
+            synopsis="Sus clientes llegaban a consulta habiendo calculado mal la materia seca de las etiquetas. El error no era de ellos: las etiquetas son confusas a propósito. Lo que construimos no fue una web. Fue una herramienta que elimina ese error antes de que ocurra."
+            stats={[
+              { value: "24/7", label: "Activa" },
+              { value: "2", label: "Canales captación" },
+            ]}
+            href="/casos/laura-quintero"
+            emoji="🐾"
+            bg="#1a4052"
+            logoSrc="/assets/laura.png"
+            featured={true}
+            client:load
+          />
+        </div>
+        <div class="reveal">
+          <EpisodeCard
+            num="02"
+            sector="Hostelería · Inmobiliaria · Malta"
+            title="El tour era perfecto. El problema era lo que pasaba después."
+            client="Virtual Vista · Tours 3D Malta"
+            synopsis="Virtual Vista hacía tours 3D de primer nivel en Malta. El producto era bueno. Pero sus clientes recibían el tour y se quedaban parados: ¿esto dónde lo pongo? Lo que construimos no fue solo una web. Fue entender qué quería conseguir cada espacio y crear la infraestructura para que el tour trabajara hacia ese objetivo."
+            stats={[
+              { value: "5", label: "Clientes activos" },
+              { value: "15+", label: "Proyectos" },
+              { value: "↑", label: "En aumento" },
+            ]}
+            href="/casos/virtual-vista"
+            emoji="🏛️"
+            bg="#0a1f2c"
+            logoSrc="/assets/virtual-vista-logo.png"
+            client:load
+          />
+        </div>
+        <div class="rounded-2xl border-2 border-dashed p-8 text-center reveal" style="border-color: var(--borde-oscuro);">
+          <p class="text-xs uppercase tracking-wider opacity-60 mb-2">Próximamente · Episodio 03</p>
+          <p class="text-xl font-bold mb-1">Tu negocio podría ser el siguiente capítulo.</p>
+          <p class="opacity-70 mb-4">Cada cliente nuevo es un episodio. La serie no termina.</p>
+          <a href="/#contacto" class="btn btn-lima">¿Hablamos? →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre-mi" style="background: var(--azul-claro);" class="py-24">
+    <div class="container-x">
+      <span class="tag mb-4 reveal">Quién hay detrás</span>
+      <div class="grid md:grid-cols-[1.4fr_1fr] gap-10 mt-6 items-start">
+        <div class="reveal order-2 md:order-1">
+          <h2 class="h-section mb-6">Soy Jaime. Y esto no es una agencia.</h2>
+          <div class="space-y-4 text-[16px] leading-relaxed" style="color: var(--texto-medio);">
+            <p>Empecé aprendiendo a vender por internet.</p>
+            <p><strong style="color: var(--texto-oscuro);">Embudos, campañas de Meta Ads, landings de captación.</strong> Cada vez que diseñaba una estrategia necesitaba una web. Y cada vez que necesitaba una web <strong style="color: var(--texto-oscuro);">dependía de alguien más para construirla.</strong></p>
+            <p class="p-4 bg-white rounded-lg border-l-4 font-semibold" style="border-color: var(--verde); color: var(--texto-oscuro);">Un día me harté de esperar y empecé a hacerlo yo.</p>
+            <p>Lo que empezó como una solución práctica <strong style="color: var(--texto-oscuro);">cambió cómo trabajo.</strong> Fui a Malta, construí la web de una agencia de tours 3D y entregué <strong style="color: var(--texto-oscuro);">más de quince proyectos</strong> para clientes como hoteles, inmobiliarias y venues. Volví a España y seguí construyendo, esta vez herramientas que hacen cosas concretas para negocios reales. Si quieres ver cómo, <strong style="color: var(--texto-oscuro);">está todo en los episodios.</strong></p>
+            <p><strong style="color: var(--texto-oscuro);">Pienso en marketing pero construyo yo mismo para que funcione.</strong> Eso cambia lo que entrego.</p>
+            <p>Pero lo que más me importa no es el día de la entrega. Es <strong style="color: var(--texto-oscuro);">lo que pasa después.</strong> Me quedo cuando hay que añadir algo, cuando algo no funciona como esperábamos, cuando el negocio crece y la web tiene que crecer con él.</p>
+            <p class="p-4 bg-white rounded-lg border-l-4 font-semibold" style="border-color: var(--verde); color: var(--texto-oscuro);">No trabajo con muchos clientes a la vez. Trabajo bien con los que tengo.</p>
+          </div>
+        </div>
+        <div class="order-1 md:order-2 reveal">
+          <div class="rounded-2xl overflow-hidden grid place-items-center text-center p-8" style="background: var(--azul-oscuro); color: var(--texto-claro); aspect-ratio: 3/4;">
+            <div>
+              <div class="text-5xl mb-3">📷</div>
+              <p class="opacity-70 text-sm">Tu foto aquí</p>
+              <code class="text-xs opacity-50 block mt-2">src="assets/jaime.jpg"</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 mt-12">
+        <div class="p-6 rounded-2xl bg-white border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="border-color: var(--borde);">
+          <div class="text-2xl mb-2">📈</div>
+          <h3 class="font-bold mb-1" style="color: var(--texto-oscuro);">Marketing primero</h3>
+          <p class="text-sm" style="color: var(--texto-medio);">Embudos, Meta Ads, conversión. Entiendo qué tiene que conseguir una web antes de escribir una línea de código.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="border-color: var(--borde);">
+          <div class="text-2xl mb-2">🇲🇹</div>
+          <h3 class="font-bold mb-1" style="color: var(--texto-oscuro);">Malta, prueba de nivel</h3>
+          <p class="text-sm" style="color: var(--texto-medio);">15+ proyectos entregados en hostelería, inmobiliaria y venues. Sectores distintos, mismo método.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="border-color: var(--borde);">
+          <div class="text-2xl mb-2">🐾</div>
+          <h3 class="font-bold mb-1" style="color: var(--texto-oscuro);">Especialización pet</h3>
+          <p class="text-sm" style="color: var(--texto-medio);">Nutricionistas, marcas de pienso, accesorios. El sector donde tengo casos reales y sigo creciendo.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="border-color: var(--borde);">
+          <div class="text-2xl mb-2">⚡</div>
+          <h3 class="font-bold mb-1" style="color: var(--texto-oscuro);">Código puro + IA</h3>
+          <p class="text-sm" style="color: var(--texto-medio);">Sin WordPress, sin plantillas. Velocidad, control total y cero dependencias desde el día uno.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 p-6 rounded-2xl border-l-4 reveal" style="background: var(--verde-fondo); border-color: var(--verde);">
+        <p style="color: var(--texto-oscuro);">
+          Si tienes un negocio en el sector pet, clínica veterinaria, nutricionista canina, marca de pienso, educador canino o tienda de accesorios para perros, es donde más casos reales tengo en España y donde más rápido puedo ayudarte a conseguir clientes online.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3 mt-8 reveal">
+        <a href="/#contacto" class="btn btn-primary">Hablamos →</a>
+        <a href="/#proyectos" class="btn btn-ghost">Ver los episodios →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-24" style="background: var(--azul-oscuro);">
+    <div class="container-x grid md:grid-cols-[1fr_1.6fr] gap-12">
+      <div class="md:sticky md:top-24 self-start reveal">
+        <span class="tag tag-dark mb-4">Preguntas frecuentes</span>
+        <h2 class="h-section mt-4 mb-4" style="color: #f5f8f9;">Lo que probablemente estás pensando ahora mismo.</h2>
+        <p class="mb-6" style="color: #7a8e96;">Sin letra pequeña ni respuestas de agencia. Solo lo que necesitas saber antes de escribirme.</p>
+        <a href="/#contacto" class="btn btn-primary">Pregúntame lo que sea →</a>
+      </div>
+      <div class="reveal">
+        <div class="mb-8">
+          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Precio y plazos</h3>
+          <FaqItem question="¿Cuánto cuesta una web que de verdad venda?" answer="Los proyectos de web arrancan en 1.200€ para una landing o web de servicios bien construida. Los proyectos más complejos con herramientas interactivas se presupuestan según lo que necesites. El precio se cierra antes de empezar. Sin extras de última hora." highlight="Si no tienes claro qué necesitas, cuéntame tu situación y te digo qué tiene sentido construir, y qué no." dark={true} client:visible />
+          <FaqItem question="¿Cuánto tarda en estar lista?" answer="Una landing o web de servicios suele estar lista en 2 a 4 semanas desde que tenemos el brief claro. Lo que más tarda nunca es el código, es esperar los textos o las fotos." highlight="No te voy a decir «2-3 meses» para después tardar 6. Si hay un plazo acordado, lo cumplo." dark={true} client:visible />
+          <FaqItem question="¿Cuánto voy a pagar al mes después de tenerla hecha?" answer="El hosting de una web en código puro cuesta entre 0€ y 15€ al mes. Sin cuotas de mantenimiento obligatorias, sin plugins que renovar. Si quieres soporte estratégico continuo, eso es un retainer aparte que acordamos si tiene sentido. Nunca te lo vendo si no lo necesitas." dark={true} client:visible />
+        </div>
+        <div class="mb-8">
+          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">El código y la propiedad</h3>
+          <FaqItem question="¿El código es mío o me ato contigo para siempre?" answer="El código es tuyo desde el día uno. Te lo entrego en un repositorio propio, con el dominio a tu nombre y el hosting en tu cuenta. Si mañana decides irte, te llevas todo sin perder nada." highlight="El código cerrado es una trampa. Yo no trabajo así." dark={true} client:visible />
+          <FaqItem question="Si cambio de proveedor, ¿pierdo la web?" answer="No. El dominio es tuyo por ley, el contenido es tuyo y el código te lo entrego. Nadie puede quitártelo." dark={true} client:visible />
+        </div>
+        <div class="mb-8">
+          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Cómo trabajo</h3>
+          <FaqItem question="¿Tengo que saber lo que quiero para empezar?" answer="No. La primera conversación es para entender tu negocio y qué problema tienes. Lo que sí necesito es que me cuentes qué no está funcionando. El resto lo estructuro yo." highlight="Si no tengo claro que puedo ayudarte, te lo digo antes de que pagues nada." dark={true} client:visible />
+          <FaqItem question="¿Cómo trabajamos: fases, pagos, comunicación?" answer="Conversación inicial sin compromiso, propuesta con precio cerrado y fases claras, 50% al empezar y 50% al entregar. Comunicación directa: WhatsApp para el día a día, videollamada cuando hay que tomar decisiones importantes." dark={true} client:visible />
+        </div>
+        <div class="mb-8">
+          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Lo que no hago</h3>
+          <FaqItem question="¿Haces ecommerce, WordPress o Webflow?" answer="No hago ecommerce propio. Si lo necesitas, te recomiendo Shopify. Tampoco uso WordPress ni Webflow: código puro carga más rápido, es más seguro y no tiene dependencias que se rompen solas." dark={true} client:visible />
+          <FaqItem question="¿Garantizas primeros puestos en Google?" answer="No. Y desconfía de cualquiera que te lo garantice. Lo que sí hago es construir con SEO integrado desde la estructura desde el primer día." highlight="Estrategia real y trabajo constante. No promesas vacías." dark={true} client:visible />
+          <FaqItem question="¿Me hace falta un profesional si tengo un familiar que sabe de webs?" answer="Depende. Si lo que necesitas es tener algo online, un familiar puede ayudarte a empezar. Si lo que necesitas es una web que traiga clientes, necesitas a alguien que entienda tu negocio antes de abrir el editor." highlight="La mayoría de webs que llegan a Cliimber para ser rehechas fueron construidas por alguien cercano con buena voluntad. No es un problema de intención, es un problema de que nadie analizó el negocio antes de construir." dark={true} client:visible />
+        </div>
+        <div class="mb-8">
+          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Resultados</h3>
+          <FaqItem question="¿Cuánto tarda una web nueva en traer clientes?" answer="Depende de si hay tráfico o no. Una web sin visitas no trae clientes. Por eso no solo construyo la web: también pienso desde el principio cómo va a llegar la gente. Una web bien hecha con tráfico real puede empezar a dar resultados en 30-60 días." dark={true} client:visible />
+          <FaqItem question="¿Cómo sé si mi web está funcionando o no?" answer="Configuro analíticas desde el primer día para que puedas ver cuánta gente entra, de dónde viene y qué hace. Sin informes que no entiende nadie." highlight="Si tu web no tiene analíticas, no tienes datos. Sin datos, no sabes si algo funciona." dark={true} client:visible />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" style="background: var(--azul-claro);" class="py-24">
+    <div class="container-x max-w-3xl">
+      <div class="reveal mb-10">
+        <span class="tag">Hablemos</span>
+        <h2 class="h-section mt-4 mb-4">¿Tu web no te trae ni un cliente al mes? Escríbeme.</h2>
+        <p class="text-[17px]" style="color: var(--texto-medio);">Te respondo hoy. Sin propuesta de 20 páginas, solo una conversación sobre tu negocio.</p>
+      </div>
+      <form id="contact-form" class="bg-white rounded-2xl p-6 md:p-8 border reveal space-y-4" style="border-color: var(--borde);">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <input required id="contact-name" name="name" autocomplete="name" placeholder="Nombre" class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);" />
+          <input required id="contact-business" name="business" placeholder="Ej: Clínica veterinaria, tienda pet..." class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);" />
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <input required type="email" id="contact-email" name="email" autocomplete="email" placeholder="Email" class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);" />
+          <input type="tel" inputmode="tel" id="contact-phone" name="phone" autocomplete="tel" placeholder="Teléfono / WhatsApp" class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);" />
+        </div>
+        <select required id="contact-situation" name="situation" class="px-4 py-3 rounded-lg border w-full bg-white" style="border-color: var(--borde);">
+          <option value="" disabled selected>¿Cuál es tu situación?</option>
+          <option>Tengo web pero no me trae clientes</option>
+          <option>Solo tengo Instagram y quiero web propia</option>
+          <option>Tengo un proyecto nuevo y necesito construirlo</option>
+          <option>Necesito una herramienta a medida (calculadora, quiz...)</option>
+          <option>Quiero SEO/SEM pero sin empezar de cero</option>
+        </select>
+        <textarea rows="4" id="contact-message" name="message" placeholder="Cuéntame más (opcional)" class="px-4 py-3 rounded-lg border w-full" style="border-color: var(--borde);"></textarea>
+        <button type="submit" class="btn btn-primary w-full">Enviar → te respondo hoy</button>
+        <p class="text-xs text-center" style="color: var(--texto-apagado);">Sin formularios que no contestan. Te respondo yo directamente.</p>
+      </form>
+      <div class="flex flex-wrap gap-4 justify-center mt-6 text-sm reveal">
+        <a href="https://wa.me/34XXXXXXXXXX" target="_blank" rel="noreferrer" class="btn btn-ghost">💬 WhatsApp directo</a>
+        <a href="mailto:jaimegomez@cliimber" class="btn btn-ghost">✉️ jaimegomez@cliimber</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <script>
+    const form = document.getElementById('contact-form');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Gracias, te respondo hoy.');
+    });
+  </script>
+</BaseLayout>
