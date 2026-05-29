@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #111; display: flex; flex-direction: column; gap: 40px; padding: 40px; }
+  .og { width: 1200px; height: 630px; position: relative; overflow: hidden; flex-shrink: 0; }
+
+  /* HOME */
+  #home { background: #0f3347; display: flex; align-items: center; padding: 0 80px; }
+  #home .accent { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); opacity: 0.06; font-size: 220px; font-weight: 900; color: #2a9770; letter-spacing: -10px; }
+  #home .tag { display: inline-block; background: rgba(42,151,112,0.15); color: #2a9770; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 24px; border: 1px solid rgba(42,151,112,0.3); }
+  #home h1 { font-size: 52px; font-weight: 900; color: #f5f8f9; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; }
+  #home h1 span { color: #2a9770; }
+  #home p { font-size: 18px; color: rgba(245,248,249,0.65); line-height: 1.5; margin-bottom: 28px; }
+  #home .pills { display: flex; gap: 10px; }
+  #home .pill { background: rgba(245,248,249,0.08); color: #f5f8f9; font-size: 13px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(245,248,249,0.15); }
+  #home .logo { position: absolute; bottom: 32px; right: 80px; font-size: 26px; font-weight: 900; color: #f5f8f9; letter-spacing: -0.03em; }
+  #home .logo span { color: #2a9770; }
+
+  /* LAURA */
+  #laura { background: #0f3347; display: flex; align-items: center; padding: 0 80px; gap: 60px; }
+  #laura .bar { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #2a9770; }
+  #laura .left { flex: 1; }
+  #laura .right { width: 320px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  #laura .ep { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; }
+  #laura .ep-tag { background: rgba(42,151,112,0.15); color: #2a9770; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; border: 1px solid rgba(42,151,112,0.3); }
+  #laura .ep-real { background: #a8332d; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px; }
+  #laura .sector { font-size: 12px; font-weight: 700; color: rgba(245,248,249,0.45); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  #laura h1 { font-size: 42px; font-weight: 900; color: #f5f8f9; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 18px; }
+  #laura h1 span { color: #2a9770; }
+  #laura p { font-size: 16px; color: rgba(245,248,249,0.65); line-height: 1.5; }
+  #laura .client { display: flex; align-items: center; gap: 12px; margin-top: 24px; }
+  #laura .client-icon { width: 40px; height: 40px; background: #0a5f4a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  #laura .client-name { font-size: 14px; font-weight: 700; color: #f5f8f9; }
+  #laura .client-role { font-size: 12px; color: rgba(245,248,249,0.45); }
+  #laura .logo-img { width: 200px; height: 200px; object-fit: contain; border-radius: 16px; background: white; padding: 16px; }
+  #laura .logo { position: absolute; bottom: 32px; right: 80px; font-size: 22px; font-weight: 900; color: #f5f8f9; letter-spacing: -0.03em; }
+  #laura .logo span { color: #2a9770; }
+
+  /* VIRTUAL VISTA */
+  #vv { position: relative; display: flex; align-items: center; padding: 0 80px; }
+  #vv .bg { position: absolute; inset: 0; background-image: url('/assets/jhotel.png'); background-size: cover; background-position: center top; filter: brightness(0.25); }
+  #vv .bar { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #2a9770; z-index: 2; }
+  #vv .content { position: relative; z-index: 2; display: flex; align-items: center; gap: 60px; width: 100%; }
+  #vv .left { flex: 1; }
+  #vv .right { width: 220px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  #vv .ep { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; }
+  #vv .ep-tag { background: rgba(42,151,112,0.2); color: #2a9770; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; border: 1px solid rgba(42,151,112,0.4); }
+  #vv .ep-real { background: #a8332d; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px; }
+  #vv .sector { font-size: 12px; font-weight: 700; color: rgba(245,248,249,0.45); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  #vv h1 { font-size: 40px; font-weight: 900; color: #f5f8f9; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 18px; }
+  #vv h1 span { color: #2a9770; }
+  #vv p { font-size: 16px; color: rgba(245,248,249,0.7); line-height: 1.5; }
+  #vv .stats { display: flex; gap: 24px; margin-top: 24px; }
+  #vv .stat-n { font-size: 28px; font-weight: 900; color: #2a9770; }
+  #vv .stat-l { font-size: 11px; color: rgba(245,248,249,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
+  #vv .logo-img { width: 180px; object-fit: contain; filter: brightness(0) invert(1); }
+  #vv .logo { position: absolute; bottom: 32px; right: 80px; z-index: 2; font-size: 22px; font-weight: 900; color: #f5f8f9; letter-spacing: -0.03em; }
+  #vv .logo span { color: #2a9770; }
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div class="og" id="home">
+  <div class="accent">Cl</div>
+  <div>
+    <div class="tag">cliimber.com</div>
+    <h1>Una web que por fin<br><span>trae clientes.</span></h1>
+    <p>Sin cuotas. Sin plantillas. Sin intermediarios.<br>El código es tuyo desde el día 1.</p>
+    <div class="pills">
+      <span class="pill">Sector pet</span>
+      <span class="pill">Madrid · España</span>
+      <span class="pill">Código puro</span>
+    </div>
+  </div>
+  <div class="logo">Cl<span>ii</span>mber</div>
+</div>
+
+<!-- LAURA -->
+<div class="og" id="laura">
+  <div class="bar"></div>
+  <div class="left">
+    <div class="ep">
+      <span class="ep-tag">Cliimber · Ep. 01</span>
+      <span class="ep-real">REAL</span>
+    </div>
+    <div class="sector">Sector pet · Nutrición canina</div>
+    <h1>La calculadora que trabaja<br>mientras <span>Laura duerme.</span></h1>
+    <p>Una herramienta que elimina el error<br>antes de que ocurra. 24/7.</p>
+    <div class="client">
+      <div class="client-icon">🐾</div>
+      <div>
+        <div class="client-name">Laura Quintero</div>
+        <div class="client-role">Nutricionista canina</div>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <img class="logo-img" src="/assets/laura.png" alt="Laura" />
+  </div>
+  <div class="logo">Cl<span>ii</span>mber</div>
+</div>
+
+<!-- VIRTUAL VISTA -->
+<div class="og" id="vv">
+  <div class="bg"></div>
+  <div class="bar"></div>
+  <div class="content">
+    <div class="left">
+      <div class="ep">
+        <span class="ep-tag">Cliimber · Ep. 02</span>
+        <span class="ep-real">REAL</span>
+      </div>
+      <div class="sector">Hostelería · Inmobiliaria · Malta</div>
+      <h1>El tour era perfecto.<br>El problema era <span>lo que pasaba después.</span></h1>
+      <p>5 clientes activos. 15+ proyectos.<br>Infraestructura digital para espacios.</p>
+      <div class="stats">
+        <div><div class="stat-n">5</div><div class="stat-l">Clientes</div></div>
+        <div><div class="stat-n">15+</div><div class="stat-l">Proyectos</div></div>
+        <div><div class="stat-n">↑</div><div class="stat-l">En aumento</div></div>
+      </div>
+    </div>
+    <div class="right">
+      <img class="logo-img" src="/assets/virtual-vista-logo.png" alt="Virtual Vista" />
+    </div>
+  </div>
+  <div class="logo">Cl<span>ii</span>mber</div>
+</div>
+
+</body>
+</html>
