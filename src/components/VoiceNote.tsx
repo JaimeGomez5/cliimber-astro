@@ -33,14 +33,8 @@ export function VoiceNote({ src }: { src?: string }) {
   function toggle() {
     if (!src) return;
     const a = getAudio();
-    if (playing) {
-      a.pause();
-      setPlaying(false);
-    } else {
-      a.playbackRate = speed;
-      a.play();
-      setPlaying(true);
-    }
+    if (playing) { a.pause(); setPlaying(false); }
+    else { a.playbackRate = speed; a.play(); setPlaying(true); }
   }
 
   function seek(e: React.MouseEvent<SVGSVGElement>) {
@@ -59,20 +53,34 @@ export function VoiceNote({ src }: { src?: string }) {
   }
 
   return (
-    <div className="max-w-md mx-auto rounded-2xl p-3 shadow-lg" style={{ background: "#dcf8c6" }}>
-      <div className="flex items-center gap-3">
+    <div className="max-w-md mx-auto">
+      <div
+        className="rounded-2xl rounded-br-sm p-3 shadow-md flex items-center gap-3"
+        style={{ background: "#ffffff", border: "1px solid #e5e7eb" }}
+      >
+        {/* Play/pause */}
         <button
           className="w-10 h-10 rounded-full grid place-items-center text-white flex-shrink-0"
-          style={{ background: "var(--verde)" }}
+          style={{ background: playing ? "#128C7E" : "#25D366" }}
           aria-label={playing ? "Pausar" : "Reproducir"}
           onClick={toggle}
         >
-          {playing ? "⏸" : "▶"}
+          {playing ? (
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="white">
+              <rect x="1" y="1" width="4" height="12" rx="1"/>
+              <rect x="9" y="1" width="4" height="12" rx="1"/>
+            </svg>
+          ) : (
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="white">
+              <path d="M3 1.5l9 5.5-9 5.5z"/>
+            </svg>
+          )}
         </button>
+
+        {/* Waveform */}
         <svg
           viewBox="0 0 200 32"
           className="flex-1 h-8"
-          aria-label="Barra de progreso"
           style={{ cursor: src ? "pointer" : "default" }}
           onClick={seek}
         >
@@ -80,28 +88,38 @@ export function VoiceNote({ src }: { src?: string }) {
             <rect
               key={i}
               x={i * 5}
-              y={16 - (Math.sin(i) * 8 + 8) / 2}
-              width="2.5"
-              height={Math.abs(Math.sin(i) * 8 + 8)}
-              rx="1"
-              fill="#0a5f4a"
-              opacity={i / 40 < progress ? 1 : 0.4}
+              y={16 - (Math.abs(Math.sin(i * 0.8)) * 10 + 3) / 2}
+              width="3"
+              height={Math.abs(Math.sin(i * 0.8)) * 10 + 3}
+              rx="1.5"
+              fill={i / 40 < progress ? "#128C7E" : "#CBD5E1"}
             />
           ))}
         </svg>
-        <button
-          onClick={cycleSpeed}
-          className="px-1.5 py-0.5 rounded-full text-[10px] font-bold flex-shrink-0"
-          style={{ background: "var(--verde)", color: "#fff" }}
-        >
-          {speed}x
-        </button>
-      </div>
-      <div className="text-[10px] mt-1 text-right" style={{ color: "var(--verde-hover)" }}>
-        {fmt(currentTime)} / {duration ? fmt(duration) : "0:00"}
+
+        {/* Derecha: foto o velocidad */}
+        <div className="flex flex-col items-center gap-1 flex-shrink-0">
+          {playing ? (
+            <button
+              onClick={cycleSpeed}
+              className="w-10 h-10 rounded-full grid place-items-center font-bold text-sm"
+              style={{ background: "#25D366", color: "#fff" }}
+            >
+              {speed}x
+            </button>
+          ) : (
+            <img
+              src="/assets/jaime.jpg"
+              alt="Jaime"
+              className="w-10 h-10 rounded-full object-cover"
+              style={{ border: "2px solid #e5e7eb" }}
+            />
+          )}
+          <span className="text-[10px]" style={{ color: "#94A3B8" }}>
+            {playing ? fmt(currentTime) : duration ? fmt(duration) : "0:00"}
+          </span>
+        </div>
       </div>
     </div>
   );
 }
-
-export default VoiceNote;

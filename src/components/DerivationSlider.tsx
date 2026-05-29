@@ -26,7 +26,8 @@ export default function DerivationSlider() {
         <img
           src={SLIDES[slide].src}
           alt={SLIDES[slide].alt}
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", position: "absolute", inset: 0, minHeight: 280 }}
+          className="object-contain bg-white md:object-cover md:object-[center_top]"
+          style={{ width: "100%", height: "100%", position: "absolute", inset: 0, minHeight: 280 }}
         />
         <button
           onClick={() => setSlide((slide - 1 + SLIDES.length) % SLIDES.length)}
