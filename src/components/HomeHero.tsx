@@ -6,12 +6,7 @@ const SCRAMBLE_MOBILE = "trae clientes.";
 const SCRAMBLE_CHARS = "#$%@&?!0123456789";
 
 function useScramble(final: string, delay = 400, duration = 1500) {
-  const [text, setText] = useState(() =>
-    final
-      .split("")
-      .map((c) => (c === " " ? " " : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]))
-      .join("")
-  );
+  const [text, setText] = useState("");
   useEffect(() => {
     let raf = 0;
     let start = 0;
@@ -69,7 +64,7 @@ export default function HomeHero() {
           Web a medida para tu negocio. Sin cuotas, sin intermediarios, sin plantillas.
         </h1>
         <p className="h-display max-w-4xl mb-2" style={{ color: "#f5f8f9" }}>Una web que</p>
-        <div className="max-w-4xl mb-10" style={{ minHeight: '3.5rem' }}>
+        <div className="max-w-4xl mb-10" style={{ minHeight: '1.2em' }}>
           <span
             className="h-display block"
             style={{ color: "var(--verde-claro)" }}
