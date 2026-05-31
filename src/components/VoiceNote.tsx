@@ -53,7 +53,7 @@ export function VoiceNote({ src }: { src?: string }) {
   const DOT_X = progress * 200;
 
   return (
-    <div className="max-w-md mx-auto flex items-end gap-2">
+    <div className="max-w-md mx-auto flex items-center gap-2">
       {/* Bubble */}
       <div
         className="flex-1 rounded-2xl rounded-bl-sm px-3 pt-3 pb-2 shadow-sm"
@@ -121,11 +121,12 @@ export function VoiceNote({ src }: { src?: string }) {
       </div>
 
       {/* Profile photo with mic overlay */}
-      <div className="relative flex-shrink-0 mb-1">
+      <div className="relative flex-shrink-0">
         <img
           src="/assets/jaime.jpeg"
           alt="Jaime"
-          className="w-9 h-9 rounded-full object-cover"
+          className="rounded-full object-cover"
+          style={{ width: 44, height: 44 }}
         />
         <div
           className="absolute bottom-0 right-0 w-4 h-4 rounded-full flex items-center justify-center"
