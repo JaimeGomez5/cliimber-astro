@@ -109,7 +109,7 @@ export function VoiceNote({ src }: { src?: string }) {
             </button>
           ) : (
             <img
-              src="/assets/jaime.jpg"
+              src="/assets/jaime.jpeg"
               alt="Jaime"
               className="w-10 h-10 rounded-full object-cover"
               style={{ border: "2px solid #e5e7eb" }}
