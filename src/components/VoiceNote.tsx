@@ -53,14 +53,14 @@ export function VoiceNote({ src }: { src?: string }) {
   const DOT_X = progress * 200;
 
   return (
-    <div className="max-w-md mx-auto flex items-center gap-2">
+    <div className="max-w-md mx-auto">
       {/* Bubble */}
       <div
-        className="flex-1 rounded-2xl rounded-bl-sm px-3 pt-3 pb-2 shadow-sm"
+        className="rounded-2xl rounded-bl-sm px-3 pt-3 pb-2 shadow-sm"
         style={{ background: "#ffffff", border: "1px solid #f0f0f0" }}
       >
         <div className="flex items-center gap-2">
-          {/* Play/pause — no circle, just icon */}
+          {/* Play/pause */}
           <button
             className="flex-shrink-0 flex items-center justify-center"
             style={{ width: 28, height: 28 }}
@@ -102,42 +102,43 @@ export function VoiceNote({ src }: { src?: string }) {
             )}
           </svg>
 
-          {/* Speed pill — only while playing */}
-          {playing && (
-            <button
-              onClick={cycleSpeed}
-              className="flex-shrink-0 font-bold text-[11px] px-2 py-0.5 rounded-full"
-              style={{ background: "#717D85", color: "#fff", minWidth: 36 }}
-            >
-              {speed}x
-            </button>
-          )}
+          {/* Right slot: photo at rest, speed pill while playing */}
+          <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 44, height: 44 }}>
+            {playing ? (
+              <button
+                onClick={cycleSpeed}
+                className="font-bold text-[11px] px-2 py-0.5 rounded-full"
+                style={{ background: "#717D85", color: "#fff", minWidth: 36 }}
+              >
+                {speed}x
+              </button>
+            ) : (
+              <div className="relative">
+                <img
+                  src="/assets/jaime.jpeg"
+                  alt="Jaime"
+                  className="rounded-full object-cover"
+                  style={{ width: 44, height: 44 }}
+                />
+                <div
+                  className="absolute bottom-0 right-0 w-4 h-4 rounded-full flex items-center justify-center"
+                  style={{ background: "#8696A0" }}
+                >
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 1a4 4 0 0 1 4 4v7a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                    <line x1="12" y1="19" x2="12" y2="23" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                    <line x1="8" y1="23" x2="16" y2="23" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Current time bottom-left */}
         <div className="text-[10px] mt-0.5 ml-8" style={{ color: "#8696A0" }}>
           {fmt(currentTime)}
-        </div>
-      </div>
-
-      {/* Profile photo with mic overlay */}
-      <div className="relative flex-shrink-0">
-        <img
-          src="/assets/jaime.jpeg"
-          alt="Jaime"
-          className="rounded-full object-cover"
-          style={{ width: 44, height: 44 }}
-        />
-        <div
-          className="absolute bottom-0 right-0 w-4 h-4 rounded-full flex items-center justify-center"
-          style={{ background: "#8696A0" }}
-        >
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="white">
-            <path d="M12 1a4 4 0 0 1 4 4v7a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4z"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round"/>
-            <line x1="12" y1="19" x2="12" y2="23" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            <line x1="8" y1="23" x2="16" y2="23" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
         </div>
       </div>
     </div>
