@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const SPEEDS = [1, 1.5, 2] as const;
 type Speed = (typeof SPEEDS)[number];
@@ -35,6 +35,8 @@ export function VoiceNote({ src }: { src?: string }) {
     else { a.playbackRate = speed; a.play(); setPlaying(true); }
   }
 
+  const svgRef = useRef<SVGSVGElement | null>(null);
+
   function seekTo(clientX: number, target: Element) {
     if (!src) return;
     const a = getAudio();
@@ -44,11 +46,25 @@ export function VoiceNote({ src }: { src?: string }) {
     setProgress(fraction);
   }
 
+  const seekToRef = useRef(seekTo);
+  seekToRef.current = seekTo;
+
+  useEffect(() => {
+    const el = svgRef.current;
+    if (!el) return;
+    const onMove = (e: TouchEvent) => {
+      e.preventDefault();
+      seekToRef.current(e.touches[0].clientX, el);
+    };
+    el.addEventListener("touchmove", onMove, { passive: false });
+    return () => el.removeEventListener("touchmove", onMove);
+  }, []);
+
   function seek(e: React.MouseEvent<SVGSVGElement>) {
     seekTo(e.clientX, e.currentTarget);
   }
 
-  function seekTouch(e: React.TouchEvent<SVGSVGElement>) {
+  function seekTouchStart(e: React.TouchEvent<SVGSVGElement>) {
     seekTo(e.touches[0].clientX, e.currentTarget);
   }
 
@@ -91,10 +107,10 @@ export function VoiceNote({ src }: { src?: string }) {
           <svg
             viewBox="0 0 200 32"
             className="flex-1 h-8"
+            ref={svgRef}
             style={{ cursor: src ? "pointer" : "default", touchAction: "none" }}
             onClick={seek}
-            onTouchStart={seekTouch}
-            onTouchMove={seekTouch}
+            onTouchStart={seekTouchStart}
           >
             {Array.from({ length: 40 }).map((_, i) => (
               <rect
