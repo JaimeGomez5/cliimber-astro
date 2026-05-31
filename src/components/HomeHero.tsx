@@ -72,23 +72,25 @@ export default function HomeHero() {
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-5" style={{ minHeight: '44px' }}>
-          {PROFILES.map((p, idx) => (
-            <button
-              key={p.label}
-              onClick={() => setProfile(idx)}
-              className="px-4 py-2 rounded-full text-sm font-semibold transition-all border whitespace-normal text-left max-w-full"
-              style={{
-                background: profile === idx ? "var(--verde)" : "transparent",
-                color: "#f5f8f9",
-                borderColor: profile === idx ? "var(--verde)" : "#f5f8f9",
-              }}
-            >
-              {p.label}
-            </button>
-          ))}
+        <div style={{ minHeight: '120px' }}>
+          <div className="flex flex-wrap gap-2 mb-5">
+            {PROFILES.map((p, idx) => (
+              <button
+                key={p.label}
+                onClick={() => setProfile(idx)}
+                className="px-4 py-2 rounded-full text-sm font-semibold transition-all border whitespace-normal text-left max-w-full"
+                style={{
+                  background: profile === idx ? "var(--verde)" : "transparent",
+                  color: "#f5f8f9",
+                  borderColor: profile === idx ? "var(--verde)" : "#f5f8f9",
+                }}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+          <p className="max-w-3xl text-[17px] leading-relaxed" style={{ color: "rgba(245,248,249,0.8)" }}>{PROFILES[profile].text}</p>
         </div>
-        <p className="max-w-3xl mb-10 text-[17px] leading-relaxed" style={{ color: "rgba(245,248,249,0.8)" }}>{PROFILES[profile].text}</p>
 
         <div className="flex flex-col sm:flex-row gap-3">
           <a href="/#contacto" className="btn btn-primary">Hablemos →</a>
