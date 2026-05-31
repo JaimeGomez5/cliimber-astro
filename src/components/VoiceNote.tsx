@@ -13,7 +13,6 @@ export function VoiceNote({ src }: { src?: string }) {
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
   const [speed, setSpeed] = useState<Speed>(1);
 
   function getAudio() {
@@ -24,7 +23,6 @@ export function VoiceNote({ src }: { src?: string }) {
         setCurrentTime(a.currentTime);
         setProgress(a.duration ? a.currentTime / a.duration : 0);
       };
-      a.onloadedmetadata = () => setDuration(a.duration);
       audioRef.current = a;
     }
     return audioRef.current;
@@ -52,74 +50,97 @@ export function VoiceNote({ src }: { src?: string }) {
     if (audioRef.current) audioRef.current.playbackRate = next;
   }
 
+  const DOT_X = progress * 200;
+
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto flex items-end gap-2">
+      {/* Bubble */}
       <div
-        className="rounded-2xl rounded-br-sm p-3 shadow-md flex items-center gap-3"
-        style={{ background: "#ffffff", border: "1px solid #e5e7eb" }}
+        className="flex-1 rounded-2xl rounded-bl-sm px-3 pt-3 pb-2 shadow-sm"
+        style={{ background: "#ffffff", border: "1px solid #f0f0f0" }}
       >
-        {/* Play/pause */}
-        <button
-          className="w-10 h-10 rounded-full grid place-items-center text-white flex-shrink-0"
-          style={{ background: playing ? "#128C7E" : "#25D366" }}
-          aria-label={playing ? "Pausar" : "Reproducir"}
-          onClick={toggle}
-        >
-          {playing ? (
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="white">
-              <rect x="1" y="1" width="4" height="12" rx="1"/>
-              <rect x="9" y="1" width="4" height="12" rx="1"/>
-            </svg>
-          ) : (
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="white">
-              <path d="M3 1.5l9 5.5-9 5.5z"/>
-            </svg>
-          )}
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Play/pause — no circle, just icon */}
+          <button
+            className="flex-shrink-0 flex items-center justify-center"
+            style={{ width: 28, height: 28 }}
+            aria-label={playing ? "Pausar" : "Reproducir"}
+            onClick={toggle}
+          >
+            {playing ? (
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="4" y="3" width="5" height="16" rx="1.5" fill="#54656F"/>
+                <rect x="13" y="3" width="5" height="16" rx="1.5" fill="#54656F"/>
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M5 3.5l14 7.5-14 7.5z" fill="#54656F"/>
+              </svg>
+            )}
+          </button>
 
-        {/* Waveform */}
-        <svg
-          viewBox="0 0 200 32"
-          className="flex-1 h-8"
-          style={{ cursor: src ? "pointer" : "default" }}
-          onClick={seek}
-        >
-          {Array.from({ length: 40 }).map((_, i) => (
-            <rect
-              key={i}
-              x={i * 5}
-              y={16 - (Math.abs(Math.sin(i * 0.8)) * 10 + 3) / 2}
-              width="3"
-              height={Math.abs(Math.sin(i * 0.8)) * 10 + 3}
-              rx="1.5"
-              fill={i / 40 < progress ? "#128C7E" : "#CBD5E1"}
-            />
-          ))}
-        </svg>
+          {/* Waveform + dot */}
+          <svg
+            viewBox="0 0 200 32"
+            className="flex-1 h-8"
+            style={{ cursor: src ? "pointer" : "default" }}
+            onClick={seek}
+          >
+            {Array.from({ length: 40 }).map((_, i) => (
+              <rect
+                key={i}
+                x={i * 5}
+                y={16 - (Math.abs(Math.sin(i * 0.8)) * 10 + 3) / 2}
+                width="3"
+                height={Math.abs(Math.sin(i * 0.8)) * 10 + 3}
+                rx="1.5"
+                fill={i / 40 < progress ? "#53BDEB" : "#C4C4C4"}
+              />
+            ))}
+            {progress > 0 && (
+              <circle cx={Math.min(DOT_X, 198)} cy="16" r="5" fill="#53BDEB" />
+            )}
+          </svg>
 
-        {/* Derecha: foto o velocidad */}
-        <div className="flex flex-col items-center gap-1 flex-shrink-0">
-          {playing ? (
+          {/* Speed pill — only while playing */}
+          {playing && (
             <button
               onClick={cycleSpeed}
-              className="w-10 h-10 rounded-full grid place-items-center font-bold text-sm"
-              style={{ background: "#25D366", color: "#fff" }}
+              className="flex-shrink-0 font-bold text-[11px] px-2 py-0.5 rounded-full"
+              style={{ background: "#717D85", color: "#fff", minWidth: 36 }}
             >
               {speed}x
             </button>
-          ) : (
-            <img
-              src="/assets/jaime.jpeg"
-              alt="Jaime"
-              className="w-10 h-10 rounded-full object-cover"
-              style={{ border: "2px solid #e5e7eb" }}
-            />
           )}
-          <span className="text-[10px]" style={{ color: "#94A3B8" }}>
-            {playing ? fmt(currentTime) : duration ? fmt(duration) : "0:00"}
-          </span>
+        </div>
+
+        {/* Current time bottom-left */}
+        <div className="text-[10px] mt-0.5 ml-8" style={{ color: "#8696A0" }}>
+          {fmt(currentTime)}
+        </div>
+      </div>
+
+      {/* Profile photo with mic overlay */}
+      <div className="relative flex-shrink-0 mb-1">
+        <img
+          src="/assets/jaime.jpeg"
+          alt="Jaime"
+          className="w-9 h-9 rounded-full object-cover"
+        />
+        <div
+          className="absolute bottom-0 right-0 w-4 h-4 rounded-full flex items-center justify-center"
+          style={{ background: "#8696A0" }}
+        >
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="white">
+            <path d="M12 1a4 4 0 0 1 4 4v7a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round"/>
+            <line x1="12" y1="19" x2="12" y2="23" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="8" y1="23" x2="16" y2="23" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
         </div>
       </div>
     </div>
   );
 }
+
+export default VoiceNote;
