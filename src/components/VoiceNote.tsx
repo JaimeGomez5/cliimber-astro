@@ -35,13 +35,21 @@ export function VoiceNote({ src }: { src?: string }) {
     else { a.playbackRate = speed; a.play(); setPlaying(true); }
   }
 
-  function seek(e: React.MouseEvent<SVGSVGElement>) {
+  function seekTo(clientX: number, target: Element) {
     if (!src) return;
     const a = getAudio();
-    const rect = e.currentTarget.getBoundingClientRect();
-    const fraction = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const rect = target.getBoundingClientRect();
+    const fraction = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
     if (a.duration) a.currentTime = fraction * a.duration;
     setProgress(fraction);
+  }
+
+  function seek(e: React.MouseEvent<SVGSVGElement>) {
+    seekTo(e.clientX, e.currentTarget);
+  }
+
+  function seekTouch(e: React.TouchEvent<SVGSVGElement>) {
+    seekTo(e.touches[0].clientX, e.currentTarget);
   }
 
   function cycleSpeed() {
@@ -83,8 +91,10 @@ export function VoiceNote({ src }: { src?: string }) {
           <svg
             viewBox="0 0 200 32"
             className="flex-1 h-8"
-            style={{ cursor: src ? "pointer" : "default" }}
+            style={{ cursor: src ? "pointer" : "default", touchAction: "none" }}
             onClick={seek}
+            onTouchStart={seekTouch}
+            onTouchMove={seekTouch}
           >
             {Array.from({ length: 40 }).map((_, i) => (
               <rect
