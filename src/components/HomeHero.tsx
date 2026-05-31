@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ParticleNetwork from "./ParticleNetwork";
 
 const SCRAMBLE_FINAL = "por fin trae clientes.";
+const SCRAMBLE_MOBILE = "trae clientes.";
 const SCRAMBLE_CHARS = "#$%@&?!0123456789";
 
 function useScramble(final: string, delay = 400, duration = 1500) {
@@ -52,7 +53,12 @@ const PROFILES = [
 ];
 
 export default function HomeHero() {
-  const typed = useScramble(SCRAMBLE_FINAL);
+  const [finalText] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth < 768
+      ? SCRAMBLE_MOBILE
+      : SCRAMBLE_FINAL
+  );
+  const typed = useScramble(finalText);
   const [profile, setProfile] = useState(0);
 
   return (
