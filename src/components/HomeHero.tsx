@@ -63,7 +63,7 @@ export default function HomeHero() {
           Web a medida para tu negocio. Sin cuotas, sin intermediarios, sin plantillas.
         </h1>
         <p className="h-display max-w-4xl mb-2" style={{ color: "#f5f8f9" }}>Una web que</p>
-        <div className="max-w-4xl mb-10">
+        <div className="max-w-4xl mb-10" style={{ minHeight: '3.5rem' }}>
           <span
             className="h-display block"
             style={{ color: "var(--verde-claro)" }}
@@ -72,7 +72,7 @@ export default function HomeHero() {
           </span>
         </div>
 
-        <div style={{ minHeight: '120px' }}>
+        <div style={{ minHeight: '160px' }}>
           <div className="flex flex-wrap gap-2 mb-5">
             {PROFILES.map((p, idx) => (
               <button
