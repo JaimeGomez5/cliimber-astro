@@ -72,7 +72,7 @@ export default function HomeHero() {
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-5">
+        <div className="flex flex-wrap gap-2 mb-5" style={{ minHeight: '44px' }}>
           {PROFILES.map((p, idx) => (
             <button
               key={p.label}
