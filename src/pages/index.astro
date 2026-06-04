@@ -273,11 +273,6 @@ const ldJson = {
   <section id="proyectos" style="background: var(--azul-oscuro); color: var(--texto-claro);" class="py-24">
     <div class="container-x">
       <div class="mb-12 reveal">
-        <div class="mb-4">
-          <span class="text-xl font-extrabold tracking-tight">
-            Cl<span style="color: var(--verde-claro);">ii</span>mber
-          </span>
-        </div>
         <h2 class="font-extrabold leading-[0.95] mb-4 whitespace-nowrap" style="font-size: clamp(2rem, 5.5vw, 4rem);">
           Creciendo <span style="color: var(--verde-claro);">con ellos</span>
         </h2>
@@ -442,19 +437,19 @@ const ldJson = {
   -->
 
   <!-- CONTACTO -->
-  <section id="contacto" style="background: var(--azul-claro);" class="py-24">
+  <section id="contacto" style="background: #0f3347;" class="py-24">
     <div class="container-x max-w-3xl">
       <div class="reveal mb-10">
-        <span class="tag">Hablemos</span>
-        <h2 class="h-section mt-4 mb-4">¿Tu web no te trae ni un cliente al mes? Escríbeme.</h2>
-        <p class="text-[17px]" style="color: var(--texto-medio);">Te respondo hoy. Sin propuesta de 20 páginas, solo una conversación sobre tu negocio.</p>
+        <span class="tag tag-dark">Hablemos</span>
+        <h2 class="h-section mt-4 mb-4" style="color: var(--texto-claro);">¿Tu web no te trae ni un cliente al mes? Escríbeme.</h2>
+        <p class="text-[17px]" style="color: var(--texto-claro); opacity: 0.8;">Te respondo hoy. Sin propuesta de 20 páginas, solo una conversación sobre tu negocio.</p>
       </div>
       <div class="reveal">
-        <ContactForm client:visible />
+        <ContactForm dark={true} client:visible />
       </div>
       <div class="flex flex-wrap gap-4 justify-center mt-6 text-sm reveal">
-        <a href="https://wa.me/34XXXXXXXXXX" target="_blank" rel="noreferrer" class="btn btn-ghost">💬 WhatsApp directo</a>
-        <a href="mailto:jaimegomez@cliimber" class="btn btn-ghost">✉️ jaimegomez@cliimber</a>
+        <a href="https://wa.me/34XXXXXXXXXX" target="_blank" rel="noreferrer" class="btn btn-ghost" style="color: var(--texto-claro); border-color: rgba(245,248,249,0.3);">💬 WhatsApp directo</a>
+        <a href="mailto:jaimegomez@cliimber" class="btn btn-ghost" style="color: var(--texto-claro); border-color: rgba(245,248,249,0.3);">✉️ jaimegomez@cliimber</a>
       </div>
     </div>
   </section>
