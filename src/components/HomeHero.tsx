@@ -42,7 +42,7 @@ function useScramble(final: string, delay = 400, duration = 1500) {
 }
 
 const PROFILES = [
-  { label: "Tengo web pero no funciona", text: "Llevas meses pagando sin saber qué están haciendo, y tu web sigue sin traer un solo cliente. El problema no es tu negocio. Es que nadie analizó tu negocio antes de construir." },
+  { label: "Tengo web pero no funciona", text: "Llevas meses pagando sin saber qué están haciendo, y tu web sigue sin traer un solo cliente. El problema no es tu negocio. Es que nadie lo analizó." },
   { label: "Solo tengo Instagram", text: "Instagram no es tu web, es un escaparate alquilado. El día que cambia el algoritmo, tu facturación cae con él." },
   { label: "Tengo un proyecto nuevo", text: "Necesitas a alguien que entienda tu idea a la primera, sin explicarla cinco veces ni recibir cuatro propuestas iguales cambiadas de color." },
 ];
