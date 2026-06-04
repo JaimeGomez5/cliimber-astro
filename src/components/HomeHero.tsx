@@ -98,7 +98,7 @@ export default function HomeHero() {
           <p className="max-w-3xl text-[17px] leading-relaxed" style={{ color: "rgba(245,248,249,0.8)" }}>{PROFILES[profile].text}</p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 items-start">
+        <div className="flex flex-col sm:flex-row gap-3 items-start mt-6 sm:mt-0">
           <a href="/#contacto" className="btn btn-primary">Hablemos →</a>
           <a href="/#proyectos" className="btn" style={{ background: "transparent", color: "#fff", border: "2px solid #fff" }}>Ver proyectos</a>
         </div>
