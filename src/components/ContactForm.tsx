@@ -6,6 +6,10 @@ export default function ContactForm({ dark = false }: { dark?: boolean }) {
   const fieldStyle = dark
     ? { background: 'rgba(255,255,255,0.07)', borderColor: 'rgba(255,255,255,0.18)', color: 'var(--texto-claro)' }
     : { borderColor: 'var(--borde)' };
+  const selectStyle = dark
+    ? { background: '#1a3a4a', borderColor: 'rgba(255,255,255,0.18)', color: '#f5f8f9' }
+    : { borderColor: 'var(--borde)' };
+  const optionStyle = dark ? { background: '#1a3a4a', color: '#f5f8f9' } : {};
   const formStyle = dark
     ? { background: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.12)' }
     : { borderColor: 'var(--borde)' };
@@ -30,13 +34,13 @@ export default function ContactForm({ dark = false }: { dark?: boolean }) {
         <ValidationError field="email" prefix="Email" errors={state.errors} className="text-red-500 text-sm" />
         <input type="tel" inputMode="tel" name="phone" autoComplete="tel" placeholder="Teléfono / WhatsApp" className="px-4 py-3 rounded-lg border w-full" style={fieldStyle} />
       </div>
-      <select required name="situation" className="px-4 py-3 rounded-lg border w-full" style={fieldStyle}>
-        <option value="" disabled>¿Cuál es tu situación?</option>
-        <option>Tengo web pero no me trae clientes</option>
-        <option>Solo tengo Instagram y quiero web propia</option>
-        <option>Tengo un proyecto nuevo y necesito construirlo</option>
-        <option>Necesito una herramienta a medida (calculadora, quiz...)</option>
-        <option>Quiero SEO/SEM pero sin empezar de cero</option>
+      <select required name="situation" className="px-4 py-3 rounded-lg border w-full" style={selectStyle}>
+        <option value="" disabled style={optionStyle}>¿Cuál es tu situación?</option>
+        <option style={optionStyle}>Tengo web pero no me trae clientes</option>
+        <option style={optionStyle}>Solo tengo Instagram y quiero web propia</option>
+        <option style={optionStyle}>Tengo un proyecto nuevo y necesito construirlo</option>
+        <option style={optionStyle}>Necesito una herramienta a medida (calculadora, quiz...)</option>
+        <option style={optionStyle}>Quiero SEO/SEM pero sin empezar de cero</option>
       </select>
       <textarea rows={4} name="message" placeholder="Cuéntame más (opcional)" className="px-4 py-3 rounded-lg border w-full" style={fieldStyle} />
       <button type="submit" disabled={state.submitting} className="btn btn-primary w-full">

@@ -53,6 +53,11 @@ export default function HomeHero() {
       ? SCRAMBLE_MOBILE
       : SCRAMBLE_FINAL
   );
+  const [heroPrefix] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth < 768
+      ? 'Consigue una web que'
+      : 'Una web que'
+  );
   const typed = useScramble(finalText);
   const [profile, setProfile] = useState(0);
 
@@ -63,7 +68,7 @@ export default function HomeHero() {
         <h1 className="font-bold mb-6 max-w-4xl" style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", color: "#f5f8f9", opacity: 0.8, lineHeight: 1.25 }}>
           Web a medida para tu negocio. Sin cuotas, sin intermediarios, sin plantillas.
         </h1>
-        <p className="h-display max-w-4xl mb-2" style={{ color: "#f5f8f9" }}>Una web que</p>
+        <p className="h-display max-w-4xl mb-2" style={{ color: "#f5f8f9" }}>{heroPrefix}</p>
         <div className="max-w-4xl mb-10" style={{ minHeight: '1.2em' }}>
           <span
             className="h-display block"
