@@ -394,7 +394,6 @@ const ldJson = {
   </section>
 
   <!-- FAQ -->
-  <!--
   <section id="faq" class="py-24" style="background: var(--azul-oscuro);">
     <div class="container-x grid md:grid-cols-[1fr_1.6fr] gap-12">
       <div class="md:sticky md:top-24 self-start reveal">
@@ -406,35 +405,34 @@ const ldJson = {
       <div class="reveal">
         <div class="mb-8">
           <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Precio y plazos</h3>
-          <FaqItem question="¿Cuánto cuesta una web que de verdad venda?" answer="Los proyectos de web arrancan en 1.200€ para una landing o web de servicios bien construida. Los proyectos más complejos con herramientas interactivas se presupuestan según lo que necesites. El precio se cierra antes de empezar. Sin extras de última hora." highlight="Si no tienes claro qué necesitas, cuéntame tu situación y te digo qué tiene sentido construir, y qué no." dark={true} client:visible />
-          <FaqItem question="¿Cuánto tarda en estar lista?" answer="Una landing o web de servicios suele estar lista en 2 a 4 semanas desde que tenemos el brief claro. Lo que más tarda nunca es el código, es esperar los textos o las fotos." highlight="No te voy a decir «2-3 meses» para después tardar 6. Si hay un plazo acordado, lo cumplo." dark={true} client:visible />
-          <FaqItem question="¿Cuánto voy a pagar al mes después de tenerla hecha?" answer="El hosting de una web en código puro cuesta entre 0€ y 15€ al mes. Sin cuotas de mantenimiento obligatorias, sin plugins que renovar. Si quieres soporte estratégico continuo, eso es un retainer aparte que acordamos si tiene sentido. Nunca te lo vendo si no lo necesitas." dark={true} client:visible />
+          <FaqItem question="¿Cuánto cuesta una web con Cliimber?" answer="El precio se define en la primera conversación según la complejidad del proyecto. Presupuesto cerrado antes de empezar, sin extras sorpresa ni letra pequeña." dark={true} client:visible />
+          <FaqItem question="¿Cuánto tarda en hacerse una web?" answer="Entre 2 y 4 semanas desde que el brief está claro. Sin colas de agencia, sin juniors que no conocen tu proyecto. El que te hace la web es el mismo que habla contigo." dark={true} client:visible />
+          <FaqItem question="¿Hay cuota mensual obligatoria?" answer="No. El mantenimiento y la evolución son opcionales. Si quieres seguir creciendo juntos, hablamos. Si no, te llevas tu web y listo." dark={true} client:visible />
         </div>
         <div class="mb-8">
           <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">El código y la propiedad</h3>
-          <FaqItem question="¿El código es mío o me ato contigo para siempre?" answer="El código es tuyo desde el día uno. Te lo entrego en un repositorio propio, con el dominio a tu nombre y el hosting en tu cuenta. Si mañana decides irte, te llevas todo sin perder nada." highlight="El código cerrado es una trampa. Yo no trabajo así." dark={true} client:visible />
-          <FaqItem question="Si cambio de proveedor, ¿pierdo la web?" answer="No. El dominio es tuyo por ley, el contenido es tuyo y el código te lo entrego. Nadie puede quitártelo." dark={true} client:visible />
+          <FaqItem question="¿El código de mi web es mío?" answer="Sí, desde el día de entrega. El repositorio Git queda a tu nombre, el dominio y el hosting también. Si algún día decides no seguir trabajando con Cliimber, te llevas tu web sin pelear y sin empezar de cero." dark={true} client:visible />
+          <FaqItem question="¿Puedo cambiar cosas yo mismo?" answer="Sí. Al entregar la web te explico cómo hacer los cambios básicos sin necesitarme. Para lo demás estoy a un WhatsApp." dark={true} client:visible />
         </div>
         <div class="mb-8">
           <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Cómo trabajo</h3>
-          <FaqItem question="¿Tengo que saber lo que quiero para empezar?" answer="No. La primera conversación es para entender tu negocio y qué problema tienes. Lo que sí necesito es que me cuentes qué no está funcionando. El resto lo estructuro yo." highlight="Si no tengo claro que puedo ayudarte, te lo digo antes de que pagues nada." dark={true} client:visible />
-          <FaqItem question="¿Cómo trabajamos: fases, pagos, comunicación?" answer="Conversación inicial sin compromiso, propuesta con precio cerrado y fases claras, 50% al empezar y 50% al entregar. Comunicación directa: WhatsApp para el día a día, videollamada cuando hay que tomar decisiones importantes." dark={true} client:visible />
+          <FaqItem question="¿Con cuántos clientes trabajas a la vez?" answer="Pocos. No trabajo con listas de espera infinitas ni con equipos que rotan. Cuando empezamos, tu proyecto tiene atención real." dark={true} client:visible />
+          <FaqItem question="¿Cómo es el proceso desde el principio?" answer="Primero una conversación para entender tu negocio y tu cliente. Luego un diagnóstico de lo que necesitas. Después el diseño, el desarrollo y el despliegue. Sin reuniones innecesarias, sin propuestas de 20 páginas." dark={true} client:visible />
         </div>
         <div class="mb-8">
           <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Lo que no hago</h3>
-          <FaqItem question="¿Haces ecommerce, WordPress o Webflow?" answer="No hago ecommerce propio. Si lo necesitas, te recomiendo Shopify. Tampoco uso WordPress ni Webflow: código puro carga más rápido, es más seguro y no tiene dependencias que se rompen solas." dark={true} client:visible />
-          <FaqItem question="¿Garantizas primeros puestos en Google?" answer="No. Y desconfía de cualquiera que te lo garantice. Lo que sí hago es construir con SEO integrado desde la estructura desde el primer día." highlight="Estrategia real y trabajo constante. No promesas vacías." dark={true} client:visible />
-          <FaqItem question="¿Me hace falta un profesional si tengo un familiar que sabe de webs?" answer="Depende. Si lo que necesitas es tener algo online, un familiar puede ayudarte a empezar. Si lo que necesitas es una web que traiga clientes, necesitas a alguien que entienda tu negocio antes de abrir el editor." highlight="La mayoría de webs que llegan a Cliimber para ser rehechas fueron construidas por alguien cercano con buena voluntad. No es un problema de intención, es un problema de que nadie analizó el negocio antes de construir." dark={true} client:visible />
+          <FaqItem question="¿Hacéis tiendas online?" answer="Para ecommerce recomiendo Shopify — es la mejor herramienta para eso y no tiene sentido reinventarla. Lo que sí hago es la web corporativa, el SEO y las herramientas que rodean a tu tienda." dark={true} client:visible />
+          <FaqItem question="¿Hacéis webs en WordPress?" answer="No. Construyo en código puro sin plantillas ni gestores de contenido. Si necesitas WordPress específicamente, te recomendaré a alguien que lo haga bien." dark={true} client:visible />
+          <FaqItem question="¿Gestionáis redes sociales?" answer="No. Me centro en lo que realmente trae clientes: web, SEO, AEO y herramientas de conversión." dark={true} client:visible />
         </div>
         <div class="mb-8">
           <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Resultados</h3>
-          <FaqItem question="¿Cuánto tarda una web nueva en traer clientes?" answer="Depende de si hay tráfico o no. Una web sin visitas no trae clientes. Por eso no solo construyo la web: también pienso desde el principio cómo va a llegar la gente. Una web bien hecha con tráfico real puede empezar a dar resultados en 30-60 días." dark={true} client:visible />
-          <FaqItem question="¿Cómo sé si mi web está funcionando o no?" answer="Configuro analíticas desde el primer día para que puedas ver cuánta gente entra, de dónde viene y qué hace. Sin informes que no entiende nadie." highlight="Si tu web no tiene analíticas, no tienes datos. Sin datos, no sabes si algo funciona." dark={true} client:visible />
+          <FaqItem question="¿Cuánto tarda en posicionar una web nueva en Google?" answer="Los primeros resultados visibles suelen aparecer en las primeras semanas para búsquedas específicas de tu nicho. Cuanto antes esté la web técnicamente bien construida, antes empieza Google a rastrearla. Para keywords más competidas el proceso es de varios meses." dark={true} client:visible />
+          <FaqItem question="¿Qué es el AEO y por qué lo mencionáis?" answer="AEO es posicionamiento en IAs como ChatGPT, Perplexity o Claude. Cuando alguien le pregunta a una IA que le recomiende un desarrollador web para pymes en España, queremos que Cliimber aparezca en esa respuesta. Para conseguirlo construimos las webs con estructura y contenido que las IAs pueden leer y citar." dark={true} client:visible />
         </div>
       </div>
     </div>
   </section>
-  -->
 
   <!-- CONTACTO -->
   <section id="contacto" style="background: #0f3347;" class="py-24">
