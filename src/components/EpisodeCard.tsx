@@ -4,6 +4,7 @@ interface Props {
   title: string;
   client: string;
   synopsis: string;
+  synopsisLinkText?: string;
   stats: { value: string; label: string }[];
   href: string;
   emoji: string;
@@ -12,7 +13,7 @@ interface Props {
   logoSrc?: string;
 }
 
-export function EpisodeCard({ num, sector, title, client, synopsis, stats, href, emoji, bg, featured, logoSrc }: Props) {
+export function EpisodeCard({ num, sector, title, client, synopsis, synopsisLinkText, stats, href, emoji, bg, featured, logoSrc }: Props) {
   return (
     <a href={href} style={{ display: "block", textDecoration: "none", color: "inherit" }}>
     <article
@@ -46,7 +47,8 @@ export function EpisodeCard({ num, sector, title, client, synopsis, stats, href,
         <p className="text-xs uppercase tracking-wider mb-2" style={{ color: "var(--texto-apagado)" }}>{sector}</p>
         <h3 className="text-2xl md:text-3xl font-extrabold mb-2" style={{ color: "var(--texto-oscuro)" }}>{title}</h3>
         <p className="text-sm font-semibold mb-3" style={{ color: "var(--verde)" }}>{client}</p>
-        <p className="text-[15px] leading-relaxed mb-5" style={{ color: "var(--texto-medio)" }}>{synopsis}</p>
+        <p className="text-[15px] leading-relaxed mb-3" style={{ color: "var(--texto-medio)" }}>{synopsis}</p>
+        {synopsisLinkText && <p className="text-sm font-semibold mb-5" style={{ color: "var(--verde)" }}>{synopsisLinkText}</p>}
         <div className="flex flex-wrap gap-4 mb-5">
           {stats.map((s) => (
             <div key={s.label}>
