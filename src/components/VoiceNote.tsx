@@ -141,7 +141,7 @@ export function VoiceNote({ src }: { src?: string }) {
             ) : (
               <div className="relative">
                 <img
-                  src="/assets/jaime.jpeg"
+                  src="/assets/jaime-small.webp"
                   alt="Jaime"
                   className="rounded-full object-cover"
                   style={{ width: 44, height: 44 }}
