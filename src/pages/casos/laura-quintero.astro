@@ -3,6 +3,55 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import DerivationSlider from '../../components/DerivationSlider';
+
+const ldJson = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://cliimber.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Proyectos",
+        "item": "https://cliimber.com/#proyectos"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Ep. 01: La calculadora de nutrición que trabaja sola",
+        "item": "https://cliimber.com/casos/laura-quintero/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ep. 01: La calculadora de nutrición que trabaja sola",
+    "description": "Caso real: calculadora de materia seca y sistema de derivación para Laura Quintero, nutricionista canina.",
+    "author": {
+      "@type": "Person",
+      "name": "Jaime Gómez",
+      "url": "https://cliimber.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cliimber",
+      "url": "https://cliimber.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cliimber.com/assets/cliimber-logo.png"
+      }
+    },
+    "url": "https://cliimber.com/casos/laura-quintero/",
+    "inLanguage": "es"
+  }
+];
 ---
 <BaseLayout
   title="Ep. 01: La calculadora de nutrición que trabaja sola | Cliimber"
@@ -12,6 +61,7 @@ import DerivationSlider from '../../components/DerivationSlider';
   ogDescription="Caso real de Cliimber con Laura Quintero, nutricionista canina."
   ogImage="/assets/og-laura.jpg"
   ogType="article"
+  ldJson={ldJson}
 >
   <Nav />
 
