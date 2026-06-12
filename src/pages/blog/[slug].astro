@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { data, id } = post;
+const { Content } = await render(post);
+
+const dateFormatter = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const formattedDate = dateFormatter.format(data.date);
+const canonical = `https://cliimber.com/blog/${id}/`;
+
+const ldJson = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cliimber.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cliimber.com/blog/" },
+      { "@type": "ListItem", "position": 3, "name": data.title, "item": canonical },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: data.title,
+    description: data.description,
+    datePublished: data.date.toISOString().split('T')[0],
+    author: { "@type": "Person", name: data.author, url: "https://cliimber.com" },
+    publisher: {
+      "@type": "Organization",
+      name: "Cliimber",
+      url: "https://cliimber.com",
+      logo: { "@type": "ImageObject", url: "https://cliimber.com/assets/cliimber-logo.png" },
+    },
+    keywords: data.keywords.join(", "),
+    url: canonical,
+    inLanguage: "es",
+  },
+];
+---
+<BaseLayout
+  title={`${data.title} | Cliimber`}
+  description={data.description}
+  canonical={canonical}
+  ogTitle={data.title}
+  ogDescription={data.description}
+  ogType="article"
+  ldJson={ldJson}
+>
+  <Nav />
+
+  <!-- HEADER -->
+  <header style="background: var(--azul-oscuro); color: var(--texto-claro);" class="pt-28 pb-16">
+    <div class="container-x max-w-3xl">
+      <a href="/blog" class="text-sm opacity-70 hover:opacity-100 mb-6 inline-block">← Volver al blog</a>
+      <span class="tag tag-dark mb-4">{data.cluster}</span>
+      <h1 class="h-display mt-4 mb-4">{data.title}</h1>
+      <p class="text-sm opacity-70">{formattedDate} · {data.author}</p>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <article style="background: var(--background);" class="py-16">
+    <div class="container-x max-w-3xl blog-content">
+      <Content />
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section style="background: var(--verde); color: var(--texto-claro);" class="py-20">
+    <div class="container-x text-center max-w-2xl">
+      <h2 class="h-section mb-4">¿Tu web tampoco te trae clientes?</h2>
+      <p class="opacity-90 mb-8">Cuéntame qué está pasando y te digo, sin compromiso, qué se puede mejorar.</p>
+      <a href="/#contacto" class="btn bg-white" style="color: var(--verde);">Hablamos →</a>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .blog-content :global(p) {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--texto-medio);
+    margin-bottom: 1.5rem;
+  }
+  .blog-content :global(p:first-of-type) {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    font-weight: 600;
+    color: var(--texto-oscuro);
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--verde-claro);
+    margin-bottom: 2.5rem;
+  }
+  .blog-content :global(h2) {
+    font-size: clamp(1.4rem, 3vw, 1.875rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--texto-oscuro);
+    margin: 2.5rem 0 1.25rem;
+  }
+  .blog-content :global(h3) {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--texto-oscuro);
+    margin: 2rem 0 1rem;
+  }
+  .blog-content :global(ul),
+  .blog-content :global(ol) {
+    margin: 0 0 1.5rem 1.25rem;
+    color: var(--texto-medio);
+    line-height: 1.8;
+  }
+  .blog-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+  .blog-content :global(li::marker) {
+    color: var(--verde);
+    font-weight: 700;
+  }
+  .blog-content :global(a) {
+    color: var(--verde);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .blog-content :global(strong) {
+    color: var(--texto-oscuro);
+    font-weight: 700;
+  }
+  .blog-content :global(blockquote) {
+    border-left: 3px solid var(--verde-claro);
+    padding-left: 1.25rem;
+    font-style: italic;
+    color: var(--texto-medio);
+    margin: 1.5rem 0;
+  }
+</style>
