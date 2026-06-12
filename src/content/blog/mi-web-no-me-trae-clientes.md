@@ -1,6 +1,7 @@
 ---
 title: "Mi web no me trae clientes: 9 diagnósticos y qué hacer con cada uno"
 description: "Si tu web tiene visitas pero no te llegan clientes, el problema está en uno de estos 9 puntos. Diagnóstico honesto, sin tecnicismos, con lo que hago en cada caso."
+image: "/assets/blog/mi-web-no-me-trae-clientes-cover.svg"
 date: "2026-06-12"
 author: "Jaime Gómez"
 keywords: ["mi web no me trae clientes", "por qué mi web no vende", "señales web no funciona", "web wordpress lenta"]
