@@ -1,7 +1,9 @@
 ---
 title: "Kit Digital para webs: lo que nadie te contó antes de pedirlo (y qué hacer si ya te fue mal)"
-description: "Kit Digital puede parecer dinero gratis para tu web. Lo que no te cuentan: webs genéricas, dominios que no son tuyos y agentes que desaparecen. Esto es lo que necesitas saber."
+seoTitle: "Kit Digital: qué hacer si tu web no funciona | Cliimber"
+description: "Kit Digital y tu web: por qué muchas acabaron siendo plantillas, cómo saber si el dominio es tuyo y qué hacer si la web que te entregaron no te trae clientes."
 image: "/assets/blog/kit-digital-lo-que-nadie-te-conto-cover.svg"
+ogImage: "/assets/blog/kit-digital-lo-que-nadie-te-conto-og.jpg"
 date: "2026-06-12"
 author: "Jaime Gómez"
 keywords: ["kit digital opiniones", "kit digital pyme web", "kit digital problema", "agente digitalizador estafa", "kit digital web"]
@@ -53,7 +55,7 @@ Entra en cualquier servicio de whois (whois.domaintools.com, por ejemplo) y busc
 
 Lo segundo: ¿tienes acceso al panel de administración de la web? Si no tienes las credenciales de tu propia web, tampoco es normal.
 
-Si las respuestas a estas dos preguntas son correctas (el dominio es tuyo y tienes acceso), lo que tienes es una web mediocre que puedes mejorar o rehacer sin perder tu dirección web ni tu historial en Google.
+Si las respuestas a estas dos preguntas son correctas (el dominio es tuyo y tienes acceso), lo que tienes es una web mediocre que [puedes mejorar](/blog/mi-web-no-me-trae-clientes/) o rehacer sin perder tu dirección web ni tu historial en Google.
 
 Si no es así, hay que hablar con el agente primero, y si no hay solución, valorar si el tiempo y esfuerzo de recuperarlo compensa frente a empezar desde cero con una nueva dirección.
 
@@ -63,7 +65,7 @@ Hay situaciones donde Kit Digital no es la mejor opción, aunque el dinero esté
 
 Si tu negocio tiene una propuesta de valor diferenciada que una plantilla no puede transmitir, una web genérica puede hacerte más daño que no tener nada, porque da una impresión equivocada a quien la visita.
 
-Si necesitas herramientas específicas (calculadoras, sistemas de reserva propios, configuradores de producto), el catálogo de Kit Digital probablemente no las cubre.
+Si necesitas herramientas específicas ([calculadoras](/casos/laura-quintero/), sistemas de reserva propios, configuradores de producto), el catálogo de Kit Digital probablemente no las cubre.
 
 Si ya tienes presupuesto para invertir en algo a medida, hacerlo bien desde el principio suele ser más rentable que usar la subvención para algo que después tendrás que rehacer.
 
@@ -71,7 +73,7 @@ Si ya tienes presupuesto para invertir en algo a medida, hacerlo bien desde el p
 
 No soy agente digitalizador y no vendo Kit Digital. Cuando alguien me pregunta si le conviene pedirlo, le digo lo mismo que he escrito aquí: depende de tu situación, y si decides pedirlo, asegúrate de que el dominio sea tuyo, de que tengas acceso a todo.
 
-Lo que construyo son webs a medida en código propio, sin plantillas. El dominio y el hosting están a nombre del cliente desde el día uno. El repositorio de código también. Si algún día decides no seguir trabajando conmigo, te llevas todo sin pelearte con nadie.
+Lo que construyo son [webs a medida en código propio](/), sin plantillas. El dominio y el hosting están a nombre del cliente desde el día uno. El repositorio de código también. Si algún día decides no seguir trabajando conmigo, te llevas todo sin pelearte con nadie.
 
 No es para todo el mundo, porque cuesta más que una subvención. Pero si tu negocio necesita algo que funcione de verdad, es la diferencia que importa.
 

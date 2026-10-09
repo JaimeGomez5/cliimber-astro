@@ -1,7 +1,9 @@
 ---
 title: "Mi web no me trae clientes: 9 diagnósticos y qué hacer con cada uno"
-description: "Si tu web tiene visitas pero no te llegan clientes, el problema está en uno de estos 9 puntos. Diagnóstico honesto, sin tecnicismos, con lo que hago en cada caso."
+seoTitle: "Mi web no me trae clientes: 9 causas y qué hacer | Cliimber"
+description: "Mi web no me trae clientes: los 9 fallos que reviso primero cuando una web tiene visitas pero no vende, cómo detectarlos tú mismo y qué hacer con cada uno."
 image: "/assets/blog/mi-web-no-me-trae-clientes-cover.svg"
+ogImage: "/assets/blog/mi-web-no-me-trae-clientes-og.jpg"
 date: "2026-06-12"
 author: "Jaime Gómez"
 keywords: ["mi web no me trae clientes", "por qué mi web no vende", "señales web no funciona", "web wordpress lenta"]
@@ -27,7 +29,7 @@ Esto no es una opinión, es matemática de comportamiento. Cuanto más tarda en 
 
 **Qué lo suele causar:** plugins acumulados en WordPress, imágenes sin comprimir, plantillas que cargan código de funciones que nunca usas.
 
-**Qué hago yo:** webs construidas en código limpio sin plugins innecesarios. Mi propia web tiene un PageSpeed de 93 en móvil. Cuando reviso una web con WordPress que va a 35, normalmente el problema no es el contenido, es el peso muerto que arrastra por debajo.
+**Qué hago yo:** webs construidas en código limpio sin plugins innecesarios. [Mi propia web](/) tiene un PageSpeed de 93 en móvil. Cuando reviso una web con WordPress que va a 35, normalmente el problema no es el contenido, es el peso muerto que arrastra por debajo.
 
 ## 2. El mensaje habla de ti, no del problema del cliente
 
@@ -91,11 +93,11 @@ Una calculadora, un quiz de recomendación, un diagnóstico interactivo: cualqui
 
 **Cómo saberlo:** ¿hay algo en tu web con lo que un visitante pueda interactuar antes de decidir si te contacta? ¿O solo hay texto y un formulario?
 
-**Qué hago yo:** este es uno de mis diferenciales. Construyo herramientas interactivas a medida: calculadoras, configuradores, sistemas de derivación. Hacen que el visitante avance en el proceso de decisión sin que tengas que estar tú detrás respondiendo lo mismo cien veces.
+**Qué hago yo:** este es uno de mis diferenciales. Construyo herramientas interactivas a medida: calculadoras, configuradores, sistemas de derivación (como [la calculadora y el sistema de derivación que hice para una nutricionista canina](/casos/laura-quintero/)). Hacen que el visitante avance en el proceso de decisión sin que tengas que estar tú detrás respondiendo lo mismo cien veces.
 
 ## 9. La web se nota que es una plantilla
 
-"Las webs entregadas eran prácticamente réplicas de otros proyectos." Esta frase, que viene de testimonios reales sobre el Kit Digital, describe algo que un cliente potencial detecta sin saber por qué: la sensación de "esto lo he visto antes en otro sitio". Las plantillas tienen estructuras reconocibles, y eso resta confianza aunque no sepas explicar el motivo.
+"Las webs entregadas eran prácticamente réplicas de otros proyectos." Esta frase, que viene de [testimonios reales sobre el Kit Digital](/blog/kit-digital-lo-que-nadie-te-conto/), describe algo que un cliente potencial detecta sin saber por qué: la sensación de "esto lo he visto antes en otro sitio". Las plantillas tienen estructuras reconocibles, y eso resta confianza aunque no sepas explicar el motivo.
 
 **Cómo saberlo:** busca "plantilla [nombre de tu sector]" en Google Imágenes. Si tu web se parece sospechosamente a los resultados, es una plantilla con tu logo encima.
 

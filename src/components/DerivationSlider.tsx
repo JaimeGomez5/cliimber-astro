@@ -13,7 +13,10 @@ export default function DerivationSlider() {
 
   return (
     <div className="bg-white rounded-2xl border shadow-xl" style={{ borderColor: "var(--borde)" }}>
-      <p className="text-xs font-bold uppercase tracking-widest px-6 pt-6 mb-3" style={{ color: "var(--verde)" }}>{SLIDES[slide].title}</p>
+      {/* Todas las diapositivas van en el HTML; las no activas se ocultan con "hidden". */}
+      {SLIDES.map((s, i) => (
+        <p key={s.src} className={`text-xs font-bold uppercase tracking-widest px-6 pt-6 mb-3${i === slide ? "" : " hidden"}`} style={{ color: "var(--verde)" }}>{s.title}</p>
+      ))}
       <div
         style={{ position: "relative", overflow: "hidden", minHeight: 280 }}
         onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
@@ -23,12 +26,16 @@ export default function DerivationSlider() {
           else if (diff < -50) setSlide((slide - 1 + SLIDES.length) % SLIDES.length);
         }}
       >
-        <img
-          src={SLIDES[slide].src}
-          alt={SLIDES[slide].alt}
-          className="object-contain bg-white md:object-cover md:object-[center_top]"
-          style={{ width: "100%", height: "100%", position: "absolute", inset: 0, minHeight: 280 }}
-        />
+        {SLIDES.map((s, i) => (
+          <img
+            key={s.src}
+            src={s.src}
+            alt={s.alt}
+            loading={i === 0 ? undefined : "lazy"}
+            className={`object-contain bg-white md:object-cover md:object-[center_top]${i === slide ? "" : " hidden"}`}
+            style={{ width: "100%", height: "100%", position: "absolute", inset: 0, minHeight: 280 }}
+          />
+        ))}
         <button
           onClick={() => setSlide((slide - 1 + SLIDES.length) % SLIDES.length)}
           aria-label="Anterior"

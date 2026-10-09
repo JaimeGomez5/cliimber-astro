@@ -17,7 +17,7 @@ import Footer from '../components/Footer.astro';
         Política de cookies
       </h1>
       <p class="text-sm mb-10" style="color: var(--texto-apagado);">
-        Última actualización: mayo de 2026
+        Última actualización: octubre de 2026
       </p>
 
       <div class="space-y-10 text-base leading-relaxed" style="color: var(--texto-medio);">
@@ -33,20 +33,62 @@ import Footer from '../components/Footer.astro';
           <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Qué cookies usamos?</h2>
           <div class="space-y-4">
             <p>
-              <strong style="color: var(--texto-oscuro);">Cookies técnicas (siempre activas):</strong>
-              necesarias para que la web funcione. No requieren tu consentimiento y no recogen
-              datos personales.
+              <strong style="color: var(--texto-oscuro);">Almacenamiento técnico (siempre activo):</strong>
+              guardamos en tu navegador (almacenamiento local, clave <code>cliimber_cookie_consent</code>)
+              la opción que eliges en el aviso de cookies, para no volver a preguntarte en cada
+              visita. No requiere tu consentimiento y no recoge datos personales.
             </p>
             <p>
               <strong style="color: var(--texto-oscuro);">Cookies analíticas (requieren consentimiento):</strong>
-              Google Analytics. Nos permiten entender cómo se usa la web, páginas visitadas,
-              tiempo de navegación, origen del tráfico. Los datos son anónimos y agregados.
+              Microsoft Clarity, un servicio de Microsoft Corporation. Nos permite entender cómo se
+              usa la web: páginas visitadas, clics, desplazamiento, tiempo de navegación, tipo de
+              dispositivo y origen de la visita. Clarity puede generar grabaciones de la sesión y
+              mapas de calor, y oculta por defecto el texto que escribes en los formularios.
+              Usamos esta información solo para mejorar la web. Microsoft puede tratar estos datos
+              fuera del Espacio Económico Europeo, con las garantías del Marco de Privacidad de Datos
+              UE-EE. UU. Más información en la{" "}
+              <a href="https://privacy.microsoft.com/es-es/privacystatement" target="_blank" rel="noopener noreferrer" style="color: var(--verde);" class="font-semibold">declaración de privacidad de Microsoft</a>.
             </p>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm border-collapse">
+                <thead>
+                  <tr style="color: var(--texto-oscuro);">
+                    <th class="text-left py-2 pr-4 border-b" style="border-color: var(--borde);">Cookie</th>
+                    <th class="text-left py-2 pr-4 border-b" style="border-color: var(--borde);">Titular</th>
+                    <th class="text-left py-2 pr-4 border-b" style="border-color: var(--borde);">Finalidad</th>
+                    <th class="text-left py-2 border-b" style="border-color: var(--borde);">Duración</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);"><code>_clck</code></td>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);">Microsoft Clarity</td>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);">Identifica al mismo visitante entre visitas</td>
+                    <td class="py-2 border-b" style="border-color: var(--borde);">1 año</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);"><code>_clsk</code></td>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);">Microsoft Clarity</td>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);">Agrupa las páginas vistas en una misma sesión</td>
+                    <td class="py-2 border-b" style="border-color: var(--borde);">1 día</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);"><code>CLID</code></td>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);">Microsoft Clarity</td>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);">Identifica la primera vez que Clarity ve a este usuario</td>
+                    <td class="py-2 border-b" style="border-color: var(--borde);">1 año</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);"><code>MUID</code></td>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);">Microsoft</td>
+                    <td class="py-2 pr-4 border-b" style="border-color: var(--borde);">Identifica navegadores únicos que visitan sitios de Microsoft</td>
+                    <td class="py-2 border-b" style="border-color: var(--borde);">1 año</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <p>
-              <strong style="color: var(--texto-oscuro);">Cookies de marketing (requieren consentimiento):</strong>
-              Meta Pixel. Nos permiten medir la efectividad de campañas publicitarias en Facebook
-              e Instagram y mostrarte anuncios relevantes. Los datos se tratan según la política
-              de privacidad de Meta.
+              No usamos cookies de publicidad ni de redes sociales.
             </p>
           </div>
         </section>
@@ -65,7 +107,7 @@ import Footer from '../components/Footer.astro';
           <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Con qué frecuencia actualizamos esta política?</h2>
           <p>
             Cuando añadimos nuevos servicios o cambia la legislación. La fecha de última
-            actualización aparece al pie de esta página.
+            actualización aparece al principio de esta página.
           </p>
         </section>
       </div>

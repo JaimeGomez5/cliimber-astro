@@ -7,13 +7,12 @@ interface Props {
   synopsisLinkText?: string;
   stats: { value: string; label: string }[];
   href: string;
-  emoji: string;
   bg: string;
   featured?: boolean;
   logoSrc?: string;
 }
 
-export function EpisodeCard({ num, sector, title, client, synopsis, synopsisLinkText, stats, href, emoji, bg, featured, logoSrc }: Props) {
+export function EpisodeCard({ num, sector, title, client, synopsis, synopsisLinkText, stats, href, bg, featured, logoSrc }: Props) {
   return (
     <a href={href} style={{ display: "block", textDecoration: "none", color: "inherit" }}>
     <article
@@ -31,12 +30,9 @@ export function EpisodeCard({ num, sector, title, client, synopsis, synopsisLink
             style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px", position: "absolute", inset: 0 }}
           />
         ) : (
-          <>
-            <div className="text-7xl">{emoji}</div>
-            <button className="absolute w-14 h-14 rounded-full grid place-items-center text-white text-xl shadow-xl" style={{ background: "var(--verde)" }} aria-label="Play">
-              ▶
-            </button>
-          </>
+          <button className="absolute w-14 h-14 rounded-full grid place-items-center text-white text-xl shadow-xl" style={{ background: "var(--verde)" }} aria-label="Play">
+            ▶
+          </button>
         )}
       </div>
       <div className="p-6 md:p-8">

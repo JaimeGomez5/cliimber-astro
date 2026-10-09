@@ -50,11 +50,12 @@ const ldJson = [
 ];
 ---
 <BaseLayout
-  title={`${data.title} | Cliimber`}
+  title={data.seoTitle ?? `${data.title} | Cliimber`}
   description={data.description}
   canonical={canonical}
   ogTitle={data.title}
   ogDescription={data.description}
+  ogImage={data.ogImage}
   ogType="article"
   ldJson={ldJson}
 >

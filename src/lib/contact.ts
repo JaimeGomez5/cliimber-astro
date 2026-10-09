@@ -1,8 +1,7 @@
 // Single source of truth for contact information.
-// Replace the placeholders before publishing.
 export const CONTACT = {
-  phone: "34XXXXXXXXXX",
-  whatsapp: "https://wa.me/34XXXXXXXXXX",
-  email: "jaimegomez@cliimber",
+  phone: "34609575722",
+  whatsapp: "https://wa.me/34609575722",
+  email: "jaimegomez@cliimber.com",
   social: {} as Record<string, string>,
 };
