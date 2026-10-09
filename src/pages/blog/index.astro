@@ -44,16 +44,19 @@ const ldJson = {
   <section style="background: var(--background);" class="py-16">
     <div class="container-x max-w-3xl">
       <ul class="flex flex-col">
-        {posts.map((post) => (
+        {posts.map((post, i) => (
           <li class="border-b py-10 first:pt-0 last:border-b-0 reveal" style="border-color: var(--borde);">
             <a
-              href={`/blog/${post.id}`}
+              href={`/blog/${post.id}/`}
               class={`group block ${post.data.image ? 'md:grid md:grid-cols-[240px_1fr] md:gap-6 md:items-center' : ''}`}
             >
               {post.data.image && (
                 <img
                   src={post.data.image}
                   alt={post.data.title}
+                  width="680"
+                  height="320"
+                  loading={i === 0 ? undefined : "lazy"}
                   class="w-full rounded-xl object-cover aspect-[680/320] mb-4 md:mb-0"
                 />
               )}

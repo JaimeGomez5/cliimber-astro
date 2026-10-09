@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/plus-jakarta-sans';
+import fontLatin from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import CookieBanner from '../components/CookieBanner';
 import WhatsAppButton from '../components/WhatsAppButton';
@@ -7,15 +9,16 @@ import RevealObserver from '../components/RevealObserver';
 interface Props {
   title: string;
   description: string;
-  canonical: string;
+  canonical?: string; // se omite en páginas sin URL propia (404)
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
   ogType?: string;
   ldJson?: object | object[];
+  noindex?: boolean;
 }
 
-const { title, description, canonical, ogTitle, ogDescription, ogImage = '/assets/og-default.jpg', ogType = 'website', ldJson } = Astro.props;
+const { title, description, canonical, ogTitle, ogDescription, ogImage = '/assets/og-default.jpg', ogType = 'website', ldJson, noindex = false } = Astro.props;
 const socialTitle = ogTitle || title;
 const socialDescription = ogDescription || description;
 const socialImage = new URL(ogImage, 'https://cliimber.com').href;
@@ -26,13 +29,13 @@ const socialImage = new URL(ogImage, 'https://cliimber.com').href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? "noindex" : "index, follow"} />
     <meta name="author" content="Jaime Gómez" />
     <meta name="language" content="es" />
     <meta property="og:title" content={socialTitle} />
     <meta property="og:description" content={socialDescription} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:url" content={canonical} />
+    {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:locale" content="es_ES" />
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
@@ -41,12 +44,9 @@ const socialImage = new URL(ogImage, 'https://cliimber.com').href;
     <meta name="twitter:title" content={socialTitle} />
     <meta name="twitter:description" content={socialDescription} />
     <meta name="twitter:image" content={socialImage} />
-    <link rel="canonical" href={canonical} />
+    {canonical && <link rel="canonical" href={canonical} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
     {ldJson && <script type="application/ld+json" set:html={JSON.stringify(ldJson)} />}
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","v90mg5jlqz");

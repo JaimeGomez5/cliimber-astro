@@ -14,7 +14,7 @@ const ldJson = {
     {
       "@type": "ProfessionalService",
       name: "Cliimber",
-      url: "https://cliimber.com",
+      url: "https://cliimber.com/",
       telephone: "+34609575722",
       areaServed: "ES",
       serviceArea: { "@type": "Country", name: "España" },
@@ -27,7 +27,7 @@ const ldJson = {
         "@type": "ImageObject",
         url: "https://cliimber.com/assets/cliimber-logo.png"
       },
-      image: "https://cliimber.com/assets/jaime.jpeg",
+      image: "https://cliimber.com/assets/jaime.webp",
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Servicios Cliimber",
@@ -42,7 +42,7 @@ const ldJson = {
       "@type": "Person",
       name: "Jaime Gómez",
       jobTitle: "Desarrollador web",
-      url: "https://cliimber.com",
+      url: "https://cliimber.com/",
       description: "Desarrollador web freelance especializado en webs a medida para pymes españolas. Especialización en sector pet. Base en Madrid, trabaja con toda España.",
       knowsAbout: ["Desarrollo web", "SEO técnico", "AEO", "Sector pet", "HTML CSS JavaScript"],
       sameAs: ["https://www.linkedin.com/in/jaime-g%C3%B3mez-de-alvar%C3%A9-74baa417a/"],
@@ -324,9 +324,11 @@ const ldJson = {
               { value: "24/7", label: "Activa" },
               { value: "2", label: "Canales captación" },
             ]}
-            href="/casos/laura-quintero"
+            href="/casos/laura-quintero/"
             bg="#1a4052"
-            logoSrc="/assets/laura.png"
+            logoSrc="/assets/laura.webp"
+            logoWidth={500}
+            logoHeight={500}
             featured={true}
             client:load
           />
@@ -344,9 +346,11 @@ const ldJson = {
               { value: "15+", label: "Proyectos" },
               { value: "↑", label: "En aumento" },
             ]}
-            href="/casos/virtual-vista"
+            href="/casos/virtual-vista/"
             bg="#0a1f2c"
-            logoSrc="/assets/virtual-vista-logo.png"
+            logoSrc="/assets/virtual-vista-logo.webp"
+            logoWidth={500}
+            logoHeight={361}
             client:load
           />
         </div>
@@ -378,7 +382,7 @@ const ldJson = {
           </div>
         </div>
         <div class="order-1 md:order-2 reveal">
-          <img src="/assets/jaime.jpeg" alt="Jaime Gómez" class="rounded-2xl w-full object-cover object-top" style="aspect-ratio: 3/4;" />
+          <img src="/assets/jaime.webp" alt="Jaime Gómez" width="800" height="1067" loading="lazy" class="rounded-2xl w-full object-cover object-top" style="aspect-ratio: 3/4;" />
         </div>
       </div>
 

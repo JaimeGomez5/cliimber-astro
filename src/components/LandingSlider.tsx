@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
 
 const LANDINGS = [
-  { sector: "Hostelería", info: "G Hotel by JL · St Julian's · Boutique hotel", obj: "Reducir la fricción entre ver el hotel online y hacer la reserva. Tour 3D por cada tipo de habitación.", tools: ["Tour por habitación", "CTA reserva directa", "Room types con preview 3D"], bg: "linear-gradient(135deg,#2a9770,#0a5f4a)", img: "/assets/jhotel.png", alt: "G Hotel Malta Virtual Experience" },
-  { sector: "Inmobiliaria de lujo", info: "Mercury Tower · Full Floor · Zaha Hadid", obj: "Captar compradores internacionales de alto poder adquisitivo antes de que viajen a Malta para la visita presencial.", tools: ["Tour 3D embebido", "Stats de propiedad", "Formulario Secure Private Viewing"], bg: "linear-gradient(135deg,#1a4052,#0f3347)", img: "/assets/mercury.png", alt: "Mercury Tower Malta" },
-  { sector: "Nightlife · Venue", info: "Tigullio Complex · Spinola Bay · 2.000 personas", obj: "Vender entradas y cerrar alquileres del venue para eventos privados.", tools: ["Tour por salas", "Agenda de eventos", "Formulario de alquiler"], bg: "linear-gradient(135deg,#a8332d,#5a1a16)", img: "/assets/tigullio.png", alt: "Tigullio Complex Malta" },
-  { sector: "Retail · Servicios", info: "The Blind Stag · St Julian's · Est. 2018", obj: "Captar citas online directamente y diferenciarse con una experiencia digital premium.", tools: ["Tour del local", "Menú de servicios", "Reserva en Fresha"], bg: "linear-gradient(135deg,#0d2838,#1a4052)", img: "/assets/dubliner.png", alt: "The Dubliner Malta" },
+  { sector: "Hostelería", info: "G Hotel by JL · St Julian's · Boutique hotel", obj: "Reducir la fricción entre ver el hotel online y hacer la reserva. Tour 3D por cada tipo de habitación.", tools: ["Tour por habitación", "CTA reserva directa", "Room types con preview 3D"], bg: "linear-gradient(135deg,#2a9770,#0a5f4a)", img: "/assets/jhotel.webp", w: 1342, h: 580, alt: "G Hotel Malta Virtual Experience" },
+  { sector: "Inmobiliaria de lujo", info: "Mercury Tower · Full Floor · Zaha Hadid", obj: "Captar compradores internacionales de alto poder adquisitivo antes de que viajen a Malta para la visita presencial.", tools: ["Tour 3D embebido", "Stats de propiedad", "Formulario Secure Private Viewing"], bg: "linear-gradient(135deg,#1a4052,#0f3347)", img: "/assets/mercury.webp", w: 1349, h: 637, alt: "Mercury Tower Malta" },
+  { sector: "Nightlife · Venue", info: "Tigullio Complex · Spinola Bay · 2.000 personas", obj: "Vender entradas y cerrar alquileres del venue para eventos privados.", tools: ["Tour por salas", "Agenda de eventos", "Formulario de alquiler"], bg: "linear-gradient(135deg,#a8332d,#5a1a16)", img: "/assets/tigullio.webp", w: 1348, h: 623, alt: "Tigullio Complex Malta" },
+  { sector: "Retail · Servicios", info: "The Blind Stag · St Julian's · Est. 2018", obj: "Captar citas online directamente y diferenciarse con una experiencia digital premium.", tools: ["Tour del local", "Menú de servicios", "Reserva en Fresha"], bg: "linear-gradient(135deg,#0d2838,#1a4052)", img: "/assets/dubliner.webp", w: 1330, h: 571, alt: "The Dubliner Malta" },
 ];
 
 export default function LandingSlider() {
@@ -28,7 +28,9 @@ export default function LandingSlider() {
             key={pk.img}
             src={pk.img}
             alt={pk.alt}
-            loading={i === 0 ? undefined : "lazy"}
+            width={pk.w}
+            height={pk.h}
+            loading="lazy"
             className={`object-contain bg-white md:object-cover md:object-[center_top]${i === slide ? "" : " hidden"}`}
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
           />

@@ -143,6 +143,9 @@ export function VoiceNote({ src }: { src?: string }) {
                 <img
                   src="/assets/jaime-small.webp"
                   alt="Jaime"
+                  width={44}
+                  height={44}
+                  loading="lazy"
                   className="rounded-full object-cover"
                   style={{ width: 44, height: 44 }}
                 />

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout
+  title="Página no encontrada | Cliimber"
+  description="Esta página no existe o ha cambiado de dirección."
+  noindex
+>
+  <Nav />
+  <main style="background: var(--azul-oscuro); color: var(--texto-claro); min-height: 70vh;" class="pt-32 pb-24 grid place-items-center">
+    <div class="container-x max-w-3xl">
+      <span class="tag tag-dark mb-4">Error 404</span>
+      <h1 class="h-display mt-4 mb-5">Esta página no existe.</h1>
+      <p class="text-lg opacity-85 mb-10">
+        Puede que el enlace esté mal escrito o que la página haya cambiado de dirección. Desde aquí puedes seguir:
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/" class="btn btn-primary">Ir al inicio</a>
+        <a href="/blog/" class="btn btn-outline-white">Leer el blog</a>
+        <a href="/#contacto" class="btn btn-outline-white">Contarme tu caso →</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

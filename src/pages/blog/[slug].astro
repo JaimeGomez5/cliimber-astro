@@ -36,11 +36,11 @@ const ldJson = [
     headline: data.title,
     description: data.description,
     datePublished: data.date.toISOString().split('T')[0],
-    author: { "@type": "Person", name: data.author, url: "https://cliimber.com" },
+    author: { "@type": "Person", name: data.author, url: "https://cliimber.com/" },
     publisher: {
       "@type": "Organization",
       name: "Cliimber",
-      url: "https://cliimber.com",
+      url: "https://cliimber.com/",
       logo: { "@type": "ImageObject", url: "https://cliimber.com/assets/cliimber-logo.png" },
     },
     keywords: data.keywords.join(", "),
@@ -64,7 +64,7 @@ const ldJson = [
   <!-- HEADER -->
   <header style="background: var(--azul-oscuro); color: var(--texto-claro);" class="pt-28 pb-16">
     <div class="container-x max-w-3xl">
-      <a href="/blog" class="text-sm opacity-70 hover:opacity-100 mb-6 inline-block">← Volver al blog</a>
+      <a href="/blog/" class="text-sm opacity-70 hover:opacity-100 mb-6 inline-block">← Volver al blog</a>
       <span class="tag tag-dark mb-4">{data.cluster}</span>
       <h1 class="h-display mt-4 mb-4">{data.title}</h1>
       <p class="text-sm opacity-70">{formattedDate} · {data.author}</p>
@@ -76,6 +76,8 @@ const ldJson = [
       <img
         src={data.image}
         alt={data.title}
+        width="680"
+        height="320"
         class="relative z-10 -mt-10 w-full rounded-2xl shadow-xl object-cover aspect-[680/320]"
       />
     </div>

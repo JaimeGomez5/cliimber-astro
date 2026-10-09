@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
 
 const SLIDES = [
-  { title: "Deriva un caso de nutrición", src: "/assets/deriva1.png", alt: "Sistema de derivación - Centro remisor" },
-  { title: "Datos del tutor y paciente", src: "/assets/deriva2.png", alt: "Sistema de derivación - Datos del tutor" },
-  { title: "Información clínica", src: "/assets/deriva3.png", alt: "Sistema de derivación - Información clínica" },
-  { title: "Documentación adjunta", src: "/assets/deriva4.png", alt: "Sistema de derivación - Documentación adjunta" },
+  { title: "Deriva un caso de nutrición", src: "/assets/deriva1.webp", w: 597, h: 542, alt: "Sistema de derivación - Centro remisor" },
+  { title: "Datos del tutor y paciente", src: "/assets/deriva2.webp", w: 387, h: 464, alt: "Sistema de derivación - Datos del tutor" },
+  { title: "Información clínica", src: "/assets/deriva3.webp", w: 504, h: 516, alt: "Sistema de derivación - Información clínica" },
+  { title: "Documentación adjunta", src: "/assets/deriva4.webp", w: 588, h: 415, alt: "Sistema de derivación - Documentación adjunta" },
 ];
 
 export default function DerivationSlider() {
@@ -31,7 +31,9 @@ export default function DerivationSlider() {
             key={s.src}
             src={s.src}
             alt={s.alt}
-            loading={i === 0 ? undefined : "lazy"}
+            width={s.w}
+            height={s.h}
+            loading="lazy"
             className={`object-contain bg-white md:object-cover md:object-[center_top]${i === slide ? "" : " hidden"}`}
             style={{ width: "100%", height: "100%", position: "absolute", inset: 0, minHeight: 280 }}
           />

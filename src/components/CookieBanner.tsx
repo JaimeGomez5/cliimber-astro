@@ -37,7 +37,7 @@ export function CookieBanner() {
         <p className="text-sm leading-snug min-w-0 flex-1">
           Usamos cookies propias y de terceros para analítica y publicidad.{" "}
           <a
-            href="/politica-de-cookies"
+            href="/politica-de-cookies/"
             className="underline font-medium"
             style={{ color: "#ffffff" }}
           >

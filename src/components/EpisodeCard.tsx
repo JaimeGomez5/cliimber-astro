@@ -10,9 +10,11 @@ interface Props {
   bg: string;
   featured?: boolean;
   logoSrc?: string;
+  logoWidth?: number;
+  logoHeight?: number;
 }
 
-export function EpisodeCard({ num, sector, title, client, synopsis, synopsisLinkText, stats, href, bg, featured, logoSrc }: Props) {
+export function EpisodeCard({ num, sector, title, client, synopsis, synopsisLinkText, stats, href, bg, featured, logoSrc, logoWidth, logoHeight }: Props) {
   return (
     <a href={href} style={{ display: "block", textDecoration: "none", color: "inherit" }}>
     <article
@@ -27,6 +29,9 @@ export function EpisodeCard({ num, sector, title, client, synopsis, synopsisLink
           <img
             src={logoSrc}
             alt={client}
+            width={logoWidth}
+            height={logoHeight}
+            loading="lazy"
             style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px", position: "absolute", inset: 0 }}
           />
         ) : (

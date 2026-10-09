@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { LEGAL } from '../lib/contact';
 ---
 <BaseLayout
   title="Política de privacidad | Cliimber"
@@ -24,9 +25,9 @@ import Footer from '../components/Footer.astro';
         <section>
           <h2 class="text-2xl font-bold mb-3" style="color: var(--texto-oscuro);">¿Quién es el responsable?</h2>
           <p>
-            Jaime Gómez de Alvaré, titular de Cliimber. Email de contacto:{" "}
-            <a href="mailto:jaimegomez@cliimber.com" style="color: var(--verde);" class="font-semibold">
-              jaimegomez@cliimber.com
+            {LEGAL.titular}, titular de Cliimber{LEGAL.nif && `, con NIF ${LEGAL.nif}`}{LEGAL.domicilio && `${LEGAL.nif ? ' y' : ', con'} domicilio en ${LEGAL.domicilio}`}. Email de contacto:{" "}
+            <a href={`mailto:${LEGAL.email}`} style="color: var(--verde);" class="font-semibold">
+              {LEGAL.email}
             </a>.
           </p>
         </section>
