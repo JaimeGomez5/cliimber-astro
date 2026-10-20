@@ -129,7 +129,8 @@ function runIntro() {
     .add(() => {
       const top0 = clones[0].getBoundingClientRect().top, h = clones[0].getBoundingClientRect().height;
       const fall = innerHeight - h - 12 - top0;
-      subs.push(gsap.to(clones, { y: fall, duration: 0.65, ease: 'power2.in', onUpdate: () => { intro.style.clipPath = 'inset(' + Math.max(0, clones[0].getBoundingClientRect().top) + 'px 0 0 0)'; } }));
+      // la persiana sigue a las «i» sin medir el DOM en cada fotograma
+      subs.push(gsap.to(clones, { y: fall, duration: 0.65, ease: 'power2.in', onUpdate: () => { intro.style.clipPath = 'inset(' + Math.max(0, top0 + (gsap.getProperty(clones[0], 'y') as number)) + 'px 0 0 0)'; } }));
       subs.push(gsap.to(intro, { opacity: 0, duration: 0.2, delay: 0.62 }));
       clones.forEach((c, k) => {
         const st = c.querySelector('.stem');
@@ -215,7 +216,14 @@ $('replayIntro')?.addEventListener('click', () => {
   try { sessionStorage.removeItem('cl-intro'); } catch (e) {}
   scrollTo(0, 0); location.reload();
 });
-(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { runIntro(); runEscala(); });
+// ESCALA se prepara cuando la sección se acerca a la pantalla, para no cargar el arranque (ni la intro) con sus medidas
+function lazyEscala() {
+  const sec = $('como');
+  if (!('IntersectionObserver' in window)) { runEscala(); return; }
+  const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); runEscala(); } }, { rootMargin: '100% 0px' });
+  io.observe(sec);
+}
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { runIntro(); lazyEscala(); });
 
 /* ---------- Botones de precios: rellenan el mensaje del formulario ---------- */
 document.querySelectorAll<HTMLElement>('.plan-cta').forEach((b) => b.addEventListener('click', () => {
