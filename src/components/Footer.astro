@@ -13,6 +13,7 @@ const { home = false } = Astro.props;
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         <span>Instagram de Jaime</span>
       </a>
+      <a href="mailto:jaimegomez@cliimber.com">jaimegomez@cliimber.com</a>
     </div>
     <nav class="sf-nav" aria-label="Pie">
       <a href="/casos/laura-quintero/">Caso Laura Quintero</a>
@@ -23,16 +24,19 @@ const { home = false } = Astro.props;
       {home && <button type="button" id="replayIntro">Repetir la intro</button>}
     </nav>
   </div>
+  <div class="sf-copy">© 2026 Cliimber · Jaime Gómez de Alvaré</div>
 </footer>
 <style is:global>
   .site-footer{background:#0f3347;color:#a9c0ca;padding:36px 0;font-family:"Plus Jakarta Sans Variable","Plus Jakarta Sans",system-ui,sans-serif}
   .sf-in{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;font-size:14px;line-height:1.55}
   .sf-brand{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
   .sf-logo{font-size:24px;color:#f5f8f9}
+  .sf-copy{width:calc(100% - 40px);max-width:1140px;margin:24px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:#a9c0ca}
   .sf-nav{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
   .site-footer a{color:#dbe7ec;text-decoration:none}
   .site-footer a:hover{text-decoration:underline}
   .sf-ig{display:inline-flex;align-items:center;gap:8px;margin-top:4px}
   #replayIntro{font:inherit;font-size:14px;background:none;border:0;color:#a8e063;cursor:pointer;padding:0}
+  @media (max-width:700px),(pointer:coarse){#replayIntro{display:none}}
   .site-footer :focus-visible{outline:3px solid #a8e063;outline-offset:2px}
 </style>
