@@ -1,7 +1,10 @@
 // Interacción y animaciones de la home. Solo se carga en la home (GSAP no llega al blog ni a las legales).
 // Todo el contenido está en el HTML: si este script falla, la página se ve y funciona completa.
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// GSAP se carga bajo demanda: para la intro de escritorio, cuando ESCALA se acerca o al usar el formulario o el asistente.
+// Mientras no está, todo funciona igual, solo que sin animar.
+let gsap: any = null;
+let gsapP: Promise<any> | null = null;
+const loadGsap = () => (gsapP ||= import('gsap').then((m) => (gsap = m.gsap)));
 
 const W = window as any;
 const root = document.documentElement;
@@ -87,7 +90,7 @@ if ('IntersectionObserver' in window) {
 function runIntro() {
   const intro = $('intro');
   if (!intro) return;
-  if (!root.classList.contains('js-intro')) { intro.remove(); return; }
+  if (!root.classList.contains('js-intro') || !gsap) { intro.remove(); root.classList.remove('js-intro'); return; }
   W.__introOn = true;
   try { sessionStorage.setItem('cl-intro', '1'); } catch (e) {}
   const L = $('introLogo') as SVGSVGElement, nav = $('navLogo') as SVGSVGElement;
@@ -97,9 +100,12 @@ function runIntro() {
   const ppu = () => L.getBoundingClientRect().height / 95; // píxeles por unidad del viewBox (alto 95)
   gsap.set(nav, { opacity: 0 });
   const clones: HTMLElement[] = [];
-  const subs: gsap.core.Animation[] = [];
+  const subs: any[] = [];
+  let cap: ReturnType<typeof setTimeout> | undefined;
   const evs = ['wheel', 'touchmove', 'keydown'];
   const end = () => {
+    clearTimeout(cap);
+    gsap.globalTimeline.timeScale(1);
     subs.forEach((s) => s.kill());
     gsap.set(nav, { opacity: 1 });
     clones.forEach((c) => c.remove());
@@ -107,13 +113,21 @@ function runIntro() {
     root.classList.remove('js-intro');
     evs.forEach((ev) => removeEventListener(ev, skip));
   };
+  // La intro tapa la web como mucho 2,2 s desde que empieza a cargar la página (unos 1,4 s de animación).
+  // Si el script llega tarde, se acelera (hasta 1,6×) para acabar a tiempo; si ni así cabe, no se muestra.
+  const TOPE = 2200;
+  const k = 1400 / (TOPE - performance.now() - 50);
+  if (k <= 0 || k > 1.6) { end(); return; }
+  if (k > 1) gsap.globalTimeline.timeScale(k);
+  // Deja de tapar la web: transparente, sin capturar clics y fuera del DOM
+  const uncover = () => { intro.style.pointerEvents = 'none'; intro.remove(); root.classList.remove('js-intro'); };
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' }, onComplete: end });
-  tl.from(letters, { y: 50, opacity: 0, duration: 0.4, stagger: 0.03 })
-    .from(stems, { scaleY: 0, transformOrigin: '50% 100%', duration: 0.3, stagger: 0.08 }, '-=.3')
-    .from(dots, { y: -110, opacity: 0, duration: 0.45, stagger: 0.07, ease: 'bounce.out' }, '-=.15')
-    .to(stems, { scaleY: 0.65, transformOrigin: '50% 100%', duration: 0.14, ease: 'power2.in' }, '+=.1')
-    .to(is, { y: () => (14 - is[0].getBoundingClientRect().top) / ppu(), duration: 0.35, ease: 'power2.out' })
-    .to(stems, { scaleY: 1, duration: 0.2 }, '<')
+  tl.from(letters, { y: 50, opacity: 0, duration: 0.25, stagger: 0.015 })
+    .from(stems, { scaleY: 0, transformOrigin: '50% 100%', duration: 0.18, stagger: 0.05 }, '-=.2')
+    .from(dots, { y: -110, opacity: 0, duration: 0.26, stagger: 0.04, ease: 'bounce.out' }, '-=.08')
+    .to(stems, { scaleY: 0.65, transformOrigin: '50% 100%', duration: 0.08, ease: 'power2.in' }, '+=.03')
+    .to(is, { y: () => (14 - is[0].getBoundingClientRect().top) / ppu(), duration: 0.2, ease: 'power2.out' })
+    .to(stems, { scaleY: 1, duration: 0.12 }, '<')
     .add(() => {
       // Cada «i» pasa a un clon fijo con su misma geometría, para poder salir del logo
       is.forEach((g) => {
@@ -131,21 +145,24 @@ function runIntro() {
       const top0 = clones[0].getBoundingClientRect().top, h = clones[0].getBoundingClientRect().height;
       const fall = innerHeight - h - 12 - top0;
       // la persiana sigue a las «i» sin medir el DOM en cada fotograma
-      subs.push(gsap.to(clones, { y: fall, duration: 0.65, ease: 'power2.in', onUpdate: () => { intro.style.clipPath = 'inset(' + Math.max(0, top0 + (gsap.getProperty(clones[0], 'y') as number)) + 'px 0 0 0)'; } }));
-      subs.push(gsap.to(intro, { opacity: 0, duration: 0.2, delay: 0.62 }));
+      subs.push(gsap.to(clones, { y: fall, duration: 0.38, ease: 'power2.in', onUpdate: () => { intro.style.clipPath = 'inset(' + Math.max(0, top0 + (gsap.getProperty(clones[0], 'y') as number)) + 'px 0 0 0)'; } }));
+      subs.push(gsap.to(intro, { opacity: 0, duration: 0.1, delay: 0.34, onComplete: uncover }));
       clones.forEach((c, k) => {
         const st = c.querySelector('.stem');
-        subs.push(gsap.timeline({ delay: 0.65 })
-          .to(st, { scaleY: 0.6, transformOrigin: '50% 100%', duration: 0.08, ease: 'power2.out' })
-          .to(st, { scaleY: 1, duration: 0.15, ease: 'back.out(3)' })
+        subs.push(gsap.timeline({ delay: 0.38 })
+          .to(st, { scaleY: 0.6, transformOrigin: '50% 100%', duration: 0.05, ease: 'power2.out' })
+          .to(st, { scaleY: 1, duration: 0.08, ease: 'back.out(3)' })
           .add(() => {
             const a = c.getBoundingClientRect(), t = navIs[k].getBoundingClientRect();
-            subs.push(gsap.to(c, { x: '+=' + (t.left - a.left), y: '+=' + (t.top - a.top), scale: t.width / a.width, transformOrigin: '0 0', duration: 0.45, ease: 'power3.inOut' }));
+            subs.push(gsap.to(c, { x: '+=' + (t.left - a.left), y: '+=' + (t.top - a.top), scale: t.width / a.width, transformOrigin: '0 0', duration: 0.32, ease: 'power3.inOut' }));
           }));
       });
-      subs.push(gsap.to(nav, { opacity: 1, duration: 0.15, delay: 1.28 }));
-    }, '+=.05')
-    .to({}, { duration: 1.35 });
+      subs.push(gsap.to(nav, { opacity: 1, duration: 0.08, delay: 0.78 }));
+    }, '+=.02')
+    .to({}, { duration: 0.9 });
+  // Tope duro: pase lo que pase, a los 2,2 s la intro deja de tapar la web.
+  // Si las «i» ya vuelan hacia el header, solo se retira la capa y terminan de aterrizar.
+  cap = setTimeout(() => { if (!intro.isConnected) return; if (clones.length) uncover(); else skip(); }, Math.max(0, TOPE - performance.now()));
   // Al saltarla solo se matan sus propios tweens (nunca killTweensOf('*'), que rompería ESCALA)
   function skip() {
     tl.kill();
@@ -161,7 +178,7 @@ function runIntro() {
 }
 
 /* ---------- ESCALA: el escalador sube mientras lees las etapas ---------- */
-function runEscala() {
+function runEscala(ScrollTrigger: any) {
   const stairs = $('escStairs'), cl = $('escClimber'), stem = cl.querySelector('.s');
   const steps = [...stairs.querySelectorAll('.esc-st')] as HTMLElement[], stages = [...document.querySelectorAll('.esc-stage')];
   let cur = -1;
@@ -181,7 +198,7 @@ function runEscala() {
   // En móvil la escalera se queda pegada justo debajo del menú
   const hh = () => root.style.setProperty('--hh', (document.querySelector('.site-header') as HTMLElement).offsetHeight + 'px');
   hh(); addEventListener('resize', hh);
-  if (reduce) { cl.style.display = 'none'; return; }
+  if (reduce || !ScrollTrigger || !gsap) { cl.style.display = 'none'; return; }
   gsap.registerPlugin(ScrollTrigger);
   root.classList.add('js-anim');
   show(0);
@@ -220,11 +237,16 @@ $('replayIntro')?.addEventListener('click', () => {
 // ESCALA se prepara cuando la sección se acerca a la pantalla, para no cargar el arranque (ni la intro) con sus medidas
 function lazyEscala() {
   const sec = $('como');
-  if (!('IntersectionObserver' in window)) { runEscala(); return; }
-  const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); runEscala(); } }, { rootMargin: '100% 0px' });
+  const go = () => { if (reduce) { runEscala(null); return; } Promise.all([loadGsap(), import('gsap/ScrollTrigger')]).then(([, m]) => runEscala(m.ScrollTrigger)).catch(() => runEscala(null)); };
+  if (!('IntersectionObserver' in window)) { go(); return; }
+  const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); go(); } }, { rootMargin: '100% 0px' });
   io.observe(sec);
 }
-(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { runIntro(); lazyEscala(); });
+// La intro (solo escritorio) pide GSAP en cuanto arranca el script; en móvil no se descarga al cargar la página
+// (el script ya ha llegado: el seguro de 1 s de <head> deja de hacer falta; el tope de 2,2 s lo aplica runIntro)
+if (root.classList.contains('js-intro')) W.__introOn = true;
+const introG = root.classList.contains('js-intro') ? loadGsap() : null;
+Promise.all([document.fonts ? document.fonts.ready : null, introG]).catch(() => {}).then(() => { runIntro(); lazyEscala(); });
 
 /* ---------- Botones de precios: rellenan el mensaje del formulario ---------- */
 document.querySelectorAll<HTMLElement>('.plan-cta').forEach((b) => b.addEventListener('click', () => {
@@ -247,7 +269,7 @@ function alti(force?: number) {
   req.forEach((id) => $(id).closest('.field')?.classList.toggle('ok', filled(id)));
   $('pct').textContent = Math.round(p * 100) + ' %'; $('amsg').textContent = msgs[n];
   const tr = $('aTrack').getBoundingClientRect(), cl = $('aClimber');
-  if (!reduce) {
+  if (!reduce && gsap) {
     if (mobile()) {
       const max = tr.width - cl.offsetWidth - 44;
       gsap.to('#aFill', { width: p * 100 + '%', duration: 0.5, ease: 'power2.out' });
@@ -271,6 +293,9 @@ function hop(cl: HTMLElement, to: { x: number; y: number }) {
     .to(st, { scaleY: 1, duration: 0.2, ease: 'back.out(3)' }, '<.05');
 }
 req.forEach((id) => { $(id).addEventListener('input', () => alti()); $(id).addEventListener('change', () => alti()); });
+// Al empezar a usar el formulario se descarga GSAP para los saltos del altímetro
+if (!reduce) form0().addEventListener('focusin', () => { loadGsap(); }, { once: true });
+function form0() { return $('cCard') as HTMLElement; }
 addEventListener('resize', () => alti());
 alti();
 
@@ -297,7 +322,7 @@ form.addEventListener('submit', async (e) => {
   $('sent').classList.add('on');
   $('sent').focus({ preventScroll: true });
   alti(5);
-  if (!reduce) {
+  if (!reduce && gsap) {
     const tr = $('aTrack').getBoundingClientRect();
     for (let k = 0; k < 16; k++) {
       const s = document.createElement('span'); s.className = 'spark-a';
@@ -329,7 +354,7 @@ function bot(html: string, delay?: number): Promise<HTMLElement> {
     const t = document.createElement('div'); t.className = 'bub bot';
     t.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
     $('log').appendChild(t); scrollA();
-    setTimeout(() => { t.innerHTML = html; if (!reduce) gsap.from(t, { y: 8, opacity: 0, duration: 0.25 }); scrollA(); res(t); }, reduce ? 0 : delay || 550);
+    setTimeout(() => { t.innerHTML = html; if (!reduce && gsap) gsap.from(t, { y: 8, opacity: 0, duration: 0.25 }); scrollA(); res(t); }, reduce ? 0 : delay || 550);
   });
 }
 function me(txt: string) { const b = document.createElement('div'); b.className = 'bub me'; b.textContent = txt; $('log').appendChild(b); scrollA(); }
@@ -356,7 +381,7 @@ async function finish() {
   await bot('Por lo que me cuentas, yo empezaría por aquí.' + extra, 700);
   const c = document.createElement('div'); c.className = 'reco'; c.dataset.key = key;
   c.innerHTML = '<div class="k">' + r.k + '</div><h4>' + r.h + '</h4><p>' + r.p + ' <strong>' + r.price + '</strong>.</p><button type="button">Rellenar el formulario con esto</button>';
-  $('log').appendChild(c); if (!reduce) gsap.from(c, { y: 12, opacity: 0, duration: 0.35 }); scrollA();
+  $('log').appendChild(c); if (!reduce && gsap) gsap.from(c, { y: 12, opacity: 0, duration: 0.35 }); scrollA();
   const btn = c.querySelector('button') as HTMLButtonElement;
   btn.onclick = () => {
     const labels = ans.map((v, i) => Q[i].o.find((o) => o[0] === v)![1]);
@@ -366,7 +391,7 @@ async function finish() {
   };
   btn.focus();
 }
-function openA() { ans = []; $('log').innerHTML = ''; $('assist').classList.add('open'); ask(0); }
+function openA() { if (!reduce) loadGsap(); ans = []; $('log').innerHTML = ''; $('assist').classList.add('open'); ask(0); }
 // El foco no sale del asistente mientras está abierto
 $('assist').addEventListener('keydown', (e: KeyboardEvent) => {
   if (e.key !== 'Tab') return;

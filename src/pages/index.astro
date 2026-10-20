@@ -87,19 +87,20 @@ const ldJson = {
   <Fragment slot="head">
     <script is:inline>
       // js: hay JavaScript. js-rv: el contenido aparece al hacer scroll (si el script de la home no arranca en 3 s, se ve todo).
-      // js-intro: la intro solo se ve en la primera visita de la sesión y nunca con «reducir movimiento».
+      // js-intro: la intro solo se ve en escritorio, en la primera visita de la sesión y nunca con «reducir movimiento».
+      // En móvil (menos de 701 px o pantalla táctil) no hay intro: el H1 hace el efecto «caos a orden».
       (function () {
         var d = document.documentElement;
         d.classList.add('js', 'js-rv');
         setTimeout(function () { if (!window.__rv) d.classList.remove('js-rv'); }, 3000);
         var seen = false;
         try { seen = sessionStorage.getItem('cl-intro'); } catch (e) {}
-        if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (seen || matchMedia('(prefers-reduced-motion: reduce), (max-width: 700px), (pointer: coarse)').matches) return;
         d.classList.add('js-intro');
-        // Seguro: si la animación no ha arrancado en 2,5 s (script lento o bloqueado), se quita y se ve la web
+        // Seguro: si la animación no ha arrancado en 1 s (script lento o bloqueado), se quita y se ve la web
         setTimeout(function () {
           if (!window.__introOn) { d.classList.remove('js-intro'); var i = document.getElementById('intro'); if (i) i.remove(); }
-        }, 2500);
+        }, 1000);
       })();
     </script>
     <style is:inline set:html={homeCss}></style>
