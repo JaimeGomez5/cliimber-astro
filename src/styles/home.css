@@ -42,6 +42,15 @@ main .reveal{opacity:1;transform:none}
 .hero{background:var(--azul);color:#f5f8f9;padding:120px 0 96px;overflow:hidden}
 .hero h1{font-size:clamp(38px,6vw,72px);margin:14px 0 18px;font-weight:800;max-width:900px}
 .lead{font-size:19px;color:#d3e1e7;max-width:680px;margin:0 0 12px}
+/* «Caos a orden» del H1 (móvil): las letras parten desplazadas en lima semitransparente y vuelven a su sitio.
+   Solo transform y color: el titular se ve desde el primer fotograma. Recorrido total: 0,32 s de escalonado + 0,5 s. */
+.hero h1.caos{position:relative}
+.caos .w{display:inline-block;white-space:nowrap}
+.caos .l{display:inline-block;transform:translate(var(--x,0),var(--y,0)) rotate(var(--r,0));color:rgba(168,224,99,.6)}
+.caos.go .l{transform:none;color:inherit;transition:transform .5s cubic-bezier(.34,1.25,.64,1) var(--d,0s),color .3s ease calc(var(--d,0s) + .5s)}
+.caos .pet.flash .l{animation:pet-flash .4s ease}
+@keyframes pet-flash{0%,100%{color:inherit;text-shadow:none}40%{color:var(--lima);text-shadow:0 0 18px rgba(168,224,99,.55)}}
+@media(prefers-reduced-motion:reduce){.caos .l{transform:none!important;color:inherit!important;transition:none!important;animation:none!important}}
 .hero-proof{margin-top:30px;font-size:14px;color:#a9c0ca}.hero-proof b{color:#e3ecef;font-weight:700}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
 
