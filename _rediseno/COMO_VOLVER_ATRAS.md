@@ -5,6 +5,14 @@ Publicado el 20 de octubre de 2026.
 - **Commit de merge en `main`:** `05932fd0ff5439d70d106c5db2d2e94e469fd289` (corto: `05932fd`), «Rediseño de la home (octubre 2026)».
 - **Último commit de la web anterior:** `87fb939`.
 
+## Publicaciones posteriores
+
+| Fecha | Merge en `main` | Qué incluye | Deshacer solo eso |
+|---|---|---|---|
+| 20/10/2026 | `52bac05354bf4effb4ca43d1c71982bbf4ca749e` | Mejoras 1: hero compacto en móvil y puntos del H1 pegados | `git revert -m 1 52bac05` |
+
+Para volver al diseño anterior al rediseño completo, revierte primero las publicaciones posteriores (de la más nueva a la más antigua) y después el merge del rediseño, como se explica en el punto 2.
+
 ## 1. Emergencia del mismo día
 
 Sin tocar el código:
