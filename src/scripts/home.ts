@@ -100,6 +100,7 @@ function runIntro() {
   const subs: gsap.core.Animation[] = [];
   const evs = ['wheel', 'touchmove', 'keydown'];
   const end = () => {
+    subs.forEach((s) => s.kill());
     gsap.set(nav, { opacity: 1 });
     clones.forEach((c) => c.remove());
     intro.remove();
