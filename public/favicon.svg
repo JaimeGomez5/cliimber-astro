@@ -1,4 +1,1 @@
-<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <rect width="32" height="32" rx="6" fill="#0f3347"/>
-  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Space Grotesk', Arial, sans-serif" font-size="20" font-weight="700" fill="#a8e063">ii</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0f3347"/><path fill="#a8e063" transform="translate(-40.20 -0.65) scale(0.5)" d="M139.0 110L123.2 110L123.2 44.7L139.0 44.7L139.0 110ZM139.0 37.4L123.2 37.4L123.2 20.6L139.0 20.6L139.0 37.4ZM165.6 110L149.9 110L149.9 44.7L165.6 44.7L165.6 110ZM165.6 37.4L149.9 37.4L149.9 20.6L165.6 20.6L165.6 37.4Z"/></svg>
