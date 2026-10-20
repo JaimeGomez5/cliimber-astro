@@ -1,6 +1,7 @@
 ---
 // El H1 va partido en letras (agrupadas por palabras) para el efecto «caos a orden» en móvil.
 // El texto sigue entero en el HTML; los lectores de pantalla usan el aria-label.
+// Los puntos van en un span .pt con un margen negativo pequeño, para pegarlos a la palabra anterior.
 const TITULO = 'Más clientes para tu negocio pet. Menos tareas que te frenan.';
 const palabras = TITULO.split(' ').map((p) => {
   const pet = p === 'pet.';
@@ -9,11 +10,11 @@ const palabras = TITULO.split(' ').map((p) => {
 ---
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow" style="color:var(--lima)">Webs, SEO y herramientas a medida para el sector pet</div>
+    <div class="eyebrow" style="color:var(--lima)"><span class="ey-d">Webs, SEO y herramientas a medida para el sector pet</span><span class="ey-m">Webs · SEO · Herramientas · Sector pet</span></div>
     <h1 id="h1-caos" aria-label={TITULO}>{palabras.map((w, i) => (
       <Fragment>{i > 0 && ' '}<span class="w" aria-hidden="true">{w.pet
-        ? <Fragment><span class="pet">{w.letras.map((l) => <span class="l">{l}</span>)}</span><span class="l">{w.resto}</span></Fragment>
-        : w.letras.map((l) => <span class="l">{l}</span>)}</span></Fragment>
+        ? <Fragment><span class="pet">{w.letras.map((l) => <span class="l">{l}</span>)}</span><span class="l pt">{w.resto}</span></Fragment>
+        : w.letras.map((l) => <span class={l === '.' ? 'l pt' : 'l'}>{l}</span>)}</span></Fragment>
     ))}</h1>
     <script is:inline>
       // «Caos a orden» (solo móvil o táctil, nunca con «reducir movimiento»): cada letra empieza desplazada y girada
@@ -36,14 +37,15 @@ const palabras = TITULO.split(' ').map((p) => {
             h.classList.add('go');
             // Al encajar la última letra (0,82 s), destello en «pet»
             setTimeout(function () { var p = h.querySelector('.pet'); if (p) p.classList.add('flash'); }, 820);
-            // Al acabar el destello (0,4 s), el H1 vuelve a ser texto normal para recuperar el kerning
-            setTimeout(function () { var t = h.getAttribute('aria-label'); h.classList.remove('caos', 'go'); h.textContent = t; h.removeAttribute('aria-label'); }, 1260);
+            // Al acabar el destello (0,4 s), el H1 vuelve a ser texto normal para recuperar el kerning (los puntos siguen en su .pt)
+            setTimeout(function () { var t = h.getAttribute('aria-label'); h.classList.remove('caos', 'go'); h.innerHTML = t.replace(/\./g, '<span class="pt">.</span>'); h.removeAttribute('aria-label'); }, 1260);
           });
         });
       })();
     </script>
-    <p class="lead">Webs que explican lo que haces, visibilidad en Google y en asistentes de IA, y herramientas a medida que te quitan trabajo. Para clínicas, especialistas y marcas, en Madrid y toda España.</p>
-    <p class="lead" style="margin-bottom:28px">Empezamos por lo que más te frena y seguimos creciendo contigo.</p>
+    <p class="lead lead-d">Webs que explican lo que haces, visibilidad en Google y en asistentes de IA, y herramientas a medida que te quitan trabajo. Para clínicas, especialistas y marcas, en Madrid y toda España.</p>
+    <p class="lead lead-d" style="margin-bottom:28px">Empezamos por lo que más te frena y seguimos creciendo contigo.</p>
+    <p class="lead lead-m">Webs, visibilidad en Google y en IAs, y herramientas que te quitan trabajo.</p>
     <div class="hero-ctas">
       <a href="#contacto" class="btn btn-lima">Cuéntame qué quieres mejorar</a>
       <a href="#problemas" class="btn btn-ghost">Ver qué problemas resuelvo</a>
