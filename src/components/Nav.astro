@@ -1,38 +1,51 @@
 ---
+import Logo from './Logo.astro';
+// Header común a toda la web. Los enlaces apuntan siempre a /#ancla para que funcionen desde cualquier página.
 ---
-<header
-  class="fixed top-0 inset-x-0 z-50 backdrop-blur-md border-b"
-  style="background: color-mix(in oklab, var(--azul-oscuro) 92%, transparent); border-color: var(--borde-oscuro);"
->
-  <div class="container-x flex items-center justify-between h-16">
-    <a href="/" aria-label="Cliimber">
-      <img src="/assets/cliimber-logo-dark.svg" alt="Cliimber" width="128" height="32" style="height: 32px; width: auto;" />
-    </a>
-    <nav class="hidden md:flex items-center gap-7 text-sm" style="color: var(--texto-claro);">
-      <a href="/#proyectos" class="hover:opacity-80">Proyectos</a>
-      <a href="/#sobre-mi" class="hover:opacity-80">Sobre mí</a>
-      <a href="/#faq" class="hover:opacity-80">FAQ</a>
-      <a href="/blog/" class="hover:opacity-80">Blog</a>
-      <a href="/#contacto" class="btn btn-primary !py-2 !px-4 text-sm">Hablamos →</a>
-    </nav>
-    <button id="menu-btn" class="md:hidden p-2 rounded" aria-label="Menú" style="color: var(--texto-claro);">
-      <span class="block w-6 h-0.5 bg-current mb-1.5"></span>
-      <span class="block w-6 h-0.5 bg-current mb-1.5"></span>
-      <span class="block w-6 h-0.5 bg-current"></span>
-    </button>
-  </div>
-  <div id="mobile-menu" class="hidden md:hidden border-t" style="border-color: var(--borde-oscuro);">
-    <div class="container-x py-4 flex flex-col gap-3 text-sm" style="color: var(--texto-claro);">
-      <a href="/#proyectos">Proyectos</a>
-      <a href="/#sobre-mi">Sobre mí</a>
-      <a href="/#faq">FAQ</a>
+<header class="site-header">
+  <div class="sh-nav">
+    <a href="/" class="sh-brand" aria-label="Cliimber, inicio"><Logo id="navLogo" class="sh-logo" /></a>
+    <details class="sh-mnav">
+      <summary aria-label="Abrir menú">Menú</summary>
+      <div class="sh-mnav-list">
+        <a href="/#webs">Webs</a><a href="/#seo">SEO e IAs</a><a href="/#demos">Herramientas</a><a href="/#caso">Caso real</a><a href="/#como">Método</a><a href="/#precios">Precios</a><a href="/blog/">Blog</a><a href="/#contacto">Hablamos</a>
+      </div>
+    </details>
+    <nav class="sh-links" aria-label="Principal">
+      <a href="/#webs">Webs</a>
+      <a href="/#seo">SEO e IAs</a>
+      <a href="/#demos">Herramientas</a>
+      <a href="/#caso">Caso real</a>
+      <a href="/#como">Cómo trabajo</a>
+      <a href="/#precios">Precios</a>
       <a href="/blog/">Blog</a>
-      <a href="/#contacto" class="btn btn-primary !py-2 !px-4 self-start">Hablamos →</a>
-    </div>
+      <a href="/#contacto" class="sh-cta">Hablamos</a>
+    </nav>
   </div>
 </header>
 <script>
-  const btn = document.getElementById('menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  // Cierra el menú móvil al pulsar un enlace o fuera de él
+  const mnav = document.querySelector<HTMLDetailsElement>('.sh-mnav');
+  mnav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => { mnav.open = false; }));
+  document.addEventListener('click', (e) => { if (mnav?.open && !mnav.contains(e.target as Node)) mnav.open = false; });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mnav?.open) { mnav.open = false; mnav.querySelector('summary')?.focus(); } });
 </script>
+<style is:global>
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:50;height:64px;background:#0f3347;font-family:"Plus Jakarta Sans Variable","Plus Jakarta Sans",system-ui,sans-serif}
+  .sh-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px;padding:0 20px;max-width:1180px;margin:0 auto}
+  .sh-brand{display:inline-flex;align-items:center;color:#f5f8f9;text-decoration:none;flex:none}
+  .sh-logo{font-size:28px}
+  .sh-links{display:flex;gap:22px;align-items:center}
+  .sh-links a,.sh-mnav-list a{color:#dbe7ec;text-decoration:none;font-size:15px}
+  .sh-links a:hover,.sh-mnav-list a:hover{color:#fff}
+  .sh-links .sh-cta{background:#a8e063;color:#0f3347;font-weight:700;padding:10px 18px;border-radius:999px;transition:transform .15s ease}
+  .sh-links .sh-cta:hover{color:#0f3347;transform:translateY(-2px)}
+  .sh-mnav{display:none;position:relative;margin-left:auto}
+  .sh-mnav summary{list-style:none;cursor:pointer;color:#f5f8f9;font-weight:700;font-size:15px;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 16px}
+  .sh-mnav summary::-webkit-details-marker{display:none}
+  .sh-mnav-list{position:absolute;right:0;top:48px;background:#0f3347;border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:10px;display:flex;flex-direction:column;min-width:200px;box-shadow:0 18px 40px rgba(0,0,0,.3)}
+  .sh-mnav-list a{padding:12px 14px;font-size:16px}
+  .site-header :focus-visible{outline:3px solid #a8e063;outline-offset:2px}
+  @media(max-width:860px){.sh-links a:not(.sh-cta){display:none}.sh-mnav{display:block}}
+  @media(max-width:420px){.sh-links{display:none}}
+</style>
