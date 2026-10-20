@@ -1,0 +1,40 @@
+---
+import NotaVoz from './NotaVoz.astro';
+import { PENDIENTE } from '../../data/home';
+const etapas = [
+  { l: 'E', n: 'Explorar', k: 2.0 },
+  { l: 'S', n: 'Seleccionar', k: 2.8 },
+  { l: 'C', n: 'Crear demo', k: 3.6 },
+  { l: 'A', n: 'Activar', k: 4.4 },
+  { l: 'L', n: 'Leer resultados', k: 5.2 },
+  { l: 'A', n: 'Ampliar', k: 6.0 },
+];
+---
+<!-- Escalera fija (sticky) + etapas en HTML estático; el escalador sube con el scroll, sin bloquearlo -->
+<section id="como" class="escala" aria-labelledby="escala-t">
+  <div class="escala-in">
+    <div class="escala-head reveal">
+      <div class="eyebrow" style="color:var(--lima)">Método ESCALA</div>
+      <h2 id="escala-t" style="margin:12px 0">Crecer escalón a escalón</h2>
+      <p>Es la forma de trabajar que he ido afinando con mis clientes: seis etapas para empezar por algo pequeño que funcione, medirlo y construir lo siguiente sobre algo que ya da resultado.</p>
+      <NotaVoz nota={PENDIENTE.notaEscala} titulo="Nota de voz de Jaime: cómo empezamos" />
+    </div>
+    <div class="esc-grid">
+      <div class="esc-stairs" id="escStairs">
+        {etapas.map((e) => (
+          <button type="button" class="esc-st" style={`--k:${e.k}`} aria-label={`Ir a la etapa ${e.n}`}><b>{e.l}</b><span>{e.n}</span></button>
+        ))}
+        <div class="esc-climber" id="escClimber" aria-hidden="true"><span class="d"></span><span class="s"></span></div>
+      </div>
+      <ol class="esc-list" id="escList">
+        <li class="esc-stage"><div class="k">E · Explorar el negocio · Semana 1</div><h3>Entiendo cómo funciona tu negocio antes de proponer nada</h3><div class="cols"><div><b>Qué hago</b>Reviso tu web, tu ficha de Google, qué dicen las IAs de ti y cómo te llegan hoy las consultas.</div><div><b>Qué recibes</b>Un diagnóstico corto en lenguaje llano. Gratis.</div><div><b>Por ejemplo</b>En una clínica: ver que las consultas llegan por teléfono, WhatsApp y email, sin orden.</div></div></li>
+        <li class="esc-stage"><div class="k">S · Seleccionar la oportunidad · Semana 1</div><h3>Elegimos una sola cosa: la que más importa</h3><div class="cols"><div><b>Qué hago</b>Ordeno las mejoras por impacto y esfuerzo, y te recomiendo por dónde empezar.</div><div><b>Qué recibes</b>Una prioridad clara, no una lista interminable.</div><div><b>Por ejemplo</b>Antes que una app nueva, una página de servicio que explique bien tu especialidad.</div></div></li>
+        <li class="esc-stage"><div class="k">C · Crear una demo · Semana 2</div><h3>Ves la solución antes de pagar por ella</h3><div class="cols"><div><b>Qué hago</b>Te preparo una demo o un diseño de cómo quedaría en tu negocio.</div><div><b>Qué recibes</b>Algo concreto que puedes probar, opinar y decidir.</div><div><b>Por ejemplo</b>Un boceto del formulario de primera visita, para revisarlo juntos antes de construirlo.</div></div></li>
+        <li class="esc-stage"><div class="k">A · Activar el piloto · Semanas 3 a 6</div><h3>Lo construimos con alcance, plazo y precio cerrados</h3><div class="cols"><div><b>Qué hago</b>Construyo la web, la herramienta o el trabajo de SEO, con avances cada semana.</div><div><b>Qué recibes</b>Una solución funcionando, sin sorpresas en la factura.</div><div><b>Por ejemplo</b>La web o la herramienta lista en semanas, con alcance y precio por escrito.</div></div></li>
+        <li class="esc-stage"><div class="k">L · Leer los resultados · Cada mes</div><h3>Medimos lo que pasa de verdad</h3><div class="cols"><div><b>Qué hago</b>Reviso uso, consultas, búsquedas y lo que dicen las IAs de ti, según el proyecto.</div><div><b>Qué recibes</b>Un informe corto: qué ha pasado, qué he hecho y qué toca.</div><div><b>Por ejemplo</b>Cada mes: qué búsquedas traen visitas y cuántas solicitudes llegan completas.</div></div></li>
+        <li class="esc-stage"><div class="k">A · Ampliar lo que funciona · Cuando toca</div><h3>El siguiente escalón, sobre algo que ya funciona</h3><div class="cols"><div><b>Qué hago</b>Mejoro lo que hay o abordamos la siguiente oportunidad, solo si los datos lo justifican.</div><div><b>Qué recibes</b>Un negocio digital que crece por pasos, sin saltos al vacío.</div><div><b>Por ejemplo</b>Si el formulario funciona, el siguiente paso puede ser recibir derivaciones con él.</div></div></li>
+      </ol>
+    </div>
+    <p class="esc-close">No desarrollo por desarrollar. Primero entendemos el problema, después comprobamos que la solución tiene sentido y solo entonces la construimos y la medimos. Así decides dónde invertir antes de ir a más.</p>
+  </div>
+</section>

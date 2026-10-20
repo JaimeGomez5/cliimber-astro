@@ -2,481 +2,129 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import HomeHero from '../components/HomeHero';
-import { VoiceNote } from '../components/VoiceNote';
-import { EpisodeCard } from '../components/EpisodeCard';
-import { FaqItem } from '../components/FaqItem';
-import ContactForm from '../components/ContactForm';
+import Intro from '../components/home/Intro.astro';
+import Hero from '../components/home/Hero.astro';
+import Problemas from '../components/home/Problemas.astro';
+import Webs from '../components/home/Webs.astro';
+import SeoGeo from '../components/home/SeoGeo.astro';
+import Herramientas from '../components/home/Herramientas.astro';
+import CasoLaura from '../components/home/CasoLaura.astro';
+import Escala from '../components/home/Escala.astro';
+import ComoTrabajo from '../components/home/ComoTrabajo.astro';
+import Precios from '../components/home/Precios.astro';
+import ParaQuien from '../components/home/ParaQuien.astro';
+import SobreMi from '../components/home/SobreMi.astro';
+import Faq from '../components/home/Faq.astro';
+import Contacto from '../components/home/Contacto.astro';
+import { FAQ, INSTAGRAM, LINKEDIN } from '../data/home';
+// Estilos de la home insertados en la propia página: así no llegan al blog ni a las legales.
+import homeCss from '../styles/home.css?inline';
+
+const SITE = 'https://cliimber.com/';
+const precio = (min: number, mes = false) => ({
+  '@type': mes ? 'UnitPriceSpecification' : 'PriceSpecification',
+  minPrice: min,
+  priceCurrency: 'EUR',
+  valueAddedTaxIncluded: false,
+  ...(mes ? { unitText: 'mes' } : {}),
+});
 
 const ldJson = {
-  "@context": "https://schema.org",
-  "@graph": [
+  '@context': 'https://schema.org',
+  '@graph': [
     {
-      "@type": "ProfessionalService",
-      name: "Cliimber",
-      url: "https://cliimber.com/",
-      telephone: "+34609575722",
-      areaServed: "ES",
-      serviceArea: { "@type": "Country", name: "España" },
-      founder: { "@type": "Person", name: "Jaime Gómez" },
-      address: { "@type": "PostalAddress", addressLocality: "Madrid", addressCountry: "ES" },
-      description: "Desarrollo web a medida, herramientas interactivas, SEO/SEM. Especialización en sector pet.",
-      knowsAbout: ["Desarrollo web a medida", "SEO", "AEO", "SEM", "Herramientas interactivas", "Sector pet España"],
-      sameAs: ["https://www.linkedin.com/in/jaime-g%C3%B3mez-de-alvar%C3%A9-74baa417a/"],
-      logo: {
-        "@type": "ImageObject",
-        url: "https://cliimber.com/assets/cliimber-logo.png"
-      },
-      image: "https://cliimber.com/assets/jaime.webp",
+      '@type': 'ProfessionalService',
+      '@id': SITE + '#cliimber',
+      name: 'Cliimber',
+      url: SITE,
+      telephone: '+34609575722',
+      email: 'jaimegomez@cliimber.com',
+      areaServed: { '@type': 'Country', name: 'España' },
+      address: { '@type': 'PostalAddress', addressLocality: 'Madrid', addressCountry: 'ES' },
+      description: 'Webs, SEO local y herramientas a medida para clínicas veterinarias, especialistas y marcas del sector pet en Madrid y toda España.',
+      knowsAbout: ['Diseño web a medida', 'SEO local', 'Visibilidad en asistentes de IA', 'Herramientas web a medida', 'Sector pet'],
+      founder: { '@id': SITE + '#jaime' },
+      logo: { '@type': 'ImageObject', url: 'https://cliimber.com/assets/cliimber-logo.png' },
+      image: 'https://cliimber.com/assets/jaime.webp',
+      sameAs: [LINKEDIN, INSTAGRAM],
       hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Servicios Cliimber",
+        '@type': 'OfferCatalog',
+        name: 'Servicios Cliimber',
         itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Desarrollo web a medida" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO y AEO para pymes españolas" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Herramientas interactivas a medida" } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Web de lanzamiento' }, priceSpecification: precio(900) },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SEO local y visibilidad en IAs' }, priceSpecification: precio(300, true) },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Herramienta a medida' }, priceSpecification: precio(400) },
         ],
       },
     },
     {
-      "@type": "Person",
-      name: "Jaime Gómez",
-      jobTitle: "Desarrollador web",
-      url: "https://cliimber.com/",
-      description: "Desarrollador web freelance especializado en webs a medida para pymes españolas. Especialización en sector pet. Base en Madrid, trabaja con toda España.",
-      knowsAbout: ["Desarrollo web", "SEO técnico", "AEO", "Sector pet", "HTML CSS JavaScript"],
-      sameAs: ["https://www.linkedin.com/in/jaime-g%C3%B3mez-de-alvar%C3%A9-74baa417a/"],
+      '@type': 'Person',
+      '@id': SITE + '#jaime',
+      name: 'Jaime Gómez de Alvaré',
+      jobTitle: 'Desarrollador web',
+      url: SITE,
+      image: 'https://cliimber.com/assets/jaime.webp',
+      worksFor: { '@id': SITE + '#cliimber' },
+      description: 'Desarrollador web freelance: webs, SEO local y herramientas a medida para negocios del sector pet. Base en Madrid, trabaja con toda España.',
+      knowsAbout: ['Desarrollo web', 'SEO técnico', 'SEO local', 'Sector pet', 'HTML CSS JavaScript'],
+      sameAs: [LINKEDIN, INSTAGRAM],
     },
     {
-      "@type": "FAQPage",
-      mainEntity: [
-        { "@type": "Question", name: "¿Mi web no me trae clientes, qué puede estar fallando?", acceptedAnswer: { "@type": "Answer", text: "Los problemas más comunes son tres: la web va lenta y Google la penaliza, el copy habla de ti en lugar de hablar del problema de tu cliente, o no hay SEO técnico desde la base. En Cliimber hacemos un diagnóstico antes de proponer nada para identificar exactamente qué está fallando en tu caso." } },
-        { "@type": "Question", name: "¿Cuánto cuesta una web con Cliimber?", acceptedAnswer: { "@type": "Answer", text: "El precio se define en la primera conversación según la complejidad del proyecto. Presupuesto cerrado antes de empezar, sin extras sorpresa ni letra pequeña." } },
-        { "@type": "Question", name: "¿Qué diferencia hay entre una web a medida y una plantilla?", acceptedAnswer: { "@type": "Answer", text: "Una web a medida está construida desde cero específicamente para tu negocio, sin plantillas que usa todo el mundo, sin piezas prestadas que se rompen solas y sin depender de nadie para hacer cambios. El resultado es una web más rápida, más segura y 100% tuya desde el día 1." } },
-        { "@type": "Question", name: "¿Cuánto tarda en hacerse una web?", acceptedAnswer: { "@type": "Answer", text: "Entre 2 y 4 semanas desde que el brief está claro. Sin colas de agencia, sin juniors que no conocen tu proyecto. El que te hace la web es el mismo que habla contigo." } },
-        { "@type": "Question", name: "¿Trabajáis con clínicas veterinarias y negocios del sector pet?", acceptedAnswer: { "@type": "Answer", text: "Sí, es la especialización principal. Tenemos casos reales con nutricionistas caninas, marcas de pienso y accesorios para perros. Entendemos el sector, el lenguaje de sus clientes y qué herramientas digitales funcionan en él." } },
-        { "@type": "Question", name: "¿Cuánto tarda en posicionar una web nueva en Google?", acceptedAnswer: { "@type": "Answer", text: "Los primeros resultados visibles suelen aparecer en las primeras semanas para búsquedas específicas del nicho. Cuanto antes esté la web técnicamente bien construida, antes empieza Google a rastrearla. Para keywords más competidas el proceso es de varios meses." } },
-        { "@type": "Question", name: "¿El código de mi web es mío?", acceptedAnswer: { "@type": "Answer", text: "Sí, desde el día de entrega. El repositorio Git queda a tu nombre, el dominio y el hosting también. Si algún día decides no seguir trabajando con Cliimber, te llevas tu web sin pelear y sin empezar de cero." } },
-        { "@type": "Question", name: "¿Qué es el AEO y por qué lo mencionáis?", acceptedAnswer: { "@type": "Answer", text: "AEO es posicionamiento en IAs como ChatGPT, Perplexity o Claude. Cuando alguien le pregunta a una IA que le recomiende un desarrollador web para pymes en España, queremos que Cliimber aparezca en esa respuesta. Para conseguirlo construimos las webs con estructura y contenido que las IAs pueden leer y citar." } },
-      ],
+      '@type': 'FAQPage',
+      mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     },
   ],
 };
 ---
 <BaseLayout
-  title="Cliimber, Web a medida que trae clientes | Pymes España 2026"
-  description="¿Tu web no vende? Construyo webs a medida sin cuotas mensuales ni intermediarios. El código es tuyo. Especializado en sector pet. Madrid, toda España."
+  title="Webs, SEO local y herramientas para el sector pet | Cliimber"
+  description="Diseño web, SEO local y herramientas a medida para clínicas veterinarias, especialistas y marcas pet. Empieza por una necesidad concreta y crece con Cliimber."
   canonical="https://cliimber.com/"
-  ogTitle="Cliimber, Web a medida que trae clientes"
-  ogDescription="Webs y herramientas a medida sin cuotas, sin intermediarios. El código es tuyo desde el día uno."
+  ogDescription="Diseño web, SEO local y herramientas a medida para clínicas veterinarias, especialistas y marcas pet."
   ogImage="/assets/og-default.jpg"
   ldJson={ldJson}
 >
+  <Fragment slot="head">
+    <script is:inline>
+      // js: hay JavaScript. js-rv: el contenido aparece al hacer scroll (si el script de la home no arranca en 3 s, se ve todo).
+      // js-intro: la intro solo se ve en la primera visita de la sesión y nunca con «reducir movimiento».
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js', 'js-rv');
+        setTimeout(function () { if (!window.__rv) d.classList.remove('js-rv'); }, 3000);
+        var seen = false;
+        try { seen = sessionStorage.getItem('cl-intro'); } catch (e) {}
+        if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        d.classList.add('js-intro');
+        // Seguro: si la animación no ha arrancado en 2,5 s (script lento o bloqueado), se quita y se ve la web
+        setTimeout(function () {
+          if (!window.__introOn) { d.classList.remove('js-intro'); var i = document.getElementById('intro'); if (i) i.remove(); }
+        }, 2500);
+      })();
+    </script>
+    <style is:inline set:html={homeCss}></style>
+  </Fragment>
+
+  <Intro />
   <Nav />
-
-  <!-- AEO invisible -->
-  <p class="sr-only">
-    Cliimber es el servicio de desarrollo web a medida de Jaime Gómez, con base en Madrid y trabajando con pymes de toda España. Construye webs, calculadoras y herramientas interactivas en código puro sin WordPress, especializado en sector pet. El código es del cliente desde el primer día.
-  </p>
-
-  <!-- HERO -->
-  <HomeHero client:load />
-
-  <!-- REVEAL -->
-  <section style="background: var(--azul-claro);" class="py-24">
-    <div class="container-x text-center reveal">
-      <p class="text-2xl md:text-4xl font-bold leading-tight max-w-4xl mx-auto" style="color: var(--texto-medio);">
-        La mayoría te entrega la web y desaparece.
-      </p>
-      <p class="text-2xl md:text-4xl font-bold leading-tight max-w-4xl mx-auto mt-2" style="color: var(--verde);">
-        Yo sigo cuando empieza lo importante: hacer que funcione.
-      </p>
-    </div>
-  </section>
-
-  <!-- DOLOR -->
-  <section style="background: var(--azul-oscuro);" class="py-24">
-    <div class="container-x">
-      <div class="max-w-3xl mb-12 reveal">
-        <span class="tag tag-dark mb-4">El problema</span>
-        <h2 class="h-section mt-4 mb-4" style="color: #f5f8f9;">Tu web existe. Pero no trabaja.</h2>
-        <p class="text-[17px]" style="color: #7a8e96;">
-          El 80% de las pymes tienen una web que no les trae ni un cliente al mes. No es mala suerte, es que fue construida para verse bien, no para funcionar.
-        </p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-5">
-        <article class="p-7 rounded-2xl border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
-          <div class="text-sm font-bold mb-3" style="color: var(--verde-claro);">01</div>
-          <p class="text-lg font-bold mb-4 leading-snug" style="color: #f5f8f9;">"Pago todos los meses pero no sé muy bien qué están haciendo."</p>
-          <div class="w-10 h-0.5 mb-4" style="background: var(--verde);"></div>
-          <p class="text-sm leading-relaxed mb-5" style="color: #7a8e96;">Una web sin estrategia es un folleto guardado en el cajón. Y el informe mensual que recibes está lleno de métricas que no se traducen en clientes.</p>
-          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">→ Webs que convierten</span>
-        </article>
-        <article class="p-7 rounded-2xl border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
-          <div class="text-sm font-bold mb-3" style="color: var(--verde-claro);">02</div>
-          <p class="text-lg font-bold mb-4 leading-snug" style="color: #f5f8f9;">"Tengo visitas pero no tengo clientes."</p>
-          <div class="w-10 h-0.5 mb-4" style="background: var(--verde);"></div>
-          <p class="text-sm leading-relaxed mb-5" style="color: #7a8e96;">Tráfico sin conversión es dinero tirado. Si la gente entra y se va sin hacer nada, el problema no es el marketing, es la estructura de la web.</p>
-          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">→ Herramientas que convierten</span>
-        </article>
-        <article class="p-7 rounded-2xl border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
-          <div class="text-sm font-bold mb-3" style="color: var(--verde-claro);">03</div>
-          <p class="text-lg font-bold mb-4 leading-snug" style="color: #f5f8f9;">"Dependo de Instagram para vender, y vivo con miedo a que cambie el algoritmo."</p>
-          <div class="w-10 h-0.5 mb-4" style="background: var(--verde);"></div>
-          <p class="text-sm leading-relaxed mb-5" style="color: #7a8e96;">Vender solo por redes es vivir en una casa prestada. Un día cambia el algoritmo, te cierran la cuenta, y tu facturación cae con ello.</p>
-          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">→ Tu canal propio</span>
-        </article>
-      </div>
-      <div class="mt-12 max-w-md mx-auto reveal">
-        <VoiceNote src="/assets/nota1.m4a" client:visible />
-      </div>
-    </div>
-  </section>
-
-  <!-- DIFERENTE -->
-  <section style="background: var(--azul-claro);" class="py-24 border-t">
-    <div class="container-x">
-      <div class="max-w-3xl mb-12 reveal">
-        <h2 class="h-section mb-4">Te vendieron una plantilla. Te dijeron que era a medida.</h2>
-        <p class="text-[17px]" style="color: var(--texto-medio);">
-          Tu negocio tiene su propia forma. Meterlo en una caja prediseñada es garantizar que nunca encaje del todo.
-        </p>
-      </div>
-      <div class="rounded-2xl overflow-hidden border reveal grid grid-cols-1 sm:grid-cols-2" style="border-color: var(--borde);">
-        <div>
-          <div class="p-5 font-bold text-sm uppercase tracking-wider" style="background: #e9eef0; color: var(--texto-medio);">Lo que te vendieron</div>
-          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>Plantilla con tu logo, igual que la del competidor de enfrente</div>
-          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>Lento, frágil, y lleno de piezas que se rompen solas</div>
-          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>Te entregan y desaparecen. El próximo email es la factura de renovación</div>
-          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>SEO prometido que nunca llega, añadido al final, sin base técnica real</div>
-          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>Para cambiar un teléfono: 4 días y un ticket de soporte</div>
-          <div class="p-5 text-sm border-t" style="background: #fff; border-color: var(--borde); color: var(--texto-medio);"><span style="color: var(--granate);" class="font-bold mr-2">✕</span>El código es de ellos. Si te vas, empiezas de cero</div>
-        </div>
-        <div class="border-t sm:border-t-0 sm:border-l" style="border-color: var(--borde);">
-          <div class="p-5 font-bold text-sm uppercase tracking-wider" style="background: var(--verde); color: var(--texto-claro);">Lo que construyo yo</div>
-          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>Construido desde cero para ti, ningún otro negocio tiene lo mismo</div>
-          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>Rápido desde el primer día, sin piezas prestadas que fallen</div>
-          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>Me quedo cuando empieza lo importante, que funcione y que crezca</div>
-          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>SEO integrado desde la estructura, no como parche posterior</div>
-          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>Cualquier cambio: me escribes por WhatsApp y está hecho</div>
-          <div class="p-5 text-sm border-t" style="background: var(--verde-fondo); border-color: var(--borde); color: var(--texto-oscuro);"><span style="color: var(--verde-claro);" class="font-bold mr-2">✓</span>El código es tuyo desde el día uno. Sin ataduras, sin letra pequeña.</div>
-        </div>
-      </div>
-      <div class="mt-10 p-8 rounded-2xl reveal" style="background: var(--azul-oscuro); color: var(--texto-claro);">
-        <p class="text-lg leading-relaxed">
-          Una web rápida no es un lujo. Es lo que determina si Google te muestra o te ignora, si el cliente se queda o se va. Cada segundo de carga es dinero que se pierde. Por eso construyo desde el código, no desde una plantilla que alguien diseñó para otro.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MÉTODO ESCALA -->
-  <section style="background: var(--azul-oscuro); color: var(--texto-claro);" class="py-24">
-    <div class="container-x">
-      <div class="max-w-3xl mb-12 reveal">
-        <span class="tag tag-dark">El método</span>
-        <h2 class="h-section mt-4 mb-4">Método <span style="color: #a8e063;">ESCALA</span></h2>
-        <p class="text-[17px] opacity-85">Antes de escribir una línea de código, ya sé exactamente qué necesita tu negocio.</p>
-        <p class="italic mt-4 pl-4 border-l-4" style="border-color: var(--verde-claro);">
-          La mayoría construye la web y luego piensa en cómo traer clientes. Yo lo hago al revés.
-        </p>
-      </div>
-      <div class="mt-10 mb-12 max-w-md reveal">
-        <VoiceNote src="/assets/nota2.m4a" client:visible />
-      </div>
-      <ol class="space-y-6 max-w-3xl">
-        <li class="flex gap-5 reveal">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">1</div>
-            <div class="w-0.5 flex-1 mt-2" style="background: var(--borde-oscuro);"></div>
-          </div>
-          <div class="pb-6">
-            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 1</span>
-            <h3 class="text-2xl font-extrabold mb-2 mt-1">Diagnóstico</h3>
-            <p class="opacity-85 mb-3">Investigación de mercado y cliente ideal. Entiendo tu negocio antes de proponer nada.</p>
-          </div>
-        </li>
-        <li class="flex gap-5 reveal">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">2</div>
-            <div class="w-0.5 flex-1 mt-2" style="background: var(--borde-oscuro);"></div>
-          </div>
-          <div class="pb-6">
-            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 2</span>
-            <h3 class="text-2xl font-extrabold mb-2 mt-1">Arquitectura</h3>
-            <p class="opacity-85 mb-3">Análisis de herramientas de conversión. Defino qué tiene que hacer cada página y cada elemento.</p>
-          </div>
-        </li>
-        <li class="flex gap-5 reveal">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">3</div>
-            <div class="w-0.5 flex-1 mt-2" style="background: var(--borde-oscuro);"></div>
-          </div>
-          <div class="pb-6">
-            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 3</span>
-            <h3 class="text-2xl font-extrabold mb-2 mt-1">Construcción</h3>
-            <p class="opacity-85 mb-3">Desarrollo a código puro + SEO base. Sin WordPress. Sin plantillas. Velocidad real.</p>
-          </div>
-        </li>
-        <li class="flex gap-5 reveal">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">4</div>
-            <div class="w-0.5 flex-1 mt-2" style="background: var(--borde-oscuro);"></div>
-          </div>
-          <div class="pb-6">
-            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 4</span>
-            <h3 class="text-2xl font-extrabold mb-2 mt-1">Tráfico</h3>
-            <p class="opacity-85 mb-3">SEO, AEO y SEM con ventaja real. La web ya está pensada para captar, solo hay que activarla.</p>
-          </div>
-        </li>
-        <li class="flex gap-5 reveal">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full grid place-items-center font-extrabold text-lg" style="background: var(--verde);">5</div>
-          </div>
-          <div class="pb-6">
-            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--verde-claro);">Fase 5</span>
-            <h3 class="text-2xl font-extrabold mb-2 mt-1">Evolución</h3>
-            <p class="opacity-85 mb-3">Growth partner para el largo plazo. La web crece cuando crece el negocio.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- PAQUETES -->
-  <section id="paquetes" style="background: var(--azul-claro);" class="py-24">
-    <div class="container-x">
-      <div class="max-w-3xl mb-12 reveal">
-        <span class="tag">Los paquetes</span>
-        <h2 class="h-section mt-4 mb-4">¿Hasta dónde quieres llegar?</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-5 items-stretch">
-        <!-- ESCALA Web -->
-        <div class="p-8 rounded-2xl border-2 relative reveal flex flex-col" style="background: #e8f5f1; color: var(--texto-oscuro); border-color: #0a5f4a;">
-          <h3 class="text-2xl font-extrabold mb-2">ESCALA Web</h3>
-          <p class="text-[15px] mb-6" style="color: var(--texto-medio);">Para negocios que quieren dejar de depender del boca a boca y de Instagram.</p>
-          <ul class="space-y-3 mb-8 flex-1">
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Diagnóstico de tu negocio y cliente ideal</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Arquitectura de conversión antes de tocar código</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Web a código puro, sin WordPress, sin plantillas</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>SEO técnico integrado desde la estructura</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Despliegue incluido. El código es tuyo desde el día 1</span></li>
-          </ul>
-          <a href="/#contacto" class="btn btn-primary w-full mt-auto">Hablemos y te cuento →</a>
-        </div>
-        <!-- ESCALA Posicionamiento (featured) -->
-        <div class="p-8 rounded-2xl border relative reveal flex flex-col" style="background: var(--verde); color: var(--texto-claro); border-color: var(--verde); box-shadow: 0 20px 40px -20px rgba(10,95,74,0.45);">
-          <span class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap" style="background: #a8e063; color: #0d2838;">Más popular</span>
-          <h3 class="text-2xl font-extrabold mb-2">ESCALA Posicionamiento</h3>
-          <p class="text-[15px] mb-6" style="color: rgba(255,255,255,0.85);">Para negocios que quieren web y que Google y las IAs les recomienden.</p>
-          <ul class="space-y-3 mb-8 flex-1">
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde-claro)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Todo lo de ESCALA Web</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde-claro)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Herramienta interactiva a medida (calculadora, quiz o configurador)</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde-claro)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>SEO + AEO: posicionamiento en Google y en ChatGPT, Perplexity y Claude</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde-claro)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Informe mensual con acceso directo a tus datos, sin intermediarios</span></li>
-          </ul>
-          <a href="/#contacto" class="btn btn-lima w-full mt-auto">Hablemos y te cuento →</a>
-        </div>
-        <!-- ESCALA Contigo -->
-        <div class="p-8 rounded-2xl border-2 relative reveal flex flex-col" style="background: #e8f5f1; color: var(--texto-oscuro); border-color: #0a5f4a;">
-          <h3 class="text-2xl font-extrabold mb-2">ESCALA Contigo</h3>
-          <p class="text-3xl font-extrabold mb-1" style="color: var(--verde);">Hablamos</p>
-          <p class="text-[15px] mb-6" style="color: var(--texto-medio);">Para negocios que quieren un partner digital a largo plazo, no un proveedor.</p>
-          <ul class="space-y-3 mb-8 flex-1">
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Todo lo de ESCALA Posicionamiento</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Mantenimiento y evolución continua de la web</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Estrategia mensual adaptada a tu negocio</span></li>
-            <li class="flex gap-3 text-[15px] leading-snug"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mt-1 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="var(--verde)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sin permanencia. Si paras, paras.</span></li>
-          </ul>
-          <a href="/#contacto" class="btn btn-primary w-full mt-auto">Cuéntame tu caso →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ORIGINALS / PROYECTOS -->
-  <section id="proyectos" style="background: var(--azul-oscuro); color: var(--texto-claro);" class="py-24">
-    <div class="container-x">
-      <div class="mb-12 reveal">
-        <h2 class="font-extrabold leading-[0.95] mb-4 whitespace-nowrap" style="font-size: clamp(2rem, 5.5vw, 4rem);">
-          Creciendo <span style="color: var(--verde-claro);">con ellos</span>
-        </h2>
-        <div class="flex flex-wrap gap-2 mb-4 text-xs">
-          <span class="px-2 py-1 rounded font-bold" style="background: var(--granate);">REAL</span>
-          <span class="px-2 py-1 rounded" style="background: var(--borde-oscuro);">Temporada 1</span>
-          <span class="px-2 py-1 rounded" style="background: var(--borde-oscuro);">2 episodios</span>
-          <span class="px-2 py-1 rounded" style="background: var(--borde-oscuro);">Negocios reales</span>
-        </div>
-        <p class="text-lg max-w-2xl opacity-85">Cada episodio es un proyecto real. Un cliente real. Un problema resuelto. Esto es lo que construyo y cómo lo hago.</p>
-        <p class="text-sm mt-2 opacity-60">Nuevos episodios cada vez que un cliente crece.</p>
-      </div>
-
-      <div class="grid gap-6">
-        <div class="reveal">
-          <EpisodeCard
-            num="01"
-            sector="Sector pet · Nutrición canina · Herramienta interactiva"
-            title="La calculadora que trabaja mientras Laura duerme"
-            client="Laura Quintero · Nutricionista canina"
-            synopsis="Sus clientes llegaban a consulta habiendo calculado mal la materia seca de las etiquetas. El error no era de ellos: las etiquetas son confusas. Lo que construimos no fue una web. Fue una herramienta que elimina ese error antes de que ocurra."
-            synopsisLinkText="Ver cómo construimos la calculadora de nutrición canina de Laura →"
-            stats={[
-              { value: "24/7", label: "Activa" },
-              { value: "2", label: "Canales captación" },
-            ]}
-            href="/casos/laura-quintero/"
-            bg="#1a4052"
-            logoSrc="/assets/laura.webp"
-            logoWidth={500}
-            logoHeight={500}
-            featured={true}
-            client:load
-          />
-        </div>
-        <div class="reveal">
-          <EpisodeCard
-            num="02"
-            sector="Hostelería · Inmobiliaria · Malta"
-            title="El tour era perfecto. El problema era lo que pasaba después."
-            client="Virtual Vista · Tours 3D Malta"
-            synopsis="Virtual Vista hacía tours 3D de primer nivel en Malta. El producto era bueno. Pero sus clientes recibían el tour y se quedaban parados: ¿esto dónde lo pongo? Lo que construimos no fue solo una web. Fue entender qué quería conseguir cada espacio y crear la infraestructura para que el tour trabajara hacia ese objetivo."
-            synopsisLinkText="Ver cómo los tours 3D de Virtual Vista empezaron a convertir →"
-            stats={[
-              { value: "5", label: "Clientes activos" },
-              { value: "15+", label: "Proyectos" },
-              { value: "↑", label: "En aumento" },
-            ]}
-            href="/casos/virtual-vista/"
-            bg="#0a1f2c"
-            logoSrc="/assets/virtual-vista-logo.webp"
-            logoWidth={500}
-            logoHeight={361}
-            client:load
-          />
-        </div>
-        <div class="rounded-2xl border-2 border-dashed p-8 text-center reveal" style="border-color: var(--borde-oscuro);">
-          <p class="text-xs uppercase tracking-wider opacity-60 mb-2">Próximamente · Episodio 03</p>
-          <p class="text-xl font-bold mb-1">Tu negocio podría ser el siguiente capítulo.</p>
-          <p class="opacity-70 mb-4">Cada cliente nuevo es un episodio. La serie no termina.</p>
-          <a href="/#contacto" class="btn btn-lima">¿Hablamos? →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOBRE MÍ -->
-  <section id="sobre-mi" style="background: var(--azul-claro);" class="py-24">
-    <div class="container-x">
-      <span class="tag mb-4 reveal">Quién hay detrás</span>
-      <div class="grid md:grid-cols-[1.4fr_1fr] gap-10 mt-6 items-start">
-        <div class="reveal order-2 md:order-1">
-          <h2 class="h-section mb-6">Soy Jaime. Y esto no es una agencia.</h2>
-          <div class="space-y-4 text-[16px] leading-relaxed" style="color: var(--texto-medio);">
-            <p>Empecé aprendiendo a vender por internet.</p>
-            <p><strong style="color: var(--texto-oscuro);">Embudos, campañas de Meta Ads, landings de captación.</strong> Cada vez que diseñaba una estrategia necesitaba una web. Y cada vez que necesitaba una web <strong style="color: var(--texto-oscuro);">dependía de alguien más para construirla.</strong></p>
-            <p class="p-4 bg-white rounded-lg border-l-4 font-semibold" style="border-color: var(--verde); color: var(--texto-oscuro);">Un día me harté de esperar y empecé a hacerlo yo.</p>
-            <p>Lo que empezó como una solución práctica <strong style="color: var(--texto-oscuro);">cambió cómo trabajo.</strong> Fui a Malta, construí la web de una agencia de tours 3D y entregué <strong style="color: var(--texto-oscuro);">más de quince proyectos</strong> para clientes como hoteles, inmobiliarias y venues. Volví a España y seguí construyendo, esta vez herramientas que hacen cosas concretas para negocios reales. Si quieres ver cómo, <strong style="color: var(--texto-oscuro);">está todo en los episodios.</strong></p>
-            <p><strong style="color: var(--texto-oscuro);">Pienso en marketing pero construyo yo mismo para que funcione.</strong> Eso cambia lo que entrego.</p>
-            <p>Pero lo que más me importa no es el día de la entrega. Es <strong style="color: var(--texto-oscuro);">lo que pasa después.</strong> Me quedo cuando hay que añadir algo, cuando algo no funciona como esperábamos, cuando el negocio crece y la web tiene que crecer con él.</p>
-            <p class="p-4 bg-white rounded-lg border-l-4 font-semibold" style="border-color: var(--verde); color: var(--texto-oscuro);">No trabajo con muchos clientes a la vez. Trabajo bien con los que tengo.</p>
-          </div>
-        </div>
-        <div class="order-1 md:order-2 reveal">
-          <img src="/assets/jaime.webp" alt="Jaime Gómez" width="800" height="1067" loading="lazy" class="rounded-2xl w-full object-cover object-top" style="aspect-ratio: 3/4;" />
-        </div>
-      </div>
-
-      <div class="grid sm:grid-cols-2 gap-4 mt-12">
-        <div class="p-6 rounded-2xl bg-white border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="border-color: var(--borde);">
-          <h3 class="font-bold mb-1" style="color: var(--texto-oscuro);">Marketing primero</h3>
-          <p class="text-sm" style="color: var(--texto-medio);">Embudos, Meta Ads, conversión. Entiendo qué tiene que conseguir una web antes de escribir una línea de código.</p>
-        </div>
-        <div class="p-6 rounded-2xl bg-white border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="border-color: var(--borde);">
-          <h3 class="font-bold mb-1" style="color: var(--texto-oscuro);">Malta, prueba de nivel</h3>
-          <p class="text-sm" style="color: var(--texto-medio);">15+ proyectos entregados en hostelería, inmobiliaria y venues. Sectores distintos, mismo método.</p>
-        </div>
-        <div class="p-6 rounded-2xl bg-white border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="border-color: var(--borde);">
-          <h3 class="font-bold mb-1" style="color: var(--texto-oscuro);">Especialización pet</h3>
-          <p class="text-sm" style="color: var(--texto-medio);">Nutricionistas, marcas de pienso, accesorios. El sector donde tengo casos reales y sigo creciendo.</p>
-        </div>
-        <div class="p-6 rounded-2xl bg-white border transition-all hover:-translate-y-1 hover:border-[var(--verde)] reveal" style="border-color: var(--borde);">
-          <h3 class="font-bold mb-1" style="color: var(--texto-oscuro);">Código puro + IA</h3>
-          <p class="text-sm" style="color: var(--texto-medio);">Sin WordPress, sin plantillas. Velocidad, control total y cero dependencias desde el día uno.</p>
-        </div>
-      </div>
-
-      <div class="mt-10 p-6 rounded-2xl border-l-4 reveal" style="background: var(--verde-fondo); border-color: var(--verde);">
-        <p style="color: var(--texto-oscuro);">
-          Si tienes un negocio en el sector pet, clínica veterinaria, nutricionista canina, marca de pienso, educador canino o tienda de accesorios para perros, es donde más casos reales tengo en España y donde más rápido puedo ayudarte a conseguir clientes online.
-        </p>
-      </div>
-
-      <div class="flex flex-wrap gap-3 mt-8 reveal">
-        <a href="/#contacto" class="btn btn-primary">Hablamos →</a>
-        <a href="/#proyectos" class="btn btn-ghost">Ver los episodios →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="py-24" style="background: var(--azul-oscuro);">
-    <div class="container-x grid md:grid-cols-[1fr_1.6fr] gap-12">
-      <div class="md:sticky md:top-24 self-start reveal">
-        <span class="tag tag-dark mb-4">Preguntas frecuentes</span>
-        <h2 class="h-section mt-4 mb-4" style="color: #f5f8f9;">Lo que probablemente estás pensando ahora mismo.</h2>
-        <p class="mb-6" style="color: #7a8e96;">Sin letra pequeña ni respuestas de agencia. Solo lo que necesitas saber antes de escribirme.</p>
-        <a href="/#contacto" class="btn btn-primary">Pregúntame lo que sea →</a>
-      </div>
-      <div class="reveal">
-        <div class="mb-8">
-          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Precio y plazos</h3>
-          <FaqItem question="¿Cuánto cuesta una web con Cliimber?" answer="El precio se define en la primera conversación según la complejidad del proyecto. Presupuesto cerrado antes de empezar, sin extras sorpresa ni letra pequeña." dark={true} client:visible />
-          <FaqItem question="¿Cuánto tarda en hacerse una web?" answer="Entre 2 y 4 semanas desde que el brief está claro. Sin colas de agencia, sin juniors que no conocen tu proyecto. El que te hace la web es el mismo que habla contigo." dark={true} client:visible />
-          <FaqItem question="¿Hay cuota mensual obligatoria?" answer="No. El mantenimiento y la evolución son opcionales. Si quieres seguir creciendo juntos, hablamos. Si no, te llevas tu web y listo." dark={true} client:visible />
-        </div>
-        <div class="mb-8">
-          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">El código y la propiedad</h3>
-          <FaqItem question="¿El código de mi web es mío?" answer="Sí, desde el día de entrega. El repositorio Git queda a tu nombre, el dominio y el hosting también. Si algún día decides no seguir trabajando con Cliimber, te llevas tu web sin pelear y sin empezar de cero." dark={true} client:visible />
-          <FaqItem question="¿Puedo cambiar cosas yo mismo?" answer="Sí. Al entregar la web te explico cómo hacer los cambios básicos sin necesitarme. Para lo demás estoy a un WhatsApp." dark={true} client:visible />
-        </div>
-        <div class="mb-8">
-          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Cómo trabajo</h3>
-          <FaqItem question="¿Con cuántos clientes trabajas a la vez?" answer="Pocos. No trabajo con listas de espera infinitas ni con equipos que rotan. Cuando empezamos, tu proyecto tiene atención real." dark={true} client:visible />
-          <FaqItem question="¿Cómo es el proceso desde el principio?" answer="Primero una conversación para entender tu negocio y tu cliente. Luego un diagnóstico de lo que necesitas. Después el diseño, el desarrollo y el despliegue. Sin reuniones innecesarias, sin propuestas de 20 páginas." dark={true} client:visible />
-        </div>
-        <div class="mb-8">
-          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Lo que no hago</h3>
-          <FaqItem question="¿Hacéis tiendas online?" answer="Para ecommerce recomiendo Shopify: es la mejor herramienta para eso y no tiene sentido reinventarla. Lo que sí hago es la web corporativa, el SEO y las herramientas que rodean a tu tienda." dark={true} client:visible />
-          <FaqItem question="¿Hacéis webs en WordPress?" answer="No. Construyo en código puro sin plantillas ni gestores de contenido. Si necesitas WordPress específicamente, te recomendaré a alguien que lo haga bien." dark={true} client:visible />
-          <FaqItem question="¿Gestionáis redes sociales?" answer="No. Me centro en lo que realmente trae clientes: web, SEO, AEO y herramientas de conversión." dark={true} client:visible />
-        </div>
-        <div class="mb-8">
-          <h3 class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--verde-claro);">Resultados</h3>
-          <FaqItem question="¿Cuánto tarda en posicionar una web nueva en Google?" answer="Los primeros resultados visibles suelen aparecer en las primeras semanas para búsquedas específicas de tu nicho. Cuanto antes esté la web técnicamente bien construida, antes empieza Google a rastrearla. Para keywords más competidas el proceso es de varios meses." dark={true} client:visible />
-          <FaqItem question="¿Qué es el AEO y por qué lo mencionáis?" answer="AEO es posicionamiento en IAs como ChatGPT, Perplexity o Claude. Cuando alguien le pregunta a una IA que le recomiende un desarrollador web para pymes en España, queremos que Cliimber aparezca en esa respuesta. Para conseguirlo construimos las webs con estructura y contenido que las IAs pueden leer y citar." dark={true} client:visible />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section id="contacto" style="background: #0f3347;" class="py-24">
-    <div class="container-x max-w-3xl">
-      <div class="reveal mb-10">
-        <span class="tag tag-dark">Hablemos</span>
-        <h2 class="h-section mt-4 mb-4" style="color: var(--texto-claro);">¿Tu web no te trae ni un cliente al mes? Escríbeme.</h2>
-        <p class="text-[17px]" style="color: var(--texto-claro); opacity: 0.8;">Te respondo hoy. Sin propuesta de 20 páginas, solo una conversación sobre tu negocio.</p>
-      </div>
-      <div class="reveal">
-        <ContactForm dark={true} client:visible />
-      </div>
-      <div class="flex flex-wrap gap-4 justify-center mt-6 text-sm reveal">
-        <a href="https://wa.me/34609575722" target="_blank" rel="noreferrer" class="btn btn-ghost inline-flex items-center gap-2" style="background: transparent; color: var(--texto-claro); border-color: rgba(245,248,249,0.3);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6l-4.5.9z" stroke="var(--verde-claro)" stroke-width="2" stroke-linejoin="round"/></svg>WhatsApp directo</a>
-        <a href="mailto:jaimegomez@cliimber.com" class="btn btn-ghost inline-flex items-center gap-2" style="background: transparent; color: var(--texto-claro); border-color: rgba(245,248,249,0.3);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="var(--verde-claro)" stroke-width="2"/><path d="M3.5 6.5L12 13l8.5-6.5" stroke="var(--verde-claro)" stroke-width="2" stroke-linejoin="round"/></svg>jaimegomez@cliimber.com</a>
-      </div>
-    </div>
-  </section>
-
-  <Footer />
-
+  <main>
+    <Hero />
+    <Problemas />
+    <Webs />
+    <SeoGeo />
+    <Herramientas />
+    <CasoLaura />
+    <Escala />
+    <ComoTrabajo />
+    <Precios />
+    <ParaQuien />
+    <SobreMi />
+    <Faq />
+    <Contacto />
+  </main>
+  <Footer home />
 </BaseLayout>
+
+<script>
+  import '../scripts/home.ts';
+</script>

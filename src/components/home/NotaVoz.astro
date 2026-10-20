@@ -1,0 +1,11 @@
+---
+// Nota de voz de Jaime. Sin audio real, no se renderiza nada.
+interface Props { nota: null | { src: string; duracion: string }; titulo: string; class?: string }
+const { nota, titulo, class: cls = '' } = Astro.props;
+---
+{nota && (
+  <div class={`voice ${cls}`}>
+    <p>{titulo} ({nota.duracion})</p>
+    <audio controls preload="none" src={nota.src}></audio>
+  </div>
+)}

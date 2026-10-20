@@ -1,0 +1,28 @@
+---
+import { PENDIENTE } from '../../data/home';
+const frase = PENDIENTE.fraseLaura.trim();
+---
+<section id="caso" class="sec">
+  <div class="wrap">
+    <div class="grid2">
+      <div class="reveal">
+        <div class="eyebrow">Caso real · Laura Quintero</div>
+        <h2 style="margin:12px 0 16px">Un proyecto digital que evoluciona con una veterinaria especializada</h2>
+        <p class="muted" style="font-size:18px;margin:0 0 14px">Laura es veterinaria especializada en nutrición. Empezamos con una primera página para presentar su consulta y fuimos ampliando su presencia digital según aparecían nuevas necesidades: una web más completa, contenido especializado, una calculadora de materia seca y un sistema para recibir los casos que le derivan otros profesionales.</p>
+        <p class="muted" style="font-size:18px;margin:0 0 18px">No se trataba de construirlo todo desde el principio, sino de sumar cada pieza cuando tenía sentido para su negocio.</p>
+        {frase && (
+          <blockquote class="card" style="margin:0 0 16px;font-size:17px;font-weight:600">{frase}<div class="muted" style="font-size:14px;font-weight:500;margin-top:6px">Laura Quintero, veterinaria especializada en nutrición</div></blockquote>
+        )}
+        <a href="/casos/laura-quintero/" style="font-weight:700">Ver el caso completo</a>
+      </div>
+      <img class="caso-img reveal" src="/img/proyectos/laura-caso.webp" width="960" height="720" loading="lazy" decoding="async" alt="Web de Laura Quintero: titular sobre perros que no quieren comer pienso, botón para contar el caso y valoración de 5,0 en Google">
+    </div>
+    <ol class="tl reveal" aria-label="Cómo creció el proyecto">
+      <li><b>1. Landing</b>Primera página para presentar su consulta</li>
+      <li><b>2. Web completa</b>Servicios explicados para dueños y veterinarios</li>
+      <li><b>3. Contenido</b>Blog revisado por ella, pensado para Google y las IAs</li>
+      <li><b>4. Calculadora</b>Materia seca, para dueños que comparan piensos</li>
+      <li><b>5. Derivaciones</b>Otros profesionales le envían casos completos</li>
+    </ol>
+  </div>
+</section>

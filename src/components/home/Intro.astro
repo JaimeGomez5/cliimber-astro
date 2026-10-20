@@ -1,0 +1,9 @@
+---
+import Logo from '../Logo.astro';
+// Intro decorativa: oculta por defecto; solo se ve con la clase js-intro que pone el script de <head>.
+// El logo es aria-hidden; el botón «Saltar intro» sí es accesible.
+---
+<div class="intro" id="intro">
+  <Logo id="introLogo" />
+  <button class="skip" id="skip" type="button">Saltar intro</button>
+</div>
