@@ -1,0 +1,27 @@
+---
+import NotaVoz from './NotaVoz.astro';
+import { PENDIENTE } from '../../data/home';
+const dog = PENDIENTE.dogtitude;
+---
+<section class="sec" id="sobre-mi" style="background:#fff">
+  <div class="wrap grid2">
+    <img class="jaime reveal" src="/assets/jaime.webp" width="800" height="1067" loading="lazy" decoding="async" alt="Jaime Gómez, fundador de Cliimber">
+    <div class="reveal">
+      <h2 style="margin-bottom:16px">Marketing para entender el negocio. Código para resolver lo que necesita.</h2>
+      <p class="muted" style="font-size:18px;margin:0 0 14px">Soy Jaime. Antes de construir nada, entiendo cómo trabajas, qué te frena y qué merece la pena mejorar. No empiezo vendiéndote una web nueva ni una herramienta de IA.</p>
+      <p class="muted" style="font-size:18px;margin:0 0 18px">Si una solución pequeña resuelve el problema, no necesitas un proyecto enorme. Y si tu negocio crece, seguimos evolucionando lo que hemos construido. Trabajo solo, a propósito: hablas conmigo y lo que construyo es tuyo.</p>
+      <NotaVoz nota={PENDIENTE.notaSobreMi} titulo="Nota de voz de Jaime: quién soy" />
+    </div>
+  </div>
+  <div class="wrap" id="proyectos" style="margin-top:44px">
+    <h3 class="reveal" style="font-size:22px;margin:0 0 6px">Proyectos en los que he trabajado</h3>
+    <p class="muted reveal" style="margin:0 0 18px">Dentro y fuera del sector pet: lo que aprendo en cada uno lo aplico en el resto.</p>
+    <div class="grid3">
+      <a class="card reveal proj" href="/casos/laura-quintero/"><img class="proj-img" src="/img/proyectos/laura-escritorio.webp" width="1200" height="750" loading="lazy" decoding="async" alt=""><span class="pk">Sector pet · Nutrición veterinaria</span><h4>Laura Quintero</h4><p class="muted">Landing, web, blog, calculadora de materia seca y sistema de derivaciones, construidos por fases.</p><span class="pl">Ver el caso</span></a>
+      <a class="card reveal proj" href="/casos/virtual-vista/"><img class="proj-img" src="/img/proyectos/virtualvista-escritorio.webp" width="960" height="600" loading="lazy" decoding="async" alt=""><span class="pk">Turismo e inmobiliaria · Malta</span><h4>Virtual Vista</h4><p class="muted">Cofundador y responsable digital: web, estrategia y captación de una empresa de tours virtuales 360°.</p><span class="pl">Ver el proyecto</span></a>
+      {dog && (dog.href
+        ? <a class="card reveal proj" href={dog.href}><span class="pk">{dog.sector}</span><h4>{dog.titulo}</h4><p class="muted">{dog.texto}</p><span class="pl">Ver el proyecto</span></a>
+        : <div class="card reveal proj"><span class="pk">{dog.sector}</span><h4>{dog.titulo}</h4><p class="muted">{dog.texto}</p></div>)}
+    </div>
+  </div>
+</section>

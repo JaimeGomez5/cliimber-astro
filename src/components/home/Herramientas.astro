@@ -1,0 +1,93 @@
+---
+import { PENDIENTE } from '../../data/home';
+const video = PENDIENTE.videoDerivaciones;
+// Sin JS se ven los tres paneles seguidos; el script activa las pestañas (clase tabs-on) y oculta los no elegidos.
+---
+<section id="demos" class="sec" style="background:var(--fondo2)">
+  <div class="wrap">
+    <div class="reveal" style="max-width:760px;margin-bottom:24px">
+      <div class="eyebrow">Herramientas a medida</div>
+      <h2 style="margin:12px 0 0">Primero el problema. Después, la herramienta que lo resuelve.</h2>
+      <p class="muted" style="font-size:18px;margin:12px 0 0">Tres problemas habituales en negocios pet y cómo los he resuelto. Aquí ves versiones reducidas; las completas te las enseño en directo, adaptadas a tu caso.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Demos">
+      <button type="button" role="tab" aria-selected="true" aria-controls="p-form" id="t-form" tabindex="0">Las consultas llegan a medias</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="p-calc" id="t-calc" tabindex="-1">Tus clientes dudan al comparar piensos</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="p-der" id="t-der" tabindex="-1">Te derivan casos por mil canales</button>
+    </div>
+
+    <!-- 1 Formulario inteligente -->
+    <div class="demo" id="p-form" role="tabpanel" aria-labelledby="t-form" tabindex="0">
+      <div class="prob"><div><span class="k">El problema</span><p>Para entender una consulta hacen falta siete mensajes, dos días y perseguir la analítica.</p></div><div><span class="k">La herramienta</span><p>Un formulario de primera visita que pregunta lo que tú preguntarías, según el motivo.</p></div><div><span class="k">Qué cambia</span><p>La consulta llega completa, de una vez, antes de la cita.</p></div></div>
+      <div class="demo-v">
+        <div>
+          <video class="vid" data-auto muted playsinline loop controls preload="none" width="300" height="533" poster="/videos/reel-formulario-poster.jpg" aria-label="Vídeo de 28 segundos: de siete mensajes de WhatsApp a una solicitud completa"><source src="/videos/reel-formulario-web.webm" type="video/webm"><source src="/videos/reel-formulario-web.mp4" type="video/mp4"></video>
+          <p class="vid-cap">Cómo funciona, en 28 segundos</p>
+        </div>
+        <div>
+          <div style="margin-bottom:14px"><span class="tag tag-demo">Pruébalo · Datos ficticios</span></div>
+          <div class="demo-grid">
+            <div>
+              <p class="muted" style="margin:0 0 14px">Cambia el motivo y mira cómo cambian las preguntas.</p>
+              <div class="field"><label for="f-animal">Animal</label><select id="f-animal"><option>Perro</option><option>Gato</option></select></div>
+              <div class="field"><label for="f-motivo">Motivo de la consulta</label><select id="f-motivo"><option value="piel">Piel o picores</option><option value="dig">Digestivo</option><option value="peso">Peso</option></select></div>
+              <div class="field" id="q-piel"><label for="f-zona">¿Dónde está la lesión?</label><input id="f-zona" value="Orejas y patas"></div>
+              <div class="field" id="q-dig" hidden><label for="f-dieta">¿Qué come ahora?</label><input id="f-dieta" value="Pienso seco"></div>
+              <div class="field" id="q-peso" hidden><label for="f-kg">Peso actual (kg)</label><input id="f-kg" type="number" min="0.5" max="120" step="0.1" value="12"></div>
+            </div>
+            <div class="preview" aria-live="polite">
+              <h3>Lo que recibe tu equipo antes de la cita</h3>
+              <div class="prow"><span class="muted">Animal</span><strong id="o-animal">Perro</strong></div>
+              <div class="prow"><span class="muted">Motivo</span><strong id="o-motivo">Piel o picores</strong></div>
+              <div class="prow"><span class="muted" id="o-extra-l">Zona</span><strong id="o-extra">Orejas y patas</strong></div>
+              <div class="prow" style="border:0"><span class="muted">Pedido al dueño</span><strong id="o-pide">Fotos de la zona</strong></div>
+              <p class="note" style="margin:12px 0 0">Solo las preguntas que hacen falta. La consulta empieza con el caso preparado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 Calculadora -->
+    <div class="demo" id="p-calc" role="tabpanel" aria-labelledby="t-calc" tabindex="0">
+      <div class="prob"><div><span class="k">El problema</span><p>Los dueños comparan piensos por la etiqueta y las cifras engañan: una lata parece más ligera que un pienso seco porque lleva agua.</p></div><div><span class="k">La herramienta</span><p>Una calculadora en tu web que quita el agua y compara en igualdad de condiciones.</p></div><div><span class="k">Qué cambia</span><p>Resuelves una duda frecuente sin ocupar consulta, y el dueño ve que sabes de lo que hablas.</p></div></div>
+      <div style="margin-bottom:14px"><span class="tag tag-real">Usada en un proyecto real</span> <a href="/casos/laura-quintero/" class="note">Ver el caso</a></div>
+      <div class="demo-grid">
+        <div>
+          <div class="field"><label for="c-hum">Humedad según la etiqueta (%)</label><input id="c-hum" type="number" min="0" max="90" step="0.1" value="10" inputmode="decimal"></div>
+          <div class="field"><label for="c-nut">Nutriente según la etiqueta (%)</label><input id="c-nut" type="number" min="0" max="100" step="0.1" value="15" inputmode="decimal"></div>
+          <div class="field"><label for="c-tipo">¿Qué nutriente?</label><select id="c-tipo"><option>Grasa</option><option>Proteína</option><option>Fibra</option></select></div>
+        </div>
+        <div class="preview" aria-live="polite">
+          <h3 id="c-label">Grasa en materia seca</h3>
+          <div class="big" id="c-res">16,7 %</div>
+          <p class="err" id="c-err" hidden></p>
+          <p class="note" style="margin:8px 0 0">Las etiquetas dan los valores con el agua incluida. Al quitar la humedad puedes comparar un pienso seco con una lata en igualdad de condiciones.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Derivaciones -->
+    <div class="demo" id="p-der" role="tabpanel" aria-labelledby="t-der" tabindex="0">
+      <div class="prob"><div><span class="k">El problema</span><p>Otras clínicas te mandan casos por email, WhatsApp y teléfono, con pruebas sueltas que hay que reunir a mano.</p></div><div><span class="k">La herramienta</span><p>Un único formulario de derivación con ficha, historial y pruebas adjuntas, y confirmación automática a quien deriva.</p></div><div><span class="k">Qué cambia</span><p>Cada caso llega completo y registrado, y tu equipo deja de perseguir información.</p></div></div>
+      <div style="margin-bottom:14px"><span class="tag tag-real">Usada en un proyecto real</span></div>
+      <div class:list={['demo-grid', { one: !video }]}>
+        <div>
+          <h3 style="margin:0 0 10px;font-size:22px">Casos derivados que llegan completos</h3>
+          <p class="muted" style="margin:0 0 16px">Para especialistas y centros que reciben casos de otras clínicas: un único envío con ficha, historial y pruebas, registro de cada caso y confirmación automática a quien deriva.</p>
+          <a href="#contacto" class="btn btn-lima plan-cta" data-plan="la demo completa del sistema de derivaciones">Pide la demo completa</a>
+          <p class="note" style="margin:12px 0 0">Te la enseño en una videollamada de 15 minutos, con datos ficticios.</p>
+        </div>
+        {video && (
+          <video class="vid-der" data-auto muted playsinline loop controls preload="none" poster={video.poster} aria-label="Vídeo de 30 segundos: el sistema de derivaciones con datos ficticios"><source src={video.webm} type="video/webm"><source src={video.mp4} type="video/mp4"></video>
+        )}
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:40px">
+      <div class="reveal" style="border-top:2px solid var(--azul);padding-top:16px"><h3 style="margin:0 0 6px;font-size:19px">Webs que captan</h3><p class="muted" style="margin:0">Rápidas, hechas a código, con SEO local y ficha de Google trabajadas, y claras para Google y las IAs.</p></div>
+      <div class="reveal" style="border-top:2px solid var(--azul);padding-top:16px"><h3 style="margin:0 0 6px;font-size:19px">Herramientas a medida</h3><p class="muted" style="margin:0">Formularios inteligentes, calculadoras, portales y pequeños sistemas de seguimiento, con IA cuando aporta.</p></div>
+      <div class="reveal" style="border-top:2px solid var(--azul);padding-top:16px"><h3 style="margin:0 0 6px;font-size:19px">Acompañamiento mensual</h3><p class="muted" style="margin:0">Mantengo lo construido, mido qué funciona y priorizamos la siguiente mejora. Sin permanencia.</p></div>
+    </div>
+  </div>
+</section>

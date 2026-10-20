@@ -1,0 +1,50 @@
+---
+import { FORMSPREE, WHATSAPP } from '../../data/home';
+// Formulario con altímetro y asistente «¿No sabes qué necesitas?» (reglas, sin IA).
+// Sin JS, el formulario se envía igualmente a Formspree con un POST normal.
+---
+<section class="sec contact" id="contacto">
+  <div class="c-wrap">
+    <div>
+      <h2 style="margin-bottom:14px">¿Qué te gustaría mejorar?</h2>
+      <p class="c-lead">Cuéntamelo en dos líneas. Te respondo en menos de 24 horas laborables con una primera idea y, si tiene sentido, una llamada de 20 minutos.</p>
+      <a class="btn btn-ghost" href={WHATSAPP} target="_blank" rel="noopener">Prefiero WhatsApp</a>
+
+      <div class="alti" aria-hidden="true">
+        <div class="track" id="aTrack"><div class="fill" id="aFill"></div><div class="marks"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="a-flag"></div><div class="a-climber" id="aClimber"><span class="dot"></span><span class="stem"></span></div></div>
+        <div class="alti-txt"><span class="pct" id="pct">0 %</span><span class="msg" id="amsg">Campamento base. Empieza por tu nombre.</span><small>Cada campo te sube un tramo.</small></div>
+      </div>
+    </div>
+
+    <div class="c-card" id="cCard">
+      <button type="button" class="assist-btn" id="openAssist" aria-haspopup="dialog">
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <span><b>¿No sabes qué necesitas?</b><span>Responde 3 preguntas y te digo por dónde empezar.</span></span>
+      </button>
+
+      <form id="cform" action={FORMSPREE} method="POST">
+        <div class="field"><label for="f-n">Nombre</label><input id="f-n" name="nombre" required autocomplete="name"></div>
+        <div class="field"><label for="f-e">Email</label><input id="f-e" name="email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="f-tel">Teléfono (opcional)</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel"></div>
+        <div class="field"><label for="f-t">Tipo de negocio</label><select id="f-t" name="tipo" required><option value="">Elige una opción</option><option>Clínica veterinaria</option><option>Especialista o centro de referencia</option><option>Marca o ecommerce pet</option><option>Negocio pet que empieza</option><option>Otro negocio pet</option><option>Otro sector</option></select></div>
+        <div class="field"><label for="f-w">Tu web actual (opcional)</label><input id="f-w" name="web" type="text" inputmode="url" autocomplete="url" placeholder="https://"></div>
+        <div class="field"><label for="f-q">¿Qué quieres mejorar?</label><textarea id="f-q" name="mensaje" rows="4" required></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="f-hp">No rellenes este campo</label><input id="f-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
+        <label class="c-chk"><input type="checkbox" id="f-p" name="privacidad" value="aceptada" required> <span>He leído la <a href="/politica-de-privacidad/">política de privacidad</a></span></label>
+        <p class="c-note">No incluyas datos de pacientes en este primer mensaje.</p>
+        <button type="submit" class="c-send" id="cSend">Enviar</button>
+        <p class="c-note" id="cerr" role="status" style="margin-top:12px"></p>
+      </form>
+
+      <div class="sent" id="sent" role="status" tabindex="-1">
+        <div class="k">CUMBRE</div>
+        <h3>Recibido. Te respondo en menos de 24 horas laborables.</h3>
+      </div>
+
+      <div class="assist" id="assist" role="dialog" aria-modal="true" aria-label="Asistente: por dónde empezar">
+        <div class="a-head"><b>Por dónde empezar</b><button type="button" class="a-close" id="closeAssist">Cerrar</button></div>
+        <div class="log" id="log" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>

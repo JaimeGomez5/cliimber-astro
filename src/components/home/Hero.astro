@@ -1,0 +1,53 @@
+---
+// El H1 va partido en letras (agrupadas por palabras) para el efecto «caos a orden» en móvil.
+// El texto sigue entero en el HTML; los lectores de pantalla usan el aria-label.
+const TITULO = 'Más clientes para tu negocio pet. Menos tareas que te frenan.';
+const palabras = TITULO.split(' ').map((p) => {
+  const pet = p === 'pet.';
+  return { pet, letras: [...(pet ? 'pet' : p)], resto: pet ? '.' : '' };
+});
+---
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--lima)">Webs, SEO y herramientas a medida para el sector pet</div>
+    <h1 id="h1-caos" aria-label={TITULO}>{palabras.map((w, i) => (
+      <Fragment>{i > 0 && ' '}<span class="w" aria-hidden="true">{w.pet
+        ? <Fragment><span class="pet">{w.letras.map((l) => <span class="l">{l}</span>)}</span><span class="l">{w.resto}</span></Fragment>
+        : w.letras.map((l) => <span class="l">{l}</span>)}</span></Fragment>
+    ))}</h1>
+    <script is:inline>
+      // «Caos a orden» (solo móvil o táctil, nunca con «reducir movimiento»): cada letra empieza desplazada y girada
+      // al azar, sin salir de la caja del titular, y vuelve a su sitio con CSS. El titular se pinta siempre (nunca opacity 0).
+      (function () {
+        var h = document.getElementById('h1-caos');
+        if (!h || !matchMedia('(max-width: 700px), (pointer: coarse)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        h.classList.add('caos');
+        var W = h.offsetWidth, H = h.offsetHeight, L = h.querySelectorAll('.l'), n = L.length;
+        var rnd = function (a, b) { return a > b ? 0 : a + Math.random() * (b - a); };
+        for (var i = 0; i < n; i++) {
+          var e = L[i], x = e.offsetLeft, y = e.offsetTop, w = e.offsetWidth, lh = e.offsetHeight, m = lh * 0.4;
+          e.style.setProperty('--x', rnd(Math.max(-120, m - x), Math.min(120, W - x - w - m)).toFixed(1) + 'px');
+          e.style.setProperty('--y', rnd(Math.max(-40, m - y), Math.min(60, H - y - lh - m)).toFixed(1) + 'px');
+          e.style.setProperty('--r', rnd(-60, 60).toFixed(0) + 'deg');
+          e.style.setProperty('--d', (i / (n - 1) * 0.32).toFixed(3) + 's');
+        }
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            h.classList.add('go');
+            // Al encajar la última letra (0,82 s), destello en «pet»
+            setTimeout(function () { var p = h.querySelector('.pet'); if (p) p.classList.add('flash'); }, 820);
+            // Al acabar el destello (0,4 s), el H1 vuelve a ser texto normal para recuperar el kerning
+            setTimeout(function () { var t = h.getAttribute('aria-label'); h.classList.remove('caos', 'go'); h.textContent = t; h.removeAttribute('aria-label'); }, 1260);
+          });
+        });
+      })();
+    </script>
+    <p class="lead">Webs que explican lo que haces, visibilidad en Google y en asistentes de IA, y herramientas a medida que te quitan trabajo. Para clínicas, especialistas y marcas, en Madrid y toda España.</p>
+    <p class="lead" style="margin-bottom:28px">Empezamos por lo que más te frena y seguimos creciendo contigo.</p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn btn-lima">Cuéntame qué quieres mejorar</a>
+      <a href="#problemas" class="btn btn-ghost">Ver qué problemas resuelvo</a>
+    </div>
+    <p class="hero-proof">Proyectos: <b>Laura Quintero</b>, nutrición veterinaria · <b>Virtual Vista</b>, tours virtuales 360°</p>
+  </div>
+</section>
