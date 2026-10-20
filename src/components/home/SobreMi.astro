@@ -3,7 +3,7 @@ import NotaVoz from './NotaVoz.astro';
 import { PENDIENTE } from '../../data/home';
 const dog = PENDIENTE.dogtitude;
 ---
-<section class="sec" style="background:#fff">
+<section class="sec" id="sobre-mi" style="background:#fff">
   <div class="wrap grid2">
     <img class="jaime reveal" src="/assets/jaime.webp" width="800" height="1067" loading="lazy" decoding="async" alt="Jaime Gómez, fundador de Cliimber">
     <div class="reveal">
@@ -13,7 +13,7 @@ const dog = PENDIENTE.dogtitude;
       <NotaVoz nota={PENDIENTE.notaSobreMi} titulo="Nota de voz de Jaime: quién soy" />
     </div>
   </div>
-  <div class="wrap" style="margin-top:44px">
+  <div class="wrap" id="proyectos" style="margin-top:44px">
     <h3 class="reveal" style="font-size:22px;margin:0 0 6px">Proyectos en los que he trabajado</h3>
     <p class="muted reveal" style="margin:0 0 18px">Dentro y fuera del sector pet: lo que aprendo en cada uno lo aplico en el resto.</p>
     <div class="grid3">
