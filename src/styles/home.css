@@ -51,6 +51,16 @@ main .reveal{opacity:1;transform:none}
 .caos .pet.flash .l{animation:pet-flash .4s ease}
 @keyframes pet-flash{0%,100%{color:inherit;text-shadow:none}40%{color:var(--lima);text-shadow:0 0 18px rgba(168,224,99,.55)}}
 @media(prefers-reduced-motion:reduce){.caos .l{transform:none!important;color:inherit!important;transition:none!important;animation:none!important}}
+.hero h1 .pt{margin-left:-.04em}
+/* Móvil: eyebrow y párrafo cortos para que el H1 y los botones quepan en la primera pantalla.
+   Los textos largos siguen en el HTML, ocultos con CSS. */
+.ey-m,.lead-m{display:none}
+@media(max-width:700px){
+  .hero{padding-top:84px}
+  .ey-d,.lead-d{display:none}
+  .ey-m{display:inline}
+  .lead-m{display:block;margin-bottom:24px}
+}
 .hero-proof{margin-top:30px;font-size:14px;color:#a9c0ca}.hero-proof b{color:#e3ecef;font-weight:700}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
 
