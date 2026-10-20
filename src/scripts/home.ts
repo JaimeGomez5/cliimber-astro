@@ -14,7 +14,9 @@ const desk = () => matchMedia('(min-width:701px)').matches;
 const mobile = () => matchMedia('(max-width:860px)').matches;
 const WHATSAPP = 'https://wa.me/34609575722';
 
-root.classList.add('tabs-on', 'app-on');
+// Clases en su propia sección, no en <html>: cambiar <html> obliga a recalcular los estilos de toda la página
+$('demos').classList.add('tabs-on');
+$('cCard').classList.add('app-on');
 
 /* ---------- Aparición al hacer scroll ---------- */
 W.__rv = true;
@@ -81,7 +83,7 @@ if ('IntersectionObserver' in window && !reduce) {
 
 /* ---------- El WhatsApp flotante se aparta mientras se ve el formulario ---------- */
 if ('IntersectionObserver' in window) {
-  new IntersectionObserver((es) => es.forEach((x) => root.classList.toggle('wa-off', x.isIntersecting)), { threshold: 0 }).observe($('contacto'));
+  new IntersectionObserver((es) => es.forEach((x) => document.querySelector('.whatsapp-btn')?.classList.toggle('wa-off', x.isIntersecting)), { threshold: 0 }).observe($('contacto'));
 }
 
 /* ================= ANIMACIONES (GSAP) ================= */
@@ -196,11 +198,11 @@ function runEscala(ScrollTrigger: any) {
     scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
   }));
   // En móvil la escalera se queda pegada justo debajo del menú
-  const hh = () => root.style.setProperty('--hh', (document.querySelector('.site-header') as HTMLElement).offsetHeight + 'px');
+  const hh = () => $('como').style.setProperty('--hh', (document.querySelector('.site-header') as HTMLElement).offsetHeight + 'px');
   hh(); addEventListener('resize', hh);
   if (reduce || !ScrollTrigger || !gsap) { cl.style.display = 'none'; return; }
   gsap.registerPlugin(ScrollTrigger);
-  root.classList.add('js-anim');
+  $('como').classList.add('js-anim');
   show(0);
   const p0 = pos(0); gsap.set(cl, { x: p0.x, y: p0.y });
   const tl = gsap.timeline({ defaults: { ease: 'none' } }); tl.addLabel('s0');
@@ -297,7 +299,7 @@ req.forEach((id) => { $(id).addEventListener('input', () => alti()); $(id).addEv
 if (!reduce) form0().addEventListener('focusin', () => { loadGsap(); }, { once: true });
 function form0() { return $('cCard') as HTMLElement; }
 addEventListener('resize', () => alti());
-alti();
+// (sin llamada inicial: el CSS ya parte de 0 %, y así no se fuerza una maquetación al cargar)
 
 /* ---------- ENVÍO (Formspree): «Recibido» solo si el servicio confirma el envío ---------- */
 const form = $('cform') as HTMLFormElement, cerr = $('cerr'), send = $('cSend');

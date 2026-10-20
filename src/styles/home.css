@@ -242,7 +242,7 @@ main .contact .btn-ghost{border-color:rgba(255,255,255,.55)}
 @keyframes t{0%,100%{opacity:.25}50%{opacity:1}}
 
 /* El WhatsApp flotante se aparta mientras se ve el formulario (no tapa «Enviar») */
-.wa-off .whatsapp-btn{opacity:0;pointer-events:none;transform:scale(.8)!important}
+.whatsapp-btn.wa-off{opacity:0;pointer-events:none;transform:scale(.8)!important}
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
