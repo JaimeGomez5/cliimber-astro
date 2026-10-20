@@ -36,6 +36,8 @@ const palabras = TITULO.split(' ').map((p) => {
             h.classList.add('go');
             // Al encajar la última letra (0,82 s), destello en «pet»
             setTimeout(function () { var p = h.querySelector('.pet'); if (p) p.classList.add('flash'); }, 820);
+            // Al acabar el destello (0,4 s), el H1 vuelve a ser texto normal para recuperar el kerning
+            setTimeout(function () { var t = h.getAttribute('aria-label'); h.classList.remove('caos', 'go'); h.textContent = t; h.removeAttribute('aria-label'); }, 1260);
           });
         });
       })();
