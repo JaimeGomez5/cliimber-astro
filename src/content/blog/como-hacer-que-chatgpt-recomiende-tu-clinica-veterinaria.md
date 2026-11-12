@@ -41,7 +41,7 @@ En mi prueba, las cuatro IAs recomendaron la ficha de Google (Google Business Pr
 
 Cómo saberlo: revisa que la categoría principal sea la correcta, que los servicios estén dados de alta uno a uno, que los horarios estén al día y que las reseñas recientes tengan respuesta.
 
-Qué hacer: pide reseña a los clientes satisfechos después de cada visita importante, sin ofrecer nada a cambio, y responde a todas, también a las malas.
+Qué hacer: pide reseña a todos tus clientes después de la visita, no solo a los contentos (Google prohíbe pedirlas de forma selectiva), sin ofrecer nada a cambio, y responde a todas, también a las malas.
 
 ### 3. Precios o rangos publicados
 
