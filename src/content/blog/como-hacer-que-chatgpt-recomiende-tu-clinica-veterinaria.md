@@ -1,4 +1,5 @@
 ---
+seoTitle: "Cómo hacer que ChatGPT recomiende tu clínica | Cliimber"
 title: "Cómo hacer que ChatGPT recomiende tu clínica veterinaria o negocio pet (guía 2026)"
 description: "Qué miran ChatGPT, Gemini y Perplexity antes de recomendar una clínica veterinaria o un negocio pet, y qué cambiar en tu web y tus perfiles para aparecer."
 date: "2026-10-21"
@@ -115,4 +116,4 @@ Sí, es la base. Google indica que para aparecer en AI Overviews y AI Mode basta
 **¿Tengo que bloquear o permitir los bots de IA?**
 Depende del bot. Bloquear GPTBot evita que OpenAI use tu contenido para entrenar sus modelos. Bloquear OAI-SearchBot hace que no aparezcas en las respuestas de búsqueda de ChatGPT. Si quieres que te recomienden, OAI-SearchBot tiene que poder entrar.
 
-Este es el trabajo que hago en Cliimber con clínicas y negocios pet: web, SEO local y visibilidad en asistentes de IA, con un informe mensual de lo que dicen Google y las IAs sobre tu negocio, desde 300 € al mes y sin permanencia. Si quieres saber qué responden hoy las IAs cuando alguien pregunta por tu especialidad en tu ciudad, cuéntame tu caso en jaimegomez@cliimber.com.
+Este es el trabajo que hago en Cliimber con clínicas y negocios pet: web, SEO local y visibilidad en asistentes de IA, con un informe mensual de lo que dicen Google y las IAs sobre tu negocio, desde 300 € al mes y sin permanencia. Si quieres saber qué responden hoy las IAs cuando alguien pregunta por tu especialidad en tu ciudad, cuéntame tu caso en jaimegomez@cliimber.com. Tienes todo lo que hago para clínicas en [diseño web y marketing para clínicas veterinarias](/clinicas-veterinarias/).

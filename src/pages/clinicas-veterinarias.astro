@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { Content } from '../data/clinicas-veterinarias.md';
+import data from '../data/clinicas-veterinarias.json';
+import { WHATSAPP } from '../data/home';
+
+// Página de servicio para clínicas veterinarias. La FAQ visible y el FAQPage del JSON-LD salen del mismo JSON.
+const SITE = 'https://cliimber.com/';
+const canonical = SITE + 'clinicas-veterinarias/';
+const oferta = (name: string, min: number, mes = false) => ({
+  '@type': 'Offer',
+  itemOffered: { '@type': 'Service', name },
+  priceSpecification: {
+    '@type': mes ? 'UnitPriceSpecification' : 'PriceSpecification',
+    minPrice: min,
+    priceCurrency: 'EUR',
+    valueAddedTaxIncluded: false,
+    ...(mes ? { unitText: 'mes' } : {}),
+  },
+});
+
+const ldJson = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE },
+      { '@type': 'ListItem', position: 2, name: 'Clínicas veterinarias', item: canonical },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Diseño web y marketing para clínicas veterinarias',
+    serviceType: 'Diseño web, SEO local, visibilidad en asistentes de IA y herramientas a medida',
+    url: canonical,
+    areaServed: { '@type': 'Country', name: 'España' },
+    audience: { '@type': 'BusinessAudience', name: 'Clínicas veterinarias y especialistas' },
+    provider: { '@id': SITE + '#cliimber' },
+    offers: [
+      oferta('Web de lanzamiento', 900),
+      oferta('SEO local y visibilidad en IAs', 300, true),
+      oferta('Herramienta a medida', 400),
+      oferta('Mantenimiento técnico', 150, true),
+      oferta('Evolución digital', 450, true),
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: data.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<BaseLayout
+  title="Diseño web y marketing para clínicas veterinarias | Cliimber"
+  description="Web a medida, SEO local, visibilidad en IAs y herramientas para clínicas veterinarias en España. Precio cerrado antes de empezar y trato directo, sin agencia."
+  canonical={canonical}
+  ogTitle="Diseño web y marketing para clínicas veterinarias"
+  ldJson={ldJson}
+>
+  <Nav />
+
+  <header style="background: var(--azul-oscuro); color: var(--texto-claro);" class="pt-28 pb-16">
+    <div class="container-x max-w-3xl">
+      <span class="tag tag-dark mb-4">Clínicas veterinarias</span>
+      <h1 class="h-display mt-4 mb-6">Diseño web y marketing para clínicas veterinarias</h1>
+      <p class="text-lg opacity-90 mb-8 respuesta">{data.answer}</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/#contacto" class="btn bg-white" style="color: var(--verde);">Cuéntame qué quieres mejorar</a>
+        <a href={WHATSAPP} target="_blank" rel="noopener" class="btn" style="border: 1px solid var(--texto-claro); color: var(--texto-claro);">Prefiero WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <article style="background: var(--background);" class="py-16">
+    <div class="container-x max-w-3xl pilar">
+      <Content />
+
+      <h2>Preguntas frecuentes</h2>
+      {data.faq.map((f) => (
+        <div class="faq">
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </article>
+
+  <section style="background: var(--verde); color: var(--texto-claro);" class="py-20">
+    <div class="container-x text-center max-w-2xl">
+      <h2 class="h-section mb-4">¿Hablamos de tu clínica?</h2>
+      <p class="opacity-90 mb-8">Cuéntame qué haces y qué te frena. Te respondo yo, en persona, con un diagnóstico corto y sin compromiso.</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/#contacto" class="btn bg-white" style="color: var(--verde);">Cuéntame qué quieres mejorar</a>
+        <a href={WHATSAPP} target="_blank" rel="noopener" class="btn" style="border: 1px solid var(--texto-claro); color: var(--texto-claro);">Prefiero WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .respuesta {
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--verde-claro);
+    line-height: 1.7;
+  }
+  .pilar :global(p) {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--texto-medio);
+    margin-bottom: 1.5rem;
+  }
+  .pilar :global(h2) {
+    font-size: clamp(1.4rem, 3vw, 1.875rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--texto-oscuro);
+    margin: 2.5rem 0 1.25rem;
+    text-wrap: balance;
+  }
+  .pilar :global(h3) {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--texto-oscuro);
+    margin: 1.75rem 0 0.75rem;
+  }
+  .pilar :global(ul),
+  .pilar :global(ol) {
+    margin: 0 0 1.5rem 1.25rem;
+    color: var(--texto-medio);
+    line-height: 1.8;
+  }
+  .pilar :global(ul) { list-style: disc; }
+  .pilar :global(ol) { list-style: decimal; }
+  .pilar :global(li) { margin-bottom: 0.5rem; }
+  .pilar :global(li::marker) { color: var(--verde); font-weight: 700; }
+  .pilar :global(a) {
+    color: var(--verde);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .pilar :global(strong) { color: var(--texto-oscuro); font-weight: 700; }
+  .pilar :global(table) {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 0 0 1.5rem;
+    font-size: 0.95rem;
+    color: var(--texto-medio);
+  }
+  .pilar :global(th),
+  .pilar :global(td) {
+    border-bottom: 1px solid var(--borde);
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .pilar :global(th) { color: var(--texto-oscuro); font-weight: 700; }
+  .pilar :global(td:nth-child(2)) { white-space: nowrap; font-weight: 700; color: var(--texto-oscuro); }
+  .faq { border-bottom: 1px solid var(--borde); padding-bottom: 0.5rem; }
+</style>

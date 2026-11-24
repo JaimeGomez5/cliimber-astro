@@ -1,4 +1,5 @@
 ---
+seoTitle: "Tu clínica veterinaria en Google Maps: guía 2026 | Cliimber"
 title: "Cómo aparecer en Google Maps con tu clínica veterinaria: guía de la ficha de Google (2026)"
 description: "Cómo hacer que tu clínica veterinaria salga en Google Maps: qué mira Google, cómo completar la ficha paso a paso, cómo pedir reseñas sin saltarte las normas."
 date: "2026-11-12"
@@ -116,4 +117,4 @@ Solo si forma parte del nombre real de tu clínica. Si no, va contra las normas 
 **¿La ficha de Google ayuda a que ChatGPT recomiende mi clínica?**
 En pruebas que hice en octubre de 2026 con ChatGPT, Gemini, Perplexity y Claude, las cuatro recomendaron la ficha de Google como primer paso para una clínica. Lo explico en detalle en [cómo hacer que ChatGPT recomiende tu clínica](/blog/como-hacer-que-chatgpt-recomiende-tu-clinica-veterinaria/).
 
-En Cliimber la ficha de Google va configurada en la web de lanzamiento, y su mantenimiento forma parte del servicio de SEO local y visibilidad en IAs (desde 300 € al mes, sin permanencia). Si quieres que revisemos la de tu clínica, cuéntame tu caso en jaimegomez@cliimber.com.
+En Cliimber la ficha de Google va configurada en la web de lanzamiento, y su mantenimiento forma parte del servicio de SEO local y visibilidad en IAs (desde 300 € al mes, sin permanencia). Si quieres que revisemos la de tu clínica, cuéntame tu caso en jaimegomez@cliimber.com. Tienes todo lo que hago para clínicas en [diseño web y marketing para clínicas veterinarias](/clinicas-veterinarias/).
