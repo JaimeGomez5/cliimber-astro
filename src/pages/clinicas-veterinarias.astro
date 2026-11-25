@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { Content } from '../data/clinicas-veterinarias.md';
+import { Content as Content2 } from '../data/clinicas-veterinarias-2.md';
+import DerivationSlider from '../components/DerivationSlider';
 import data from '../data/clinicas-veterinarias.json';
 import { WHATSAPP } from '../data/home';
 
@@ -67,9 +69,14 @@ const ldJson = [
     <div class="container-x max-w-3xl">
       <span class="tag tag-dark mb-4">Clínicas veterinarias</span>
       <h1 class="h-display mt-4 mb-6">Diseño web y marketing para clínicas veterinarias</h1>
-      <p class="text-lg opacity-90 mb-8 respuesta">{data.answer}</p>
+      <p class="text-lg opacity-90 mb-6 respuesta">{data.answer}</p>
+      <ul class="ventajas mb-8">
+        <li>Trato directo, sin intermediarios</li>
+        <li>Alcance y precio cerrados antes de empezar</li>
+        <li>SEO sin permanencia</li>
+      </ul>
       <div class="flex flex-wrap gap-3">
-        <a href="/#contacto" class="btn bg-white" style="color: var(--verde);">Cuéntame qué quieres mejorar</a>
+        <a href="/#contacto" class="btn bg-white" style="color: var(--verde);">Pide tu diagnóstico gratis</a>
         <a href={WHATSAPP} target="_blank" rel="noopener" class="btn" style="border: 1px solid var(--texto-claro); color: var(--texto-claro);">Prefiero WhatsApp</a>
       </div>
     </div>
@@ -78,6 +85,48 @@ const ldJson = [
   <article style="background: var(--background);" class="py-16">
     <div class="container-x max-w-3xl pilar">
       <Content />
+    </div>
+  </article>
+
+  <section style="background: var(--azul-oscuro); color: var(--texto-claro);" class="py-20">
+    <div class="container-x max-w-5xl">
+      <h2 class="h-section mb-4">Un caso real: Laura Quintero Veterinaria</h2>
+      <p class="opacity-85 mb-10 max-w-3xl">Laura es veterinaria y nutricionista. Sus clientes llegaban a consulta con la grasa de las etiquetas mal calculada, y a las clínicas les costaba derivarle casos con toda la información. Construí dos herramientas a código, integradas en su web.</p>
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h3 class="font-bold text-xl mb-3">Calculadora de grasa en materia seca</h3>
+          <p class="opacity-85 mb-6">El porcentaje de grasa de la etiqueta incluye el agua del alimento y confunde a los dueños. La calculadora da la grasa real y una recomendación, y si el nivel es alto lleva directamente a pedir consulta. Funciona las 24 horas.</p>
+          <div class="mx-auto" style="max-width: 240px;">
+            <div class="rounded-[2.2rem] p-3 shadow-2xl" style="background: #0a0a0a;">
+              <div class="rounded-[1.8rem] overflow-hidden" style="aspect-ratio: 9/19.5;">
+                <img src="/assets/calculadora-laura.webp" alt="Calculadora de grasa en materia seca en la web de Laura Quintero" width="219" height="523" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-bold text-xl mb-3">Sistema de derivaciones para clínicas y hospitales</h3>
+          <p class="opacity-85 mb-6">Ficha del centro, datos del tutor y del paciente, motivo, pruebas, tratamientos y archivos adjuntos. Derivarle un caso a Laura es más fácil que escribir un correo.</p>
+          <DerivationSlider client:visible />
+        </div>
+      </div>
+      <blockquote class="mt-10 p-6 rounded-2xl border-l-4 italic" style="background: var(--borde-oscuro); border-color: var(--verde-claro);">
+        "Conseguimos hacer un buen trabajo en equipo y hoy mis clientes llegan mejor preparados y cada vez recibo más derivaciones de clínicas y hospitales." Laura Quintero
+      </blockquote>
+      <div class="flex flex-wrap items-center gap-4 mt-8">
+        <a href="/casos/laura-quintero/" style="color: var(--verde-claro);" class="font-semibold">Ver el caso completo →</a>
+      </div>
+      <div class="mt-10 p-6 rounded-2xl" style="background: var(--verde);">
+        <p class="font-bold text-lg mb-2">¿Hay algún proceso de tu clínica que podríamos simplificar?</p>
+        <p class="opacity-90 mb-4">Cuéntamelo y te digo, sin compromiso, si una herramienta tiene sentido y cuánto costaría.</p>
+        <a href="/#contacto" class="btn bg-white" style="color: var(--verde);">Pide tu diagnóstico gratis</a>
+      </div>
+    </div>
+  </section>
+
+  <article style="background: var(--background);" class="py-16">
+    <div class="container-x max-w-3xl pilar">
+      <Content2 />
 
       <h2>Preguntas frecuentes</h2>
       {data.faq.map((f) => (
@@ -92,9 +141,9 @@ const ldJson = [
   <section style="background: var(--verde); color: var(--texto-claro);" class="py-20">
     <div class="container-x text-center max-w-2xl">
       <h2 class="h-section mb-4">¿Hablamos de tu clínica?</h2>
-      <p class="opacity-90 mb-8">Cuéntame qué haces y qué te frena. Te respondo yo, en persona, con un diagnóstico corto y sin compromiso.</p>
+      <p class="opacity-90 mb-8">Cuéntame qué haces y qué te frena. Te respondo yo, en persona, con un diagnóstico corto, gratis y sin compromiso.</p>
       <div class="flex flex-wrap gap-3 justify-center">
-        <a href="/#contacto" class="btn bg-white" style="color: var(--verde);">Cuéntame qué quieres mejorar</a>
+        <a href="/#contacto" class="btn bg-white" style="color: var(--verde);">Pide tu diagnóstico gratis</a>
         <a href={WHATSAPP} target="_blank" rel="noopener" class="btn" style="border: 1px solid var(--texto-claro); color: var(--texto-claro);">Prefiero WhatsApp</a>
       </div>
     </div>
@@ -163,5 +212,7 @@ const ldJson = [
   }
   .pilar :global(th) { color: var(--texto-oscuro); font-weight: 700; }
   .pilar :global(td:nth-child(2)) { white-space: nowrap; font-weight: 700; color: var(--texto-oscuro); }
+  .ventajas { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.95rem; opacity: 0.9; }
+  .ventajas li::before { content: "✓ "; color: var(--verde-claro); font-weight: 700; }
   .faq { border-bottom: 1px solid var(--borde); padding-bottom: 0.5rem; }
 </style>
