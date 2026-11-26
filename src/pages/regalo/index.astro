@@ -299,6 +299,10 @@ const faq = [
 
     evento('regalo_visita');
 
+    // Siempre empieza arriba, salvo que el enlace lleve un ancla (#presentate, #como...).
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (!location.hash) window.scrollTo(0, 0);
+
     // Clics con data-ev → evento de Clarity.
     document.querySelectorAll<HTMLElement>('[data-ev]').forEach((el) => {
       const name = el.dataset.ev!;
@@ -409,13 +413,10 @@ const faq = [
   .rg-clock-num { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
   .rg-eight { font-size: clamp(6rem, 26vw, 9.5rem); font-weight: 800; line-height: 0.9; color: #fff; letter-spacing: -0.06em; font-variant-numeric: tabular-nums; text-shadow: 0 0 50px rgba(168,224,99,0.5); }
   .rg-h { font-size: 1rem; font-weight: 800; letter-spacing: 0.35em; text-transform: uppercase; color: var(--lima); }
-  /* En el móvil el reloj va de fondo, grande y translúcido, detrás del titular: el botón sigue arriba. */
+  /* En el móvil el reloj no cabe bien: se quita y el 8 queda en el titular. */
   @media (max-width: 899px) {
     .rg-hero { align-items: flex-start; }
-    .rg-hero-copy { position: relative; z-index: 2; }
-    .rg-clock { position: absolute; z-index: 0; top: 3.2rem; right: -22vw; width: 92vw; opacity: 0.2; pointer-events: none; }
-    .rg-clock-num, .rg-tuerca { display: none; }
-    .rg-h1 { text-shadow: 0 2px 24px rgba(8,27,38,0.6); }
+    .rg-clock { display: none; }
   }
   .rg-tuerca { position: absolute; right: -6%; bottom: -8%; width: 46%; height: auto; animation: rgFloat 4s ease-in-out infinite; }
   @keyframes rgFloat { 50% { transform: translateY(-10px) rotate(-3deg); } }

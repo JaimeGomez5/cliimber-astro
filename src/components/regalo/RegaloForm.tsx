@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { useForm, ValidationError } from '@formspree/react';
 import { REGALO, cerrado, evento } from '../../lib/regalo';
 
 // Candidatura en dos pasos: primero el negocio y el problema (lo fácil y lo que engancha), luego el contacto.
-// Va por Formspree, igual que el formulario de contacto de la web: sin servidor propio ni claves que configurar.
+// Envío: primero /api/regalo (Resend + hoja de Google, functions/api/regalo.ts). Si esa función no está
+// configurada o falla, se envía por Formspree, igual que el contacto de la web. Así nunca se pierde una candidatura.
 
 const SECTORES = ['Clínica o veterinaria', 'Tienda o ecommerce', 'Consulta o profesional', 'Servicios', 'Hostelería', 'Otro'];
 const PISTAS = [
@@ -17,7 +17,7 @@ const PISTAS = [
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
 
 export default function RegaloForm() {
-  const [state, handleSubmit] = useForm(REGALO.formspreeId);
+  const [state, setState] = useState<{ submitting: boolean; succeeded: boolean; error: string }>({ submitting: false, succeeded: false, error: '' });
   const [paso, setPaso] = useState<1 | 2>(1);
   const [sector, setSector] = useState('');
   const [problema, setProblema] = useState('');
@@ -55,6 +55,52 @@ export default function RegaloForm() {
   const anadirPista = (p: string) => {
     marcarInicio();
     setProblema((t) => (t.trim() ? `${t.trim()}. ${p}` : p));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    setState({ submitting: true, succeeded: false, error: '' });
+    const fd = new FormData(form);
+    const datos: Record<string, string> = {};
+    fd.forEach((v, k) => {
+      if (typeof v === 'string') datos[k] = v;
+    });
+
+    try {
+      const r = await fetch('/api/regalo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(datos),
+      });
+      const res = await r.json().catch(() => ({}));
+      if (r.ok && res.ok) {
+        setState({ submitting: false, succeeded: true, error: '' });
+        return;
+      }
+      if (!res.fallback && r.status !== 404) {
+        setState({ submitting: false, succeeded: false, error: res.error || 'No se ha podido enviar. Prueba otra vez.' });
+        return;
+      }
+    } catch {
+      /* sin función o sin red: probamos con Formspree */
+    }
+
+    try {
+      const r = await fetch(`https://formspree.io/f/${REGALO.formspreeId}`, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
+      if (r.ok) setState({ submitting: false, succeeded: true, error: '' });
+      else {
+        const res = await r.json().catch(() => ({}));
+        const msg = res?.errors?.[0]?.message;
+        setState({ submitting: false, succeeded: false, error: msg || 'No se ha podido enviar. Prueba otra vez o escríbeme a jaimegomez@cliimber.com.' });
+      }
+    } catch {
+      setState({ submitting: false, succeeded: false, error: 'Sin conexión. Prueba otra vez en un momento.' });
+    }
   };
 
   const siguiente = () => {
@@ -199,7 +245,6 @@ export default function RegaloForm() {
 
           <label className="rg-label" htmlFor="rg-email">Email</label>
           <input id="rg-email" required={paso === 2} type="email" name="email" autoComplete="email" placeholder="tu@email.com" className="rg-input" />
-          <ValidationError field="email" prefix="Email" errors={state.errors} className="rg-error" />
 
           <label className="rg-label" htmlFor="rg-tel">Teléfono o WhatsApp <span className="rg-opt">(opcional)</span></label>
           <input id="rg-tel" type="tel" inputMode="tel" name="telefono" autoComplete="tel" placeholder="600 000 000" className="rg-input" />
@@ -217,7 +262,7 @@ export default function RegaloForm() {
             <span>Quiero que Jaime me escriba con ideas para mi negocio (opcional).</span>
           </label>
 
-          <ValidationError errors={state.errors} className="rg-error" />
+          {state.error && <p className="rg-error" role="alert">{state.error}</p>}
           <button type="submit" disabled={state.submitting} className="rg-btn rg-btn-lima rg-btn-full">
             {state.submitting ? 'Enviando…' : 'Presentar mi negocio'}
           </button>
