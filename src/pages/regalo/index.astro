@@ -1,0 +1,569 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import Logo from '../../components/Logo.astro';
+import Countdown from '../../components/regalo/Countdown';
+import RegaloForm from '../../components/regalo/RegaloForm';
+import { REGALO } from '../../lib/regalo';
+
+// Landing de la campaña «Tuerca regala 8 horas» (diciembre 2026).
+// Los vídeos y la imagen de Tuerca solo se pintan si el archivo existe en /public/regalo/ al hacer el build.
+const pub = (f: string) => fs.existsSync(path.join(process.cwd(), 'public', f));
+const hayReglas = pub('regalo/reglas.mp4');
+const hayPosterReglas = pub('regalo/reglas.jpg');
+const hayTuerca = pub('regalo/tuerca.webp');
+const hayJuego = pub('regalo/juego-listo.txt'); // crear este archivo vacío el día que el juego esté en /juego/
+
+const SITE = 'https://cliimber.com/';
+const canonical = SITE + 'regalo/';
+
+const herramientas = [
+  'Formularios que filtran clientes',
+  'Avisos automáticos',
+  'Recomendadores de producto',
+  'Calculadoras de presupuesto',
+  'Preconsultas antes de la cita',
+  'Recordatorios de recompra',
+];
+
+const faq = [
+  { q: '¿Es gratis de verdad?', a: 'Sí. Te regalo hasta 8 horas de trabajo: llamada, diseño, desarrollo y puesta en marcha de una herramienta. No te pido tarjeta ni firmas nada. Solo quedan fuera los costes de terceros que paguen cada mes, como un hosting o una licencia.' },
+  { q: '¿Qué pasa si no me eligen?', a: 'Te escribo igualmente, yo, con lo primero que cambiaría en tu caso. No es una auditoría completa, pero es una idea concreta para tu negocio.' },
+  { q: '¿Tengo que contratar algo después?', a: 'No. Si la herramienta te sirve y quieres seguir, lo hablamos. Si no, te la quedas y en paz.' },
+  { q: '¿Cómo eliges al negocio?', a: 'Con cinco criterios: que el problema sea concreto, que arreglarlo tenga impacto, que quepa en 8 horas, que el negocio se implique y que se pueda medir si ha funcionado. No es un sorteo.' },
+  { q: '¿Vale cualquier sector?', a: 'Sí. Clínicas, tiendas, consultas, servicios, hostelería. Si tienes un negocio en España y un problema que te quita tiempo o clientes, preséntate.' },
+];
+---
+<BaseLayout
+  title="Te regalo 8 horas para crear una herramienta para tu negocio | Cliimber"
+  description={`En vez de Black Friday, regalo 8 horas de trabajo para construir una herramienta a medida a un negocio: formularios, avisos automáticos, recomendadores. Candidaturas ${REGALO.cierreCorto}.`}
+  canonical={canonical}
+  ogTitle="Te regalo 8 horas para crear una herramienta para tu negocio"
+  ogDescription="Elijo un negocio y le construyo lo que más le haga falta. Gratis. Candidaturas hasta el 9 de diciembre."
+  hideWhatsApp
+  ldJson={{
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE },
+      { '@type': 'ListItem', position: 2, name: 'Regalo: 8 horas', item: canonical },
+    ],
+  }}
+>
+  <div class="rg">
+    <!-- CABECERA -->
+    <header class="rg-top">
+      <a href="/" aria-label="Cliimber, inicio"><Logo class="rg-logo" /></a>
+      <a href="#presentate" class="rg-top-cta">Presentarme</a>
+    </header>
+
+    <section class="rg-hero">
+      <div class="rg-sparks" aria-hidden="true">
+        {Array.from({ length: 18 }).map((_, i) => <i style={`--i:${i}`} />)}
+      </div>
+      <div class="rg-grid-bg" aria-hidden="true"></div>
+
+      <div class="rg-hero-in">
+        <div class="rg-hero-copy">
+          <span class="rg-tag">En vez de Black Friday</span>
+          <h1 class="rg-h1">
+            Te regalo <span class="rg-hl">8 horas</span> para crear una herramienta para tu negocio
+          </h1>
+          <p class="rg-lead">
+            Elijo un negocio y le construyo lo que más le haga falta: un formulario que filtra clientes, un aviso automático, un recomendador. Gratis, hecho por mí y funcionando.
+          </p>
+          <div class="rg-cd-wrap">
+            <span class="rg-cd-title">Candidaturas abiertas, cierran en</span>
+            <Countdown client:load />
+          </div>
+          <div class="rg-ctas">
+            <a href="#presentate" class="rg-btn rg-btn-lima rg-btn-big" data-ev="regalo_cta_hero">Presentar mi negocio</a>
+            <a href="#que-entra" class="rg-btn rg-btn-ghost">Qué puedo construirte</a>
+          </div>
+          <p class="rg-micro">Sin tarjeta. Sin compromiso. 2 pasos, menos de un minuto.</p>
+        </div>
+
+        <div class="rg-clock" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="rg-ring">
+            <defs>
+              <linearGradient id="rgGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#a8e063" />
+                <stop offset="100%" stop-color="#2a9770" />
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="86" class="rg-ring-bg" />
+            {Array.from({ length: 8 }).map((_, i) => (
+              <circle cx="100" cy="100" r="86" class="rg-seg" style={`--s:${i}`} pathLength="80" />
+            ))}
+          </svg>
+          <div class="rg-clock-num">
+            <span class="rg-eight" id="rgEight">8</span>
+            <span class="rg-h">horas</span>
+          </div>
+          {hayTuerca && <img src="/regalo/tuerca.webp" alt="" class="rg-tuerca" width="220" height="220" loading="eager" />}
+        </div>
+      </div>
+    </section>
+
+    <!-- CINTA -->
+    <div class="rg-marquee" aria-hidden="true">
+      <div class="rg-marquee-in">
+        {[...herramientas, ...herramientas].map((h) => <span>{h}<b>·</b></span>)}
+      </div>
+    </div>
+
+    <!-- QUÉ ENTRA -->
+    <section class="rg-sec" id="que-entra">
+      <div class="rg-in">
+        <span class="rg-tag rg-tag-light">Qué cabe en 8 horas</span>
+        <h2 class="rg-h2 reveal">Una herramienta, bien hecha y funcionando</h2>
+        <p class="rg-sub reveal">Algunos ejemplos de lo que puedo construirte. Elegimos juntos la que más te haga falta.</p>
+
+        <div class="rg-cards">
+          <article class="rg-card reveal">
+            <div class="rg-mock rg-mock-form" aria-hidden="true">
+              <div class="m-q">¿Qué necesitas?</div>
+              <div class="m-opt">Primera visita</div>
+              <div class="m-opt m-pick">Revisión</div>
+              <div class="m-opt">Urgencia</div>
+              <div class="m-ok">Cita pedida</div>
+            </div>
+            <h3>Formulario que filtra</h3>
+            <p>Pregunta lo justo, se adapta a cada respuesta y te llega ordenado. Se acabó el «hola, quería información».</p>
+          </article>
+
+          <article class="rg-card reveal">
+            <div class="rg-mock rg-mock-aviso" aria-hidden="true">
+              <div class="m-phone">
+                <div class="m-notif">
+                  <b>Tienda de ejemplo</b>
+                  <span>A Luna se le acaba el pienso en 5 días. ¿Te lo mandamos?</span>
+                </div>
+              </div>
+            </div>
+            <h3>Aviso automático</h3>
+            <p>El cliente recibe el mensaje justo cuando lo necesita: recompra, cita, resultado. Sin que tú estés pendiente.</p>
+          </article>
+
+          <article class="rg-card reveal">
+            <div class="rg-mock rg-mock-reco" aria-hidden="true">
+              <div class="m-dots"><i></i><i></i><i></i></div>
+              <div class="m-result">
+                <span>Te recomendamos</span>
+                <b>Pack cachorro talla M</b>
+              </div>
+            </div>
+            <h3>Recomendador</h3>
+            <p>Tres o cuatro preguntas y el cliente sabe qué comprar. Lo que le dirías tú en la tienda, en la web.</p>
+          </article>
+
+          <article class="rg-card reveal">
+            <div class="rg-mock rg-mock-calc" aria-hidden="true">
+              <div class="m-line"><span>Servicio</span><span>Básico</span></div>
+              <div class="m-line"><span>Extras</span><span>2</span></div>
+              <div class="m-total"><span>Presupuesto</span><b>al momento</b></div>
+            </div>
+            <h3>Calculadora de presupuesto</h3>
+            <p>El cliente se hace una idea del precio sin esperar a que le contestes. Tú recibes solo a los que encajan.</p>
+          </article>
+        </div>
+        <p class="rg-demo-note">Ejemplos con datos ficticios.</p>
+
+        <div class="rg-split">
+          <div class="rg-video-real reveal">
+            <video src="/videos/reel-formulario-web.mp4" poster="/videos/reel-formulario-poster.jpg" muted loop playsinline preload="none" controls data-ev="regalo_video_real"></video>
+          </div>
+          <div class="rg-split-copy reveal">
+            <h3 class="rg-h3">Así es uno de verdad</h3>
+            <p>Esto no es una maqueta: es un formulario a medida que construí y está funcionando. En 8 horas te hago algo así para el problema que más te cueste.</p>
+            <ul class="rg-list">
+              <li><b>Entra:</b> llamada para entender el problema, diseño, desarrollo, pruebas y puesta en marcha.</li>
+              <li class="no"><b>No entra:</b> una web completa, una tienda online, conectarlo con tu programa de gestión, hosting, dominios ni licencias.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {hayReglas && (
+      <section class="rg-sec rg-sec-dark" id="reglas">
+        <div class="rg-in rg-reglas">
+          <h2 class="rg-h2">Las reglas, en un minuto</h2>
+          <video src="/regalo/reglas.mp4" poster={hayPosterReglas ? '/regalo/reglas.jpg' : undefined} controls playsinline preload="metadata" class="rg-video-reglas" data-ev="regalo_video_play"></video>
+        </div>
+      </section>
+    )}
+
+    <!-- CÓMO PARTICIPAR -->
+    <section class="rg-sec rg-sec-dark" id="como">
+      <div class="rg-in">
+        <span class="rg-tag">Cómo participar</span>
+        <h2 class="rg-h2 reveal">Tres pasos</h2>
+        <ol class="rg-pasos">
+          <li class="reveal">
+            <span class="rg-n">1</span>
+            <div>
+              <h3>Sigue a <a href={REGALO.instagramUrl} target="_blank" rel="noopener">{REGALO.instagram}</a></h3>
+              <p>Ahí anuncio el elegido y cuento cómo se construye.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="rg-n">2</span>
+            <div>
+              <h3>Cuéntame tu problema</h3>
+              <p>Con tus palabras: qué te quita tiempo o clientes. Dos pasos, menos de un minuto.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="rg-n">3</span>
+            <div>
+              <h3>Antes del {REGALO.cierreTexto}</h3>
+              <p>El {REGALO.anuncioTexto} anuncio el negocio elegido. La herramienta se construye en enero.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="rg-criterios reveal">
+          <h3 class="rg-h3">Cómo elijo</h3>
+          <div class="rg-crit-grid">
+            <span>Un problema concreto</span>
+            <span>Que arreglarlo tenga impacto</span>
+            <span>Que quepa en 8 horas</span>
+            <span>Ganas de implicarse</span>
+            <span>Que se pueda medir</span>
+          </div>
+          <p>No es un sorteo: lo leo todo yo. Y a quien no elija, le escribo con lo primero que cambiaría en su caso.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULARIO -->
+    <section class="rg-sec rg-form-sec" id="presentate">
+      <div class="rg-in rg-form-in">
+        <div class="rg-form-copy">
+          <span class="rg-tag rg-tag-light">Tu candidatura</span>
+          <h2 class="rg-h2">Presenta tu negocio</h2>
+          <p class="rg-sub">Cuanto más concreto sea el problema, más fácil es que lo elija.</p>
+          <div class="rg-form-cd"><Countdown client:load compact /></div>
+        </div>
+        <RegaloForm client:load />
+      </div>
+    </section>
+
+    <!-- JUEGO -->
+    <section class="rg-sec rg-sec-dark rg-juego">
+      <div class="rg-in">
+        <span class="rg-tag">Mientras esperas</span>
+        {hayJuego ? (
+          <>
+            <h2 class="rg-h2">Juega a la semana de Tuerca</h2>
+            <p class="rg-sub rg-sub-dark">Tuerca tiene que entregar una herramienta antes del viernes. ¿Le ayudas?</p>
+            <a class="rg-btn rg-btn-lima rg-btn-big" href="/juego/" data-ev="regalo_ir_juego">Jugar</a>
+          </>
+        ) : (
+          <>
+            <h2 class="rg-h2">Tuerca está terminando un juego</h2>
+            <p class="rg-sub rg-sub-dark">Muy pronto, aquí. Mientras tanto, el formulario está abierto.</p>
+          </>
+        )}
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="rg-sec" id="preguntas">
+      <div class="rg-in rg-faq">
+        <h2 class="rg-h2">Preguntas</h2>
+        {faq.map((f) => (
+          <details class="rg-q">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+        <p class="rg-bases-link">Todas las condiciones, en las <a href="/regalo/bases/">bases</a>.</p>
+      </div>
+    </section>
+
+    <!-- BARRA FIJA (móvil) -->
+    <div class="rg-sticky" id="rgSticky">
+      <div class="rg-sticky-cd"><Countdown client:idle compact /></div>
+      <a href="#presentate" class="rg-btn rg-btn-lima" data-ev="regalo_cta_sticky">Presentar mi negocio</a>
+    </div>
+  </div>
+
+  <Footer />
+
+  <script>
+    import { evento } from '../../lib/regalo';
+
+    evento('regalo_visita');
+
+    // Clics con data-ev → evento de Clarity.
+    document.querySelectorAll<HTMLElement>('[data-ev]').forEach((el) => {
+      const name = el.dataset.ev!;
+      el.addEventListener(el.tagName === 'VIDEO' ? 'play' : 'click', () => evento(name), { once: el.tagName === 'VIDEO' });
+    });
+
+    // El vídeo real se reproduce solo cuando se ve (sin cargar nada antes).
+    const real = document.querySelector<HTMLVideoElement>('.rg-video-real video');
+    if (real && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => {
+        es.forEach((e) => {
+          if (e.isIntersecting) { real.play().catch(() => {}); } else { real.pause(); }
+        });
+      }, { threshold: 0.5 });
+      io.observe(real);
+    }
+
+    // Barra fija: aparece al pasar la cabecera y se esconde cuando el formulario está en pantalla.
+    const sticky = document.getElementById('rgSticky');
+    const hero = document.querySelector('.rg-hero');
+    const form = document.getElementById('presentate');
+    if (sticky && hero && form && 'IntersectionObserver' in window) {
+      let pastHero = false;
+      let formVisible = false;
+      const paint = () => sticky.classList.toggle('show', pastHero && !formVisible);
+      new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; paint(); }, { threshold: 0 }).observe(hero);
+      new IntersectionObserver(([e]) => { formVisible = e.isIntersecting; paint(); }, { threshold: 0.15 }).observe(form);
+    }
+
+    // El 8 cuenta desde 0 mientras se llena el reloj.
+    const eight = document.getElementById('rgEight');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (eight && !reduce) {
+      let n = 0;
+      eight.textContent = '0';
+      const t = window.setInterval(() => {
+        n += 1;
+        eight.textContent = String(n);
+        if (n >= 8) window.clearInterval(t);
+      }, 230);
+    }
+  </script>
+</BaseLayout>
+
+<style is:global>
+  .rg { --navy: #0b2433; --navy2: #0f3347; --lima: #a8e063; --verde: #2a9770; --verde-o: #0a5f4a; background: #fff; overflow-x: clip; }
+  .rg a { color: inherit; }
+  .rg-in { max-width: 1120px; margin-inline: auto; padding-inline: 1.25rem; }
+
+  /* Cabecera */
+  .rg-top { position: absolute; inset: 0 0 auto 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; max-width: 1120px; margin-inline: auto; color: #fff; }
+  .rg-logo { font-size: 1.35rem; }
+  .rg-top-cta { font-weight: 700; font-size: 0.9rem; padding: 0.55rem 1rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); text-decoration: none; }
+  .rg-top-cta:hover { border-color: var(--lima); color: var(--lima); }
+
+  /* Botones */
+  .rg-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 50px; padding: 0.85rem 1.5rem; border-radius: 999px; font-weight: 800; text-decoration: none; border: 0; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; font-size: 1rem; }
+  .rg-btn-lima { background: var(--lima); color: #0b2433 !important; box-shadow: 0 10px 30px -10px rgba(168,224,99,0.8); }
+  .rg-btn-lima:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(168,224,99,0.95); }
+  .rg-btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+  .rg-btn-ghost:hover { border-color: var(--lima); color: var(--lima); }
+  .rg-btn-big { min-height: 58px; font-size: 1.08rem; padding-inline: 2rem; }
+  .rg-btn-full { width: 100%; }
+  .rg-btn[disabled] { opacity: 0.6; cursor: wait; }
+  .rg-btn-lima:not([disabled]) { animation: rgPulse 2.6s ease-in-out infinite; }
+  @keyframes rgPulse { 0%,100% { box-shadow: 0 10px 30px -10px rgba(168,224,99,0.7); } 50% { box-shadow: 0 10px 40px -4px rgba(168,224,99,0.95); } }
+
+  .rg-tag { display: inline-block; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lima); background: rgba(168,224,99,0.12); border: 1px solid rgba(168,224,99,0.3); padding: 0.4rem 0.85rem; border-radius: 999px; }
+  .rg-tag-light { color: var(--verde-o); background: #e8f5f1; border-color: #cde9df; }
+  .rg-micro { font-size: 0.85rem; opacity: 0.7; margin-top: 0.75rem; }
+
+  /* Hero */
+  .rg-hero { position: relative; min-height: 100svh; display: flex; align-items: center; color: #f5f8f9; background: radial-gradient(1200px 600px at 80% 10%, rgba(42,151,112,0.35), transparent 60%), radial-gradient(900px 500px at 0% 100%, rgba(168,224,99,0.14), transparent 60%), linear-gradient(160deg, #081b26 0%, #0f3347 60%, #0b2433 100%); padding: 6.5rem 0 4rem; overflow: hidden; }
+  .rg-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px); background-size: 44px 44px; mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); animation: rgGrid 20s linear infinite; }
+  @keyframes rgGrid { to { background-position: 44px 44px; } }
+  .rg-sparks i { position: absolute; bottom: -10px; left: calc(var(--i) * 5.6%); width: 4px; height: 4px; border-radius: 50%; background: var(--lima); box-shadow: 0 0 10px 2px rgba(168,224,99,0.7); opacity: 0; animation: rgSpark 7s linear infinite; animation-delay: calc(var(--i) * -0.41s); }
+  .rg-sparks i:nth-child(3n) { background: #fff; width: 3px; height: 3px; }
+  @keyframes rgSpark { 0% { transform: translateY(0) scale(1); opacity: 0; } 10% { opacity: 1; } 80% { opacity: 0.6; } 100% { transform: translateY(-105svh) translateX(30px) scale(0.4); opacity: 0; } }
+
+  .rg-hero-in { position: relative; z-index: 2; max-width: 1120px; margin-inline: auto; padding-inline: 1.25rem; display: grid; gap: 2.5rem; align-items: center; width: 100%; }
+  @media (min-width: 900px) { .rg-hero-in { grid-template-columns: 1.15fr 0.85fr; } }
+  .rg-h1 { font-size: clamp(2.2rem, 7.5vw, 4.3rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.035em; margin: 1rem 0 1.1rem; }
+  .rg-hl { color: var(--lima); position: relative; white-space: nowrap; text-shadow: 0 0 40px rgba(168,224,99,0.45); }
+  .rg-hl::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0.06em; height: 0.14em; background: var(--lima); border-radius: 4px; transform-origin: left; transform: scaleX(0); animation: rgUnder 0.9s 0.5s cubic-bezier(.2,.8,.2,1) forwards; opacity: 0.55; }
+  @keyframes rgUnder { to { transform: scaleX(1); } }
+  .rg-lead { font-size: clamp(1.05rem, 2.6vw, 1.25rem); line-height: 1.55; color: rgba(245,248,249,0.82); max-width: 36rem; }
+  .rg-hero-copy > * { animation: rgIn 0.8s cubic-bezier(.2,.8,.2,1) both; }
+  .rg-hero-copy > *:nth-child(2) { animation-delay: 0.08s; } .rg-hero-copy > *:nth-child(3) { animation-delay: 0.16s; } .rg-hero-copy > *:nth-child(4) { animation-delay: 0.24s; } .rg-hero-copy > *:nth-child(5) { animation-delay: 0.32s; } .rg-hero-copy > *:nth-child(6) { animation-delay: 0.4s; }
+  @keyframes rgIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .rg-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.4rem; }
+
+  /* Cuenta atrás */
+  .rg-cd-wrap { margin-top: 1.6rem; }
+  .rg-cd-title { display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(245,248,249,0.6); margin-bottom: 0.5rem; }
+  .rg-cd { display: flex; gap: 0.5rem; }
+  .rg-cd-cell { min-width: 68px; padding: 0.6rem 0.5rem; text-align: center; border-radius: 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(6px); }
+  .rg-cd-num { display: block; font-size: 1.7rem; font-weight: 800; font-variant-numeric: tabular-nums; color: #fff; line-height: 1; }
+  .rg-cd-label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-top: 0.3rem; }
+  .rg-cd-closed { font-weight: 800; color: var(--lima); }
+  .rg-cd-compact { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* Reloj */
+  .rg-clock { position: relative; width: min(78vw, 380px); aspect-ratio: 1; margin-inline: auto; }
+  .rg-ring { width: 100%; height: 100%; transform: rotate(-90deg); filter: drop-shadow(0 0 30px rgba(168,224,99,0.35)); }
+  .rg-ring-bg { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 14; }
+  .rg-seg { fill: none; stroke: url(#rgGrad); stroke-width: 14; stroke-linecap: round; stroke-dasharray: 0 80; stroke-dashoffset: calc(var(--s) * -10); animation: rgSeg 0.32s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(0.35s + var(--s) * 0.23s); }
+  @keyframes rgSeg { to { stroke-dasharray: 8.6 80; } }
+  .rg-clock-num { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+  .rg-eight { font-size: clamp(6rem, 26vw, 9.5rem); font-weight: 800; line-height: 0.9; color: #fff; letter-spacing: -0.06em; font-variant-numeric: tabular-nums; text-shadow: 0 0 50px rgba(168,224,99,0.5); }
+  .rg-h { font-size: 1rem; font-weight: 800; letter-spacing: 0.35em; text-transform: uppercase; color: var(--lima); }
+  /* En el móvil el reloj va de fondo, grande y translúcido, detrás del titular: el botón sigue arriba. */
+  @media (max-width: 899px) {
+    .rg-hero { align-items: flex-start; }
+    .rg-hero-copy { position: relative; z-index: 2; }
+    .rg-clock { position: absolute; z-index: 0; top: 3.2rem; right: -22vw; width: 92vw; opacity: 0.2; pointer-events: none; }
+    .rg-clock-num, .rg-tuerca { display: none; }
+    .rg-h1 { text-shadow: 0 2px 24px rgba(8,27,38,0.6); }
+  }
+  .rg-tuerca { position: absolute; right: -6%; bottom: -8%; width: 46%; height: auto; animation: rgFloat 4s ease-in-out infinite; }
+  @keyframes rgFloat { 50% { transform: translateY(-10px) rotate(-3deg); } }
+
+  /* Cinta */
+  .rg-marquee { background: var(--lima); color: #0b2433; overflow: hidden; padding: 0.95rem 0; font-weight: 800; font-size: 1.05rem; transform: rotate(-1.2deg); margin: -1.2rem -2rem 0; position: relative; z-index: 3; box-shadow: 0 12px 30px -12px rgba(0,0,0,0.3); }
+  .rg-marquee-in { display: flex; gap: 2rem; width: max-content; animation: rgMarq 26s linear infinite; }
+  .rg-marquee-in span { white-space: nowrap; display: inline-flex; gap: 2rem; }
+  .rg-marquee-in b { opacity: 0.5; }
+  @keyframes rgMarq { to { transform: translateX(-50%); } }
+
+  /* Secciones */
+  .rg-sec { padding: 5rem 0; }
+  .rg-sec-dark { background: linear-gradient(180deg, #0b2433, #0f3347); color: #f5f8f9; }
+  .rg-h2 { font-size: clamp(1.9rem, 5.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.06; margin: 0.9rem 0 0.8rem; }
+  .rg-h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+  .rg-sub { font-size: 1.1rem; color: #4a5f68; max-width: 38rem; }
+  .rg-sub-dark { color: rgba(245,248,249,0.75); margin-bottom: 1.5rem; }
+
+  /* Tarjetas */
+  .rg-cards { display: grid; gap: 1rem; margin-top: 2.2rem; }
+  @media (min-width: 640px) { .rg-cards { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .rg-cards { grid-template-columns: repeat(4, 1fr); } }
+  .rg-card { border: 1px solid #dbe7ec; border-radius: 22px; padding: 1.1rem 1.1rem 1.3rem; background: #fff; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+  .rg-card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -24px rgba(15,51,71,0.35); border-color: var(--verde); }
+  .rg-card h3 { font-weight: 800; font-size: 1.12rem; margin: 1rem 0 0.35rem; }
+  .rg-card p { color: #4a5f68; font-size: 0.96rem; line-height: 1.5; }
+  .rg-demo-note { font-size: 0.8rem; color: #7a8e96; margin-top: 0.8rem; }
+
+  .rg-mock { height: 150px; border-radius: 16px; background: linear-gradient(160deg, #0f3347, #0b2433); padding: 0.9rem; position: relative; overflow: hidden; color: #fff; font-size: 0.8rem; }
+  .rg-mock-form .m-q { font-weight: 800; margin-bottom: 0.45rem; }
+  .rg-mock-form .m-opt { border: 1px solid rgba(255,255,255,0.18); border-radius: 9px; padding: 0.28rem 0.55rem; margin-bottom: 0.3rem; opacity: 0.85; }
+  .rg-mock-form .m-pick { animation: mPick 4s infinite; }
+  @keyframes mPick { 0%,25% { background: transparent; border-color: rgba(255,255,255,0.18); } 35%,100% { background: rgba(168,224,99,0.2); border-color: var(--lima); } }
+  .rg-mock-form .m-ok { position: absolute; left: 0.9rem; right: 0.9rem; bottom: 0.7rem; background: var(--lima); color: #0b2433; font-weight: 800; border-radius: 9px; padding: 0.35rem 0.6rem; text-align: center; transform: translateY(160%); animation: mOk 4s infinite; }
+  @keyframes mOk { 0%,45% { transform: translateY(160%); } 55%,90% { transform: none; } 100% { transform: translateY(160%); } }
+  .rg-mock-aviso .m-phone { position: absolute; left: 50%; top: 0.8rem; width: 62%; height: 170px; transform: translateX(-50%); border-radius: 18px; border: 2px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+  .rg-mock-aviso .m-notif { position: absolute; left: 6%; right: 6%; top: 0.8rem; background: #fff; color: #0b2433; border-radius: 12px; padding: 0.45rem 0.55rem; font-size: 0.7rem; line-height: 1.3; box-shadow: 0 8px 20px rgba(0,0,0,0.3); animation: mNotif 4s infinite; }
+  .rg-mock-aviso .m-notif b { display: block; font-size: 0.68rem; color: #0a5f4a; }
+  @keyframes mNotif { 0%,15% { transform: translateY(-140%); opacity: 0; } 28%,85% { transform: none; opacity: 1; } 100% { transform: translateY(-140%); opacity: 0; } }
+  .rg-mock-reco .m-dots { display: flex; gap: 0.4rem; justify-content: center; margin-top: 0.4rem; }
+  .rg-mock-reco .m-dots i { width: 34px; height: 8px; border-radius: 9px; background: rgba(255,255,255,0.15); animation: mDot 4s infinite; }
+  .rg-mock-reco .m-dots i:nth-child(2) { animation-delay: 0.4s; } .rg-mock-reco .m-dots i:nth-child(3) { animation-delay: 0.8s; }
+  @keyframes mDot { 0%,10% { background: rgba(255,255,255,0.15); } 25%,100% { background: var(--lima); } }
+  .rg-mock-reco .m-result { margin: 1.1rem auto 0; width: 80%; text-align: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(168,224,99,0.5); border-radius: 12px; padding: 0.6rem; opacity: 0; animation: mRes 4s infinite; }
+  .rg-mock-reco .m-result span { display: block; font-size: 0.68rem; opacity: 0.7; } .rg-mock-reco .m-result b { color: var(--lima); }
+  @keyframes mRes { 0%,40% { opacity: 0; transform: scale(0.9); } 52%,92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  .rg-mock-calc .m-line { display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.15); padding: 0.4rem 0; }
+  .rg-mock-calc .m-total { display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem; background: rgba(168,224,99,0.15); border-radius: 10px; padding: 0.5rem 0.6rem; }
+  .rg-mock-calc .m-total b { color: var(--lima); font-size: 0.95rem; animation: mCalc 4s infinite; }
+  @keyframes mCalc { 0%,30% { opacity: 0.2; letter-spacing: 0.3em; } 45%,100% { opacity: 1; letter-spacing: 0; } }
+
+  /* Vídeo real + entra/no entra */
+  .rg-split { display: grid; gap: 2rem; margin-top: 3.5rem; align-items: center; }
+  @media (min-width: 900px) { .rg-split { grid-template-columns: 0.8fr 1.2fr; } }
+  .rg-video-real { max-width: 320px; margin-inline: auto; border-radius: 28px; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(15,51,71,0.55); border: 6px solid #0b2433; background: #0b2433; }
+  .rg-video-real video { display: block; width: 100%; height: auto; }
+  .rg-split-copy p { color: #4a5f68; font-size: 1.05rem; line-height: 1.6; }
+  .rg-list { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: 0.7rem; }
+  .rg-list li { padding: 0.9rem 1rem 0.9rem 2.6rem; border-radius: 14px; background: #e8f5f1; position: relative; line-height: 1.5; }
+  .rg-list li::before { content: ''; position: absolute; left: 1rem; top: 1.15rem; width: 0.9rem; height: 0.9rem; border-radius: 50%; background: var(--verde); }
+  .rg-list li.no { background: #f5f8f9; }
+  .rg-list li.no::before { background: #c4d6df; }
+
+  .rg-reglas { text-align: center; }
+  .rg-video-reglas { width: min(100%, 380px); border-radius: 24px; margin-top: 1.5rem; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5); }
+
+  /* Pasos */
+  .rg-pasos { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1rem; }
+  @media (min-width: 900px) { .rg-pasos { grid-template-columns: repeat(3, 1fr); } }
+  .rg-pasos li { display: flex; gap: 1rem; align-items: flex-start; padding: 1.3rem; border-radius: 22px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); }
+  .rg-n { flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-content: center; font-weight: 800; font-size: 1.6rem; color: #0b2433; background: var(--lima); box-shadow: 0 0 30px -6px rgba(168,224,99,0.8); }
+  .rg-pasos h3 { font-weight: 800; font-size: 1.15rem; margin-bottom: 0.3rem; }
+  .rg-pasos h3 a { color: var(--lima); }
+  .rg-pasos p { color: rgba(245,248,249,0.72); line-height: 1.5; }
+  .rg-criterios { margin-top: 2.8rem; padding: 1.6rem; border-radius: 24px; border: 1px dashed rgba(168,224,99,0.45); }
+  .rg-crit-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 1rem; }
+  .rg-crit-grid span { padding: 0.5rem 0.9rem; border-radius: 999px; background: rgba(168,224,99,0.12); color: var(--lima); font-weight: 700; font-size: 0.92rem; }
+  .rg-criterios p { color: rgba(245,248,249,0.72); }
+
+  /* Formulario */
+  .rg-form-sec { background: radial-gradient(800px 400px at 100% 0%, rgba(168,224,99,0.18), transparent 60%), #f5f8f9; }
+  .rg-form-in { display: grid; gap: 2rem; align-items: start; }
+  @media (min-width: 900px) { .rg-form-in { grid-template-columns: 0.8fr 1.2fr; } .rg-form-copy { position: sticky; top: 2rem; } }
+  .rg-form-cd { margin-top: 1rem; display: inline-block; padding: 0.55rem 1rem; border-radius: 999px; background: #0f3347; color: var(--lima); font-size: 0.92rem; }
+  .rg-form { background: #fff; border-radius: 26px; padding: 1.4rem; box-shadow: 0 40px 80px -40px rgba(15,51,71,0.45); border: 1px solid #dbe7ec; scroll-margin-top: 1rem; }
+  @media (min-width: 640px) { .rg-form { padding: 2rem; } }
+  .rg-steps { position: relative; display: flex; justify-content: space-between; font-weight: 800; font-size: 0.82rem; color: #9fb2ba; padding-bottom: 0.8rem; margin-bottom: 1.2rem; }
+  .rg-steps span.on { color: #0a5f4a; }
+  .rg-steps::after, .rg-steps i { content: ''; position: absolute; left: 0; bottom: 0; height: 5px; border-radius: 9px; }
+  .rg-steps::after { right: 0; background: #e3ecef; }
+  .rg-steps i { background: linear-gradient(90deg, #2a9770, #a8e063); transition: width 0.5s cubic-bezier(.2,.8,.2,1); z-index: 1; }
+  .rg-fs { border: 0; padding: 0; margin: 0; display: grid; gap: 0.55rem; animation: rgIn 0.45s cubic-bezier(.2,.8,.2,1); }
+  .rg-hidden { display: none; }
+  .rg-label { font-weight: 800; font-size: 0.98rem; margin-top: 0.6rem; color: #0d2838; }
+  .rg-help { font-size: 0.86rem; color: #7a8e96; margin-top: -0.25rem; }
+  .rg-opt { font-weight: 500; color: #7a8e96; }
+  .rg-input { width: 100%; font: inherit; font-size: 16px; padding: 0.9rem 1rem; border-radius: 14px; border: 1.5px solid #c4d6df; background: #fff; color: #0d2838; transition: border-color 0.2s, box-shadow 0.2s; }
+  .rg-input:focus { outline: none; border-color: #2a9770; box-shadow: 0 0 0 4px rgba(42,151,112,0.15); }
+  textarea.rg-input { resize: vertical; min-height: 110px; }
+  .rg-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .rg-chip { font: inherit; font-weight: 700; font-size: 0.9rem; padding: 0.6rem 0.9rem; min-height: 42px; border-radius: 999px; border: 1.5px solid #c4d6df; background: #fff; color: #0d2838; cursor: pointer; transition: all 0.18s; }
+  .rg-chip:hover { border-color: #2a9770; }
+  .rg-chip.on { background: #0a5f4a; border-color: #0a5f4a; color: #fff; transform: scale(1.03); }
+  .rg-chips-sm .rg-chip { font-size: 0.82rem; font-weight: 600; min-height: 38px; padding: 0.45rem 0.75rem; background: #f5f8f9; }
+  .rg-check-row { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.92rem; line-height: 1.45; margin-top: 0.6rem; color: #4a5f68; cursor: pointer; }
+  .rg-check-row input { width: 22px; height: 22px; flex: none; accent-color: #0a5f4a; margin-top: 1px; }
+  .rg-check-row a { color: #0a5f4a; font-weight: 700; }
+  .rg-error { color: #a8332d; font-weight: 700; font-size: 0.92rem; }
+  .rg-note { color: #0a5f4a; font-weight: 700; margin-top: 0.8rem; }
+  .rg-fs .rg-btn { margin-top: 0.9rem; }
+  .rg-fs .rg-micro { text-align: center; color: #7a8e96; opacity: 1; margin-top: 0.3rem; }
+  .rg-back { font: inherit; background: none; border: 0; color: #7a8e96; text-decoration: underline; cursor: pointer; margin-top: 0.3rem; }
+  .rg-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .rg-done { text-align: center; display: grid; gap: 0.8rem; justify-items: center; padding-block: 2.2rem; }
+  .rg-done-big { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; color: #0d2838; }
+  .rg-done p { color: #4a5f68; max-width: 30rem; line-height: 1.55; }
+  .rg-done-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 0.5rem; }
+  .rg-done .rg-btn-ghost { color: #0d2838; border-color: #c4d6df; }
+  .rg-check svg { width: 78px; height: 78px; }
+  .rg-check circle { fill: none; stroke: #a8e063; stroke-width: 3; stroke-dasharray: 160; stroke-dashoffset: 160; animation: rgDraw 0.7s ease forwards; }
+  .rg-check path { fill: none; stroke: #0a5f4a; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: rgDraw 0.4s 0.55s ease forwards; }
+  @keyframes rgDraw { to { stroke-dashoffset: 0; } }
+
+  .rg-juego { text-align: center; }
+  .rg-juego .rg-sub { margin-inline: auto; }
+
+  /* FAQ */
+  .rg-faq { max-width: 760px; }
+  .rg-q { border-bottom: 1px solid #dbe7ec; padding: 1.1rem 0; }
+  .rg-q summary { font-weight: 800; font-size: 1.08rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  .rg-q summary::-webkit-details-marker { display: none; }
+  .rg-q summary::after { content: '+'; font-size: 1.4rem; line-height: 1; color: #2a9770; transition: transform 0.2s; }
+  .rg-q[open] summary::after { transform: rotate(45deg); }
+  .rg-q p { color: #4a5f68; line-height: 1.6; margin-top: 0.6rem; }
+  .rg-bases-link { margin-top: 1.5rem; color: #4a5f68; }
+  .rg-bases-link a { color: #0a5f4a; font-weight: 800; }
+
+  /* Barra fija móvil */
+  .rg-sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 998; display: flex; align-items: center; gap: 0.75rem; justify-content: space-between; padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom)); background: rgba(11,36,51,0.92); backdrop-filter: blur(12px); color: #f5f8f9; border-top: 1px solid rgba(168,224,99,0.25); transform: translateY(110%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1); }
+  .rg-sticky.show { transform: none; }
+  .rg-sticky .rg-btn { min-height: 46px; padding-inline: 1.1rem; font-size: 0.95rem; }
+  .rg-sticky-cd { font-size: 0.82rem; color: var(--lima); line-height: 1.2; }
+  @media (min-width: 900px) { .rg-sticky { display: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rg *, .rg *::before, .rg *::after { animation: none !important; transition: none !important; }
+    .rg-seg { stroke-dasharray: 8.6 80; }
+    .rg-hl::after { transform: none; }
+  }
+</style>
