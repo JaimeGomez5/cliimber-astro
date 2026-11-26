@@ -1,0 +1,27 @@
+# Revisión automática (CI). El despliegue (CD) lo hace Cloudflare Pages:
+# vista previa en cada rama y producción al fusionar en main.
+# Esta revisión comprueba que la web compila y pasa scripts/check-dist.mjs
+# antes de fusionar. Si sale en rojo en un pull request, no fusionar.
+name: Revisión
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Compilar
+        run: npm run build
+      - name: Revisar la web compilada
+        run: npm run check
