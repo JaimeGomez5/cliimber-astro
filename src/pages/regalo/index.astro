@@ -38,10 +38,10 @@ const faq = [
 ];
 ---
 <BaseLayout
-  title="Construyo gratis una herramienta para tu negocio | Cliimber"
+  title="No te regalo una web: te regalo 8 horas para tu negocio | Cliimber"
   description={`En vez de Black Friday, construyo gratis una herramienta a medida para un negocio de cualquier sector: formularios, presupuestos, avisos automáticos. Hasta 8 horas de trabajo. Candidaturas ${REGALO.cierreCorto}.`}
   canonical={canonical}
-  ogTitle="Construyo gratis una herramienta para tu negocio"
+  ogTitle="No te regalo una web. Te regalo 8 horas para resolver un problema real de tu negocio"
   ogDescription="Elijo un negocio con un problema concreto y le dedico hasta 8 horas a resolverlo. 0 € de desarrollo. Candidaturas hasta el 9 de diciembre."
   hideWhatsApp
   ldJson={{
@@ -68,12 +68,12 @@ const faq = [
 
       <div class="rg-hero-in">
         <div class="rg-hero-copy">
-          <span class="rg-tag">En vez de Black Friday · 8 horas de regalo</span>
+          <span class="rg-tag">En vez de Black Friday</span>
           <h1 class="rg-h1">
-            Construyo gratis una <span class="rg-hl">herramienta</span> para tu negocio
+            No te regalo una web. Te regalo <span class="rg-hl">8 horas</span> para resolver un problema real de tu negocio
           </h1>
           <p class="rg-lead">
-            Elijo un negocio con un problema concreto y le dedico hasta 8 horas a construirle una herramienta que lo resuelva: un formulario que filtra clientes, un generador de presupuestos, un aviso automático. 0 € de desarrollo. De cualquier sector.
+            Elijo un negocio y le construyo una herramienta a medida, del diagnóstico a la puesta en marcha: un formulario que filtra clientes, un generador de presupuestos, un aviso automático. Sin coste de desarrollo y sin obligación de contratar después. De cualquier sector.
           </p>
           <div class="rg-cd-wrap">
             <span class="rg-cd-title">Candidaturas abiertas, cierran en</span>
@@ -127,6 +127,19 @@ const faq = [
           <li class="reveal">«Hay tareas que sigo haciendo a mano.»</li>
         </ul>
         <p class="rg-dolor-remate reveal">Puede que no necesites contratar a nadie más. Puede que necesites una herramienta que haga parte de ese trabajo por ti.</p>
+      </div>
+    </section>
+
+    <!-- QUIÉN -->
+    <section class="rg-sec rg-quien">
+      <div class="rg-in rg-quien-in">
+        <img src="/assets/jaime.webp" alt="Jaime Gómez de Alvaré, de Cliimber" width="800" height="1067" loading="lazy" class="rg-quien-foto reveal" />
+        <div class="reveal">
+          <span class="rg-tag rg-tag-light">Las 8 horas son mías</span>
+          <h2 class="rg-h2">Soy Jaime. Lo construyo yo.</h2>
+          <p class="rg-sub">Hago webs y herramientas a medida desde Madrid, para negocios de toda España. Tuerca y el resto del equipo son dibujos; el trabajo, la llamada y el código son míos.</p>
+          <p class="rg-sub">No te voy a regalar una plantilla ni a meterte una venta después. Te voy a dedicar 8 horas para que una tarea de tu negocio deje de quitarte tiempo o clientes. Si funciona y quieres seguir, lo hablamos. Si no, te la quedas.</p>
+        </div>
       </div>
     </section>
 
@@ -249,6 +262,7 @@ const faq = [
             <span>Que arreglarlo tenga impacto</span>
             <span>Que quepa en 8 horas</span>
             <span>Ganas de implicarse</span>
+            <span>Alguien que decide en el negocio</span>
             <span>Que se pueda medir</span>
           </div>
           <p>Todas las candidaturas reciben respuesta con el resultado.</p>
@@ -460,6 +474,11 @@ const faq = [
   .rg-dolor li { padding: 1rem 1.2rem; border-radius: 16px; background: #fff; border: 1px solid #dbe7ec; font-weight: 700; font-size: 1.05rem; color: #0d2838; }
   .rg-dolor-remate { margin-top: 1.4rem; font-size: 1.2rem; font-weight: 800; color: #0a5f4a; max-width: 40rem; }
   .rg-sector { margin-top: 1.2rem; padding: 1rem 1.2rem; border-left: 4px solid #a8e063; background: #f5f8f9; border-radius: 0 14px 14px 0; color: #4a5f68; line-height: 1.55; }
+
+  .rg-quien-in { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 900px) { .rg-quien-in { grid-template-columns: 0.55fr 1.45fr; } }
+  .rg-quien-foto { width: min(70vw, 300px); height: auto; border-radius: 28px; margin-inline: auto; box-shadow: 0 30px 60px -30px rgba(15,51,71,0.5); border: 6px solid #fff; outline: 2px solid #a8e063; }
+  .rg-quien .rg-sub { margin-top: 0.8rem; }
 
   /* Tarjetas */
   .rg-cards { display: grid; gap: 1rem; margin-top: 2.2rem; }
