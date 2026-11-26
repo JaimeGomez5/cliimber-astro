@@ -86,7 +86,7 @@ Lo de pedirla solo a los contentos merece una aclaración, porque es la práctic
 La ficha no vive sola. Google la cruza con el resto de lo que encuentra sobre ti.
 
 1. **Los mismos datos en todas partes.** Nombre, dirección, teléfono y horarios idénticos en la ficha, la web, Instagram, Facebook y cualquier directorio donde aparezcas.
-2. **Una web que confirme lo que dice la ficha.** Si la ficha dice "dermatología" y tu web no tiene una página que hable de dermatología, la relevancia se queda a medias. Una página por especialidad importante ayuda.
+2. **Una web que confirme lo que dice la ficha.** Si la ficha dice "dermatología" y tu web no tiene una página que hable de dermatología, la relevancia se queda a medias. Una página por especialidad importante ayuda. Tienes la lista completa en [qué debe tener la web de una clínica veterinaria](/blog/que-debe-tener-la-web-de-una-clinica-veterinaria/).
 3. **Enlaces y menciones de tu zona.** Google cuenta los enlaces de otras webs para la prominencia. Colaboraciones con protectoras, el colegio de veterinarios, prensa local o clínicas que te derivan casos son las menciones que más valen.
 
 ## Errores que hunden una ficha

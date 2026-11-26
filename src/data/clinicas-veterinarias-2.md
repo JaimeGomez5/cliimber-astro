@@ -20,6 +20,8 @@ En pruebas que hice en octubre de 2026 con ChatGPT, Gemini, Perplexity y Claude,
 
 Urgencias y teléfono visibles desde el móvil, cita online o un formulario corto, una página por especialidad, el equipo con nombre y colegiación, precios orientativos de lo más habitual, los mismos datos que en tu ficha de Google y reseñas reales. Publicar precios orientativos y explicar qué incluyen facilita la comparación y reduce dudas antes de pedir cita.
 
+Lo explico en detalle en [qué debe tener la web de una clínica veterinaria: checklist de 15 puntos](/blog/que-debe-tener-la-web-de-una-clinica-veterinaria/).
+
 ## Herramientas que ordenan el trabajo diario
 
 Hay tareas que ningún programa de gestión resuelve bien. Ahí construyo herramientas pequeñas que se integran en tu web:
