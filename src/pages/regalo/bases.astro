@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import Logo from '../../components/Logo.astro';
+import { REGALO } from '../../lib/regalo';
+import { LEGAL } from '../../lib/contact';
+
+const canonical = 'https://cliimber.com/regalo/bases/';
+---
+<BaseLayout
+  title="Bases: 8 horas de regalo para tu negocio | Cliimber"
+  description="Condiciones de la campaña de Cliimber que regala 8 horas de trabajo para construir una herramienta a medida a un negocio."
+  canonical={canonical}
+  noindex
+>
+  <main class="rb">
+    <header class="rb-top"><a href="/regalo/" aria-label="Volver al regalo"><Logo class="rb-logo" /></a></header>
+    <article class="rb-in">
+      <p class="rb-back"><a href="/regalo/">Volver al regalo</a></p>
+      <h1>Bases de la campaña «8 horas de regalo»</h1>
+      <p class="rb-meta">Organiza {LEGAL.titular} (Cliimber), {LEGAL.email}. Diciembre de 2026.</p>
+
+      <h2>1. Qué se regala</h2>
+      <p>Hasta {REGALO.horas} horas de trabajo de Jaime Gómez de Alvaré para construir una herramienta digital a medida que resuelva un problema concreto de un negocio. Por ejemplo: un formulario que filtra clientes, un aviso automático, un recomendador o una calculadora de presupuesto.</p>
+      <p>Las 8 horas incluyen una llamada para entender el problema, el diseño, el desarrollo, las pruebas y la puesta en marcha. No tiene ningún coste para el negocio elegido.</p>
+
+      <h2>2. Qué no incluye</h2>
+      <p>Una web completa, una tienda online, integraciones con programas de gestión, hosting, dominios, licencias ni servicios de terceros que tengan coste mensual. Si la herramienta necesita alguno de estos servicios, se acuerda antes con el negocio quién lo paga.</p>
+
+      <h2>3. Quién puede participar</h2>
+      <p>Cualquier persona mayor de edad que tenga un negocio en España (autónomo o empresa), de cualquier sector, y que siga la cuenta de Instagram {REGALO.instagram}.</p>
+
+      <h2>4. Cómo participar y plazo</h2>
+      <p>Rellenando el formulario de cliimber.com/regalo hasta el {REGALO.cierreTexto} (hora peninsular). Una candidatura por negocio. Participar es gratis y no obliga a nada.</p>
+
+      <h2>5. Cómo se elige</h2>
+      <p>No es un sorteo. Jaime lee todas las candidaturas y elige un negocio con estos criterios: que el problema sea concreto, que resolverlo tenga impacto en el negocio, que se pueda construir en 8 horas, que el negocio se implique y que se pueda medir si ha funcionado. La decisión es de Cliimber y no se puede recurrir.</p>
+      <p>El negocio elegido se anuncia el {REGALO.anuncioTexto} en Instagram, solo con su permiso. Si el elegido no responde en 7 días o renuncia, se puede elegir otra candidatura.</p>
+
+      <h2>6. Compromisos del negocio elegido</h2>
+      <p>Una llamada de unos 20 minutos para explicar el problema, facilitar la información necesaria para construir la herramienta y probarla. La herramienta se construye en enero de 2027, en fechas acordadas con el negocio.</p>
+      <p>Si el negocio da su permiso (aparte y por escrito), Cliimber puede contar el proceso y el resultado en sus redes y en su web. Sin ese permiso, no se publica su nombre ni sus datos.</p>
+
+      <h2>7. Después</h2>
+      <p>No hay obligación de contratar nada después. La herramienta es del negocio. Si quiere ampliarla o seguir trabajando con Cliimber, se habla aparte.</p>
+      <p>A las candidaturas no elegidas, Jaime les escribe con una idea concreta sobre su caso. No es una auditoría completa.</p>
+
+      <h2>8. Datos personales</h2>
+      <p>Responsable: {LEGAL.titular}. Los datos del formulario se usan para gestionar la candidatura y contactar con quien se presenta sobre ella. Se conservan hasta el final de la campaña y, como máximo, seis meses después. Solo se usan para enviar ideas o propuestas comerciales si se marca la casilla correspondiente, que es opcional. Puedes acceder a tus datos, corregirlos o pedir que se borren escribiendo a {LEGAL.email}. El formulario se gestiona con Formspree. Más información en la <a href="/politica-de-privacidad/">política de privacidad</a>.</p>
+
+      <h2>9. Cambios</h2>
+      <p>Si por causas ajenas hubiera que cambiar alguna fecha, se avisará en Instagram y en esta página. Participar supone aceptar estas bases.</p>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .rb { background: #f5f8f9; min-height: 100vh; padding-bottom: 4rem; }
+  .rb-top { background: #0f3347; color: #fff; padding: 1rem 1.25rem; }
+  .rb-logo { font-size: 1.3rem; }
+  .rb-in { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem; line-height: 1.65; color: #0d2838; }
+  .rb-in h1 { font-size: clamp(1.7rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 0.6rem 0 0.4rem; }
+  .rb-meta { color: #7a8e96; margin-bottom: 1.5rem; }
+  .rb-in h2 { font-size: 1.15rem; font-weight: 800; margin: 1.8rem 0 0.4rem; }
+  .rb-in p { color: #4a5f68; margin-bottom: 0.7rem; }
+  .rb-in a { color: #0a5f4a; font-weight: 700; }
+  .rb-back a { text-decoration: none; }
+</style>

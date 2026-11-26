@@ -16,9 +16,10 @@ interface Props {
   ogType?: string;
   ldJson?: object | object[];
   noindex?: boolean;
+  hideWhatsApp?: boolean; // landings con barra fija propia abajo (p. ej. /regalo/)
 }
 
-const { title, description, canonical, ogTitle, ogDescription, ogImage = '/assets/og-default.jpg', ogType = 'website', ldJson, noindex = false } = Astro.props;
+const { title, description, canonical, ogTitle, ogDescription, ogImage = '/assets/og-default.jpg', ogType = 'website', ldJson, noindex = false, hideWhatsApp = false } = Astro.props;
 const socialTitle = ogTitle || title;
 const socialDescription = ogDescription || description;
 const socialImage = new URL(ogImage, 'https://cliimber.com').href;
@@ -58,7 +59,7 @@ const socialImage = new URL(ogImage, 'https://cliimber.com').href;
   <body>
     <slot />
     <CookieBanner client:idle />
-    <WhatsAppButton client:load />
+    {!hideWhatsApp && <WhatsAppButton client:load />}
     <RevealObserver client:load />
   </body>
 </html>
