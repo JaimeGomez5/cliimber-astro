@@ -5,12 +5,12 @@ import { REGALO, cerrado, evento } from '../../lib/regalo';
 // Envío: primero /api/regalo (Resend + hoja de Google, functions/api/regalo.ts). Si esa función no está
 // configurada o falla, se envía por Formspree, igual que el contacto de la web. Así nunca se pierde una candidatura.
 
-const SECTORES = ['Clínica o veterinaria', 'Tienda o ecommerce', 'Consulta o profesional', 'Servicios', 'Hostelería', 'Otro'];
+const SECTORES = ['Sector pet', 'Tienda o ecommerce', 'Clínica o consulta', 'Reformas u obras', 'Academia o formación', 'Servicios profesionales', 'Hostelería', 'Otro'];
 const PISTAS = [
   'Me hacen siempre las mismas preguntas',
   'Pierdo llamadas o mensajes',
   'Los presupuestos me llevan horas',
-  'Los clientes compran una vez y no vuelven',
+  'Hago a mano tareas que se repiten',
   'Llegan visitas pero no piden nada',
 ];
 
@@ -155,7 +155,7 @@ export default function RegaloForm() {
           <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" /><path d="M15 27l7 7 15-16" /></svg>
         </div>
         <p className="rg-done-big">Candidatura recibida</p>
-        <p>La leo yo, Jaime. El {REGALO.anuncioTexto} anuncio el negocio elegido. Si no eres tú, te escribo igualmente con lo primero que cambiaría en tu caso.</p>
+        <p>La leo yo, Jaime. El {REGALO.anuncioTexto} anuncio el negocio elegido y te escribo con el resultado, salga o no el tuyo.</p>
         <div className="rg-done-actions">
           <a className="rg-btn rg-btn-lima" href={REGALO.instagramUrl} target="_blank" rel="noopener">Seguir a {REGALO.instagram}</a>
           <button type="button" className="rg-btn rg-btn-ghost" onClick={compartir}>Pásaselo a otro negocio</button>
@@ -211,7 +211,7 @@ export default function RegaloForm() {
           <input id="rg-web" data-paso="1" required name="web" placeholder="tuweb.com o @tunegocio" className="rg-input" autoCapitalize="off" />
 
           <label className="rg-label" htmlFor="rg-problema">¿Qué te gustaría resolver?</label>
-          <p className="rg-help">Toca una idea si te encaja, o escríbelo con tus palabras.</p>
+          <p className="rg-help">No necesitas saber qué herramienta te hace falta. Cuéntame qué tarea te hace perder tiempo o dónde crees que pierdes clientes. Toca una idea si te encaja.</p>
           <div className="rg-chips rg-chips-sm">
             {PISTAS.map((p) => (
               <button type="button" key={p} className="rg-chip" onClick={() => anadirPista(p)}>
@@ -249,17 +249,13 @@ export default function RegaloForm() {
           <label className="rg-label" htmlFor="rg-tel">Teléfono o WhatsApp <span className="rg-opt">(opcional)</span></label>
           <input id="rg-tel" type="tel" inputMode="tel" name="telefono" autoComplete="tel" placeholder="600 000 000" className="rg-input" />
 
-          <label className="rg-label" htmlFor="rg-ig">Tu usuario de Instagram</label>
-          <p className="rg-help">Para participar hay que seguir a {REGALO.instagram}.</p>
-          <input id="rg-ig" required={paso === 2} name="usuario_instagram" placeholder="@tuusuario" className="rg-input" autoCapitalize="off" />
-
           <label className="rg-check-row">
             <input type="checkbox" name="acepta_bases" value="sí" required={paso === 2} />
             <span>He leído y acepto las <a href="/regalo/bases/" target="_blank" rel="noopener">bases</a> y la <a href="/politica-de-privacidad/" target="_blank" rel="noopener">política de privacidad</a>.</span>
           </label>
           <label className="rg-check-row">
             <input type="checkbox" name="acepta_comercial" value="sí" />
-            <span>Quiero que Jaime me escriba con ideas para mi negocio (opcional).</span>
+            <span>Acepto que Jaime contacte conmigo para compartir recomendaciones y propuestas de servicios de Cliimber relacionadas con mi negocio (opcional).</span>
           </label>
 
           {state.error && <p className="rg-error" role="alert">{state.error}</p>}

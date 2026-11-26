@@ -24,24 +24,25 @@ const herramientas = [
   'Avisos automáticos',
   'Recomendadores de producto',
   'Calculadoras de presupuesto',
-  'Preconsultas antes de la cita',
-  'Recordatorios de recompra',
+  'Generadores de presupuestos',
+  'Seguimiento de solicitudes',
 ];
 
 const faq = [
-  { q: '¿Es gratis de verdad?', a: 'Sí. Te regalo hasta 8 horas de trabajo: llamada, diseño, desarrollo y puesta en marcha de una herramienta. No te pido tarjeta ni firmas nada. Solo quedan fuera los costes de terceros que paguen cada mes, como un hosting o una licencia.' },
-  { q: '¿Qué pasa si no me eligen?', a: 'Te escribo igualmente, yo, con lo primero que cambiaría en tu caso. No es una auditoría completa, pero es una idea concreta para tu negocio.' },
+  { q: '¿Es gratis de verdad?', a: 'Sí. Dedico hasta 8 horas en total a tu herramienta: llamada, diseño, desarrollo, pruebas, puesta en marcha y una ronda de ajustes. 0 € de desarrollo. Solo quedan fuera los servicios de terceros que tengan coste, que se hablan antes.' },
+  { q: '¿Qué pasa si no me eligen?', a: 'Te escribo para contarte el resultado. Si además has marcado que quieres recibir ideas para tu negocio, te cuento qué haría en tu caso.' },
   { q: '¿Tengo que contratar algo después?', a: 'No. Si la herramienta te sirve y quieres seguir, lo hablamos. Si no, te la quedas y en paz.' },
   { q: '¿Cómo eliges al negocio?', a: 'Con cinco criterios: que el problema sea concreto, que arreglarlo tenga impacto, que quepa en 8 horas, que el negocio se implique y que se pueda medir si ha funcionado. No es un sorteo.' },
-  { q: '¿Vale cualquier sector?', a: 'Sí. Clínicas, tiendas, consultas, servicios, hostelería. Si tienes un negocio en España y un problema que te quita tiempo o clientes, preséntate.' },
+  { q: '¿Vale cualquier sector?', a: 'Sí. Trabajo sobre todo con el sector pet, pero esta convocatoria es para cualquier negocio en España con un problema concreto: reformas, academias, clínicas, tiendas, asesorías, hostelería.' },
+  { q: '¿Dónde queda la herramienta?', a: 'En tu web, si se puede añadir, o en un alojamiento gratuito a tu nombre. Es tuya. Si necesitara algún servicio de pago de terceros, lo hablamos antes de empezar y decides tú.' },
 ];
 ---
 <BaseLayout
-  title="Te regalo 8 horas para crear una herramienta para tu negocio | Cliimber"
-  description={`En vez de Black Friday, regalo 8 horas de trabajo para construir una herramienta a medida a un negocio: formularios, avisos automáticos, recomendadores. Candidaturas ${REGALO.cierreCorto}.`}
+  title="No te regalo una web: te regalo 8 horas para tu negocio | Cliimber"
+  description={`En vez de Black Friday, construyo gratis una herramienta a medida para un negocio de cualquier sector: formularios, presupuestos, avisos automáticos. Hasta 8 horas de trabajo. Candidaturas ${REGALO.cierreCorto}.`}
   canonical={canonical}
-  ogTitle="Te regalo 8 horas para crear una herramienta para tu negocio"
-  ogDescription="Elijo un negocio y le construyo lo que más le haga falta. Gratis. Candidaturas hasta el 9 de diciembre."
+  ogTitle="No te regalo una web. Te regalo 8 horas para resolver un problema real de tu negocio"
+  ogDescription="Elijo un negocio con un problema concreto y le dedico hasta 8 horas a resolverlo. 0 € de desarrollo. Candidaturas hasta el 9 de diciembre."
   hideWhatsApp
   ldJson={{
     '@context': 'https://schema.org',
@@ -69,10 +70,10 @@ const faq = [
         <div class="rg-hero-copy">
           <span class="rg-tag">En vez de Black Friday</span>
           <h1 class="rg-h1">
-            Te regalo <span class="rg-hl">8 horas</span> para crear una herramienta para tu negocio
+            No te regalo una web. Te regalo <span class="rg-hl">8 horas</span> para resolver un problema real de tu negocio
           </h1>
           <p class="rg-lead">
-            Elijo un negocio y le construyo lo que más le haga falta: un formulario que filtra clientes, un aviso automático, un recomendador. Gratis, hecho por mí y funcionando.
+            Elijo un negocio y le construyo una herramienta a medida, del diagnóstico a la puesta en marcha: un formulario que filtra clientes, un generador de presupuestos, un aviso automático. Sin coste de desarrollo y sin obligación de contratar después. De cualquier sector.
           </p>
           <div class="rg-cd-wrap">
             <span class="rg-cd-title">Candidaturas abiertas, cierran en</span>
@@ -82,7 +83,7 @@ const faq = [
             <a href="#presentate" class="rg-btn rg-btn-lima rg-btn-big" data-ev="regalo_cta_hero">Presentar mi negocio</a>
             <a href="#que-entra" class="rg-btn rg-btn-ghost">Qué puedo construirte</a>
           </div>
-          <p class="rg-micro">Sin tarjeta. Sin compromiso. 2 pasos, menos de un minuto.</p>
+          <p class="rg-micro">1 negocio. 1 herramienta. 0 € de desarrollo. 2 pasos, menos de un minuto.</p>
         </div>
 
         <div class="rg-clock" aria-hidden="true">
@@ -114,6 +115,34 @@ const faq = [
       </div>
     </div>
 
+    <!-- PROBLEMAS -->
+    <section class="rg-sec rg-problemas">
+      <div class="rg-in">
+        <h2 class="rg-h2 reveal">¿Te suena alguna de estas?</h2>
+        <ul class="rg-dolor">
+          <li class="reveal">«Cada día respondo las mismas preguntas.»</li>
+          <li class="reveal">«Pierdo horas preparando presupuestos.»</li>
+          <li class="reveal">«Me llegan solicitudes y tardo demasiado en contestarlas.»</li>
+          <li class="reveal">«Los clientes no saben qué elegir y acaban preguntando.»</li>
+          <li class="reveal">«Hay tareas que sigo haciendo a mano.»</li>
+        </ul>
+        <p class="rg-dolor-remate reveal">Puede que no necesites contratar a nadie más. Puede que necesites una herramienta que haga parte de ese trabajo por ti.</p>
+      </div>
+    </section>
+
+    <!-- QUIÉN -->
+    <section class="rg-sec rg-quien">
+      <div class="rg-in rg-quien-in">
+        <img src="/assets/jaime.webp" alt="Jaime Gómez de Alvaré, de Cliimber" width="800" height="1067" loading="lazy" class="rg-quien-foto reveal" />
+        <div class="reveal">
+          <span class="rg-tag rg-tag-light">Las 8 horas son mías</span>
+          <h2 class="rg-h2">Soy Jaime. Lo construyo yo.</h2>
+          <p class="rg-sub">Hago webs y herramientas a medida desde Madrid, para negocios de toda España. Tuerca y el resto del equipo son dibujos; el trabajo, la llamada y el código son míos.</p>
+          <p class="rg-sub">No te voy a regalar una plantilla ni a meterte una venta después. Te voy a dedicar 8 horas para que una tarea de tu negocio deje de quitarte tiempo o clientes. Si funciona y quieres seguir, lo hablamos. Si no, te la quedas.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- QUÉ ENTRA -->
     <section class="rg-sec" id="que-entra">
       <div class="rg-in">
@@ -125,10 +154,10 @@ const faq = [
           <article class="rg-card reveal">
             <div class="rg-mock rg-mock-form" aria-hidden="true">
               <div class="m-q">¿Qué necesitas?</div>
-              <div class="m-opt">Primera visita</div>
-              <div class="m-opt m-pick">Revisión</div>
+              <div class="m-opt">Información</div>
+              <div class="m-opt m-pick">Presupuesto</div>
               <div class="m-opt">Urgencia</div>
-              <div class="m-ok">Cita pedida</div>
+              <div class="m-ok">Solicitud recibida</div>
             </div>
             <h3>Formulario que filtra</h3>
             <p>Pregunta lo justo, se adapta a cada respuesta y te llega ordenado. Se acabó el «hola, quería información».</p>
@@ -138,13 +167,13 @@ const faq = [
             <div class="rg-mock rg-mock-aviso" aria-hidden="true">
               <div class="m-phone">
                 <div class="m-notif">
-                  <b>Tienda de ejemplo</b>
-                  <span>A Luna se le acaba el pienso en 5 días. ¿Te lo mandamos?</span>
+                  <b>Negocio de ejemplo</b>
+                  <span>Tu presupuesto está listo. ¿Lo revisamos mañana a las 10:00?</span>
                 </div>
               </div>
             </div>
             <h3>Aviso automático</h3>
-            <p>El cliente recibe el mensaje justo cuando lo necesita: recompra, cita, resultado. Sin que tú estés pendiente.</p>
+            <p>Cada solicitud recibe su seguimiento a tiempo: presupuesto, cita, recordatorio, recompra. Sin que tú estés pendiente.</p>
           </article>
 
           <article class="rg-card reveal">
@@ -152,11 +181,11 @@ const faq = [
               <div class="m-dots"><i></i><i></i><i></i></div>
               <div class="m-result">
                 <span>Te recomendamos</span>
-                <b>Pack cachorro talla M</b>
+                <b>Plan mensual básico</b>
               </div>
             </div>
-            <h3>Recomendador</h3>
-            <p>Tres o cuatro preguntas y el cliente sabe qué comprar. Lo que le dirías tú en la tienda, en la web.</p>
+            <h3>Recomendador de servicios o productos</h3>
+            <p>Tres o cuatro preguntas y el cliente sabe qué le conviene. Lo que le dirías tú en persona, en la web.</p>
           </article>
 
           <article class="rg-card reveal">
@@ -165,11 +194,12 @@ const faq = [
               <div class="m-line"><span>Extras</span><span>2</span></div>
               <div class="m-total"><span>Presupuesto</span><b>al momento</b></div>
             </div>
-            <h3>Calculadora de presupuesto</h3>
+            <h3>Generador de presupuestos</h3>
             <p>El cliente se hace una idea del precio sin esperar a que le contestes. Tú recibes solo a los que encajan.</p>
           </article>
         </div>
         <p class="rg-demo-note">Ejemplos con datos ficticios.</p>
+        <p class="rg-sector reveal">Trabajo sobre todo con negocios del sector pet, pero esta convocatoria está abierta a autónomos y empresas de cualquier sector: reformas, academias, clínicas, tiendas, asesorías, hostelería. Lo importante no es a qué te dedicas, sino qué problema se puede resolver.</p>
 
         <div class="rg-split">
           <div class="rg-video-real reveal">
@@ -177,9 +207,9 @@ const faq = [
           </div>
           <div class="rg-split-copy reveal">
             <h3 class="rg-h3">Así es uno de verdad</h3>
-            <p>Esto no es una maqueta: es un formulario a medida que construí y está funcionando. En 8 horas te hago algo así para el problema que más te cueste.</p>
+            <p>Esto no es una maqueta: es un formulario a medida que construí para un negocio y está funcionando. Es de un sector concreto, pero la misma idea sirve para el tuyo.</p>
             <ul class="rg-list">
-              <li><b>Entra:</b> llamada para entender el problema, diseño, desarrollo, pruebas y puesta en marcha.</li>
+              <li><b>Entra, hasta 8 horas en total:</b> llamada para entender el problema, diseño, desarrollo, pruebas, puesta en marcha y una ronda de ajustes. Coste de desarrollo para ti: 0 €.</li>
               <li class="no"><b>No entra:</b> una web completa, una tienda online, conectarlo con tu programa de gestión, hosting, dominios ni licencias.</li>
             </ul>
           </div>
@@ -205,22 +235,22 @@ const faq = [
           <li class="reveal">
             <span class="rg-n">1</span>
             <div>
-              <h3>Sigue a <a href={REGALO.instagramUrl} target="_blank" rel="noopener">{REGALO.instagram}</a></h3>
-              <p>Ahí anuncio el elegido y cuento cómo se construye.</p>
+              <h3>Cuéntame tu problema</h3>
+              <p>Con tus palabras. No hace falta que sepas qué herramienta necesitas. Dos pasos, menos de un minuto.</p>
             </div>
           </li>
           <li class="reveal">
             <span class="rg-n">2</span>
             <div>
-              <h3>Cuéntame tu problema</h3>
-              <p>Con tus palabras: qué te quita tiempo o clientes. Dos pasos, menos de un minuto.</p>
+              <h3>Leo todas las candidaturas</h3>
+              <p>Elijo el negocio con los criterios de abajo. No es un sorteo y la decisión es mía.</p>
             </div>
           </li>
           <li class="reveal">
             <span class="rg-n">3</span>
             <div>
               <h3>Antes del {REGALO.cierreTexto}</h3>
-              <p>El {REGALO.anuncioTexto} anuncio el negocio elegido. La herramienta se construye en enero.</p>
+              <p>El {REGALO.anuncioTexto} anuncio el negocio elegido en <a href={REGALO.instagramUrl} target="_blank" rel="noopener">{REGALO.instagram}</a>. La herramienta se construye en enero.</p>
             </div>
           </li>
         </ol>
@@ -232,9 +262,10 @@ const faq = [
             <span>Que arreglarlo tenga impacto</span>
             <span>Que quepa en 8 horas</span>
             <span>Ganas de implicarse</span>
+            <span>Alguien que decide en el negocio</span>
             <span>Que se pueda medir</span>
           </div>
-          <p>No es un sorteo: lo leo todo yo. Y a quien no elija, le escribo con lo primero que cambiaría en su caso.</p>
+          <p>Todas las candidaturas reciben respuesta con el resultado.</p>
         </div>
       </div>
     </section>
@@ -435,6 +466,19 @@ const faq = [
   .rg-h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
   .rg-sub { font-size: 1.1rem; color: #4a5f68; max-width: 38rem; }
   .rg-sub-dark { color: rgba(245,248,249,0.75); margin-bottom: 1.5rem; }
+
+  /* Problemas */
+  .rg-problemas { background: #f5f8f9; }
+  .rg-dolor { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 0.7rem; }
+  @media (min-width: 900px) { .rg-dolor { grid-template-columns: 1fr 1fr; } }
+  .rg-dolor li { padding: 1rem 1.2rem; border-radius: 16px; background: #fff; border: 1px solid #dbe7ec; font-weight: 700; font-size: 1.05rem; color: #0d2838; }
+  .rg-dolor-remate { margin-top: 1.4rem; font-size: 1.2rem; font-weight: 800; color: #0a5f4a; max-width: 40rem; }
+  .rg-sector { margin-top: 1.2rem; padding: 1rem 1.2rem; border-left: 4px solid #a8e063; background: #f5f8f9; border-radius: 0 14px 14px 0; color: #4a5f68; line-height: 1.55; }
+
+  .rg-quien-in { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 900px) { .rg-quien-in { grid-template-columns: 0.55fr 1.45fr; } }
+  .rg-quien-foto { width: min(70vw, 300px); height: auto; border-radius: 28px; margin-inline: auto; box-shadow: 0 30px 60px -30px rgba(15,51,71,0.5); border: 6px solid #fff; outline: 2px solid #a8e063; }
+  .rg-quien .rg-sub { margin-top: 0.8rem; }
 
   /* Tarjetas */
   .rg-cards { display: grid; gap: 1rem; margin-top: 2.2rem; }

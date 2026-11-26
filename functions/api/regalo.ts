@@ -76,7 +76,6 @@ export const onRequestPost = async ({ request, env, waitUntil }: Ctx): Promise<R
     nombre: limpio(body.nombre, 120),
     email: limpio(body.email, 160),
     telefono: limpio(body.telefono, 40),
-    usuario_instagram: limpio(body.usuario_instagram, 80),
     acepta_bases: body.acepta_bases === 'sí',
     acepta_comercial: body.acepta_comercial === 'sí',
     utm_source: limpio(body.utm_source, 80),
@@ -85,7 +84,7 @@ export const onRequestPost = async ({ request, env, waitUntil }: Ctx): Promise<R
     utm_content: limpio(body.utm_content, 80),
   };
 
-  const faltan = (['negocio', 'sector', 'web', 'problema', 'nombre', 'email', 'usuario_instagram'] as const).filter((k) => !d[k]);
+  const faltan = (['negocio', 'sector', 'web', 'problema', 'nombre', 'email'] as const).filter((k) => !d[k]);
   if (faltan.length) return json({ ok: false, error: 'Faltan campos obligatorios.' }, 400);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) return json({ ok: false, error: 'El email no parece válido.' }, 400);
   if (d.problema.length < 15) return json({ ok: false, error: 'Cuéntanos el problema con un poco más de detalle.' }, 400);
@@ -109,7 +108,6 @@ export const onRequestPost = async ({ request, env, waitUntil }: Ctx): Promise<R
     ['Nombre', d.nombre],
     ['Email', d.email],
     ['Teléfono', d.telefono || '(no lo ha dejado)'],
-    ['Instagram', d.usuario_instagram],
     ['Acepta comunicaciones', d.acepta_comercial ? 'Sí' : 'No'],
     ['Origen', [d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content].filter(Boolean).join(' / ') || 'directo u orgánico'],
     ['Fecha', fecha],
@@ -142,7 +140,7 @@ export const onRequestPost = async ({ request, env, waitUntil }: Ctx): Promise<R
       html: `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6;color:#0d2838">
         <p>Hola, ${esc(d.nombre)}:</p>
         <p>He recibido la candidatura de <b>${esc(d.negocio)}</b>. La leo yo.</p>
-        <p>El viernes 11 de diciembre anuncio el negocio elegido en Instagram (@jaime.gomezgp). Si no es el tuyo, te escribo igualmente con lo primero que cambiaría en tu caso.</p>
+        <p>El viernes 11 de diciembre anuncio el negocio elegido en Instagram (@jaime.gomezgp) y te escribo con el resultado, salga o no el tuyo.</p>
         <p>Si quieres añadir algo, responde a este correo.</p>
         <p>Jaime<br/>Cliimber · cliimber.com</p></div>`,
     }).catch((e) => console.error('confirmación', e)),
